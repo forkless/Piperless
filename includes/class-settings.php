@@ -184,8 +184,12 @@ class Settings {
 			],
 		], $this->page_slug_piper );
 
-		$this->add_field( 'piper_ffmpeg_binary', __( 'FFmpeg Binaries Path', 'piperless' ), 'text', 'piperless_piper_section', [
-			'description' => __( 'Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty.', 'piperless' ),
+		$this->add_field( 'piper_ffmpeg_binary', __( 'FFmpeg Binary Path', 'piperless' ), 'text', 'piperless_piper_section', [
+			'description' => __( 'Absolute path to the ffmpeg binary for MP3/Opus conversion. Auto-detected from common paths if left empty.', 'piperless' ),
+		], $this->page_slug_piper );
+
+		$this->add_field( 'piper_ffprobe_binary', __( 'FFprobe Binary Path', 'piperless' ), 'text', 'piperless_piper_section', [
+			'description' => __( 'Absolute path to the ffprobe binary for audio duration detection. Auto-detected from the ffmpeg directory if left empty.', 'piperless' ),
 		], $this->page_slug_piper );
 
 		$this->add_field( 'piper_mp3_bitrate', __( 'MP3 Bitrate', 'piperless' ), 'select', 'piperless_piper_section', [
@@ -469,6 +473,7 @@ class Settings {
 		$clean['default_language']   = sanitize_text_field( $input['default_language'] ?? 'en_US' );
 		$clean['default_quality']       = sanitize_text_field( $input['default_quality'] ?? 'medium' );
 		$clean['piper_ffmpeg_binary']    = sanitize_text_field( $input['piper_ffmpeg_binary'] ?? '' );
+		$clean['piper_ffprobe_binary']   = sanitize_text_field( $input['piper_ffprobe_binary'] ?? '' );
 		$clean['piper_mp3_bitrate']      = sanitize_text_field( $input['piper_mp3_bitrate'] ?? '32k' );
 		$clean['piper_audio_format']     = in_array( $input['piper_audio_format'] ?? 'mp3', [ 'mp3', 'opus' ], true )
 			? $input['piper_audio_format'] : 'mp3';

@@ -469,9 +469,12 @@ msgstr "16 kbps (compacto)"
 msgid "12 kbps (minimal)"
 msgstr "12 kbps (mínimo)"
 
-msgid "Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty."
-msgstr "Caminho absoluto para as ferramentas ffmpeg para conversão MP3/Opus. Detectado automaticamente se deixado vazio."
+msgid "FFprobe Binary Path"
+msgstr "Caminho do binário FFprobe"
 
-msgid "FFmpeg Binaries Path"
-msgstr "Caminho dos binários FFmpeg"
+msgid "Absolute path to the ffprobe binary for audio duration detection. Auto-detected from the ffmpeg directory if left empty."
+msgstr "Caminho absoluto para o binário ffprobe para detecção de duração do áudio. Detectado automaticamente do diretório ffmpeg se deixado vazio."
+
+msgid "Absolute path to the ffmpeg binary for MP3/Opus conversion. Auto-detected from common paths if left empty."
+msgstr "Caminho absoluto para o binário ffmpeg para conversão MP3/Opus. Detectado automaticamente se deixado vazio."
 
