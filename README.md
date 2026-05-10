@@ -4,7 +4,6 @@
 
 > **Transparency note:** Piperless was developed using AI-assisted CLI tools (DeepSeek V4 Pro). Every line of code, security review, and translation was generated through prompt-driven development — then reviewed, tested, and hardened by a human. This weekend project started out of curiosity for what AI technology can do. Total development cost: one working day and less than the price of a cup of coffee in AI tokens.
 
----
 
 ## What It Does
 
