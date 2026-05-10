@@ -464,7 +464,11 @@ class Settings {
 	 * @return array<string,mixed>
 	 */
 	public function sanitize_settings( array $input ): array {
-		$clean = [];
+		// Merge with existing settings so standalone forms (e.g., Logs tab)
+		// don't wipe unrelated fields.
+		$existing = get_option( 'piperless_settings', [] );
+		$input    = array_merge( $existing, $input );
+		$clean    = [];
 
 		$clean['piper_binary']       = sanitize_text_field( $input['piper_binary'] ?? '' );
 		$clean['models_directory']   = sanitize_text_field( $input['models_directory'] ?? '' );
