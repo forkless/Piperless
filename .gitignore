@@ -5,3 +5,5 @@ build/
 # OS files
 .DS_Store
 Thumbs.db
+.deepseek/
+AGENTS.md
