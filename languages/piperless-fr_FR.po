@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Piperless 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/example/piperless/issues\n"
 "POT-Creation-Date: 2024-01-01 00:00+0000\n"
-"PO-Revision-Date: 2026-05-09 00:00+0000\n"
+"PO-Revision-Date: 2026-05-10 00:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French <LL@li.org>\n"
 "Language: fr_FR\n"
@@ -75,6 +75,14 @@ msgstr "Cache vidé."
 #: includes/class-settings.php:383
 msgid "Choose a visual theme for the audio player."
 msgstr "Choisissez un thème visuel pour le lecteur audio."
+
+#: includes/class-settings.php:now
+msgid "Chunk Silence"
+msgstr "Silence entre phrases"
+
+#: includes/class-settings.php:now
+msgid "Chunked — pre-split text at sentence boundaries for better pacing"
+msgstr "Segmenté — prédécouper le texte aux limites de phrase"
 
 #: includes/class-settings.php:385
 msgid "Classic"
@@ -364,9 +372,21 @@ msgstr "Aperçu du style de lecteur sélectionné avec un extrait audio d'exempl
 msgid "Quality tier override"
 msgstr "Remplacement du niveau de qualité"
 
+#: includes/class-settings.php:now
+msgid "Raw mode passes text directly to Piper. Chunked mode splits text into sentences first, avoiding false breaks on abbreviations and decimals while improving sentence pacing."
+msgstr "Le mode Brut envoie le texte directement à Piper. Le mode Segmenté divise d'abord le texte en phrases."
+
+#: includes/class-settings.php:now
+msgid "Raw — send text as-is to Piper"
+msgstr "Brut — envoyer le texte tel quel à Piper"
+
 #: includes/class-settings.php:607
 msgid "Refresh Log"
 msgstr "Actualiser le journal"
+
+#: includes/class-settings.php:now
+msgid "Seconds of silence inserted between sentence chunks when Text Processing is set to Chunked. Default: 2.0. Range: 0.5–5.0."
+msgstr "Secondes de silence insérées entre les blocs de phrases en mode Segmenté. Défaut : 2.0. Plage : 0.5–5.0."
 
 #: includes/class-settings.php:405
 msgid "Show Duration"
@@ -387,6 +407,10 @@ msgstr "Tester la connexion"
 #: includes/class-settings.php:645
 msgid "Testing…"
 msgstr "Test en cours…"
+
+#: includes/class-settings.php:now
+msgid "Text Processing"
+msgstr "Traitement du texte"
 
 #: includes/class-settings.php:649
 msgid "This will delete cache files not referenced by any post."
@@ -423,4 +447,31 @@ msgstr "Vous n'avez pas l'autorisation de modifier cet article."
 #: includes/class-player.php:109
 msgid "Your browser does not support the audio element."
 msgstr "Votre navigateur ne prend pas en charge l'élément audio."
+
+msgid "Audio Format"
+msgstr "Format audio"
+
+msgid "Output audio format. MP3 is universally supported. Opus offers better quality at the same bitrate but has narrower browser support."
+msgstr "Format audio de sortie. Le MP3 est universellement pris en charge. L'Opus offre une meilleure qualité au même débit mais a une compatibilité navigateur plus limitée."
+
+msgid "Opus Bitrate"
+msgstr "Débit Opus"
+
+msgid "Bitrate for Opus encoding. Opus achieves good quality at much lower bitrates than MP3. Mono output."
+msgstr "Débit pour l'encodage Opus. Opus atteint une bonne qualité à des débits bien inférieurs au MP3. Sortie mono."
+
+msgid "24 kbps (standard)"
+msgstr "24 kbps (standard)"
+
+msgid "16 kbps (compact)"
+msgstr "16 kbps (compact)"
+
+msgid "12 kbps (minimal)"
+msgstr "12 kbps (minimal)"
+
+msgid "Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty."
+msgstr "Chemin absolu vers les outils ffmpeg pour la conversion MP3/Opus. Auto-détecté depuis les chemins courants si laissé vide."
+
+msgid "FFmpeg Binaries Path"
+msgstr "Chemin des binaires FFmpeg"
 

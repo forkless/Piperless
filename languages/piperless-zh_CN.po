@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Piperless 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/example/piperless/issues\n"
 "POT-Creation-Date: 2024-01-01 00:00+0000\n"
-"PO-Revision-Date: 2026-05-09 00:00+0000\n"
+"PO-Revision-Date: 2026-05-10 00:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -75,6 +75,14 @@ msgstr "缓存已清空。"
 #: includes/class-settings.php:383
 msgid "Choose a visual theme for the audio player."
 msgstr "为音频播放器选择一个视觉主题。"
+
+#: includes/class-settings.php:now
+msgid "Chunk Silence"
+msgstr "块间静音"
+
+#: includes/class-settings.php:now
+msgid "Chunked — pre-split text at sentence boundaries for better pacing"
+msgstr "分块 — 在句子边界预先分割文本"
 
 #: includes/class-settings.php:385
 msgid "Classic"
@@ -364,9 +372,21 @@ msgstr "使用示例音频片段预览所选播放器样式的效果。"
 msgid "Quality tier override"
 msgstr "质量级别覆盖"
 
+#: includes/class-settings.php:now
+msgid "Raw mode passes text directly to Piper. Chunked mode splits text into sentences first, avoiding false breaks on abbreviations and decimals while improving sentence pacing."
+msgstr "原始模式直接将文本传递给 Piper。分块模式先将文本分割成句子。"
+
+#: includes/class-settings.php:now
+msgid "Raw — send text as-is to Piper"
+msgstr "原始 — 直接将文本发送给 Piper"
+
 #: includes/class-settings.php:607
 msgid "Refresh Log"
 msgstr "刷新日志"
+
+#: includes/class-settings.php:now
+msgid "Seconds of silence inserted between sentence chunks when Text Processing is set to Chunked. Default: 2.0. Range: 0.5–5.0."
+msgstr "分块模式下句子块之间插入的静音秒数。默认：2.0。范围：0.5–5.0。"
 
 #: includes/class-settings.php:405
 msgid "Show Duration"
@@ -387,6 +407,10 @@ msgstr "测试连接"
 #: includes/class-settings.php:645
 msgid "Testing…"
 msgstr "正在测试…"
+
+#: includes/class-settings.php:now
+msgid "Text Processing"
+msgstr "文本处理"
 
 #: includes/class-settings.php:649
 msgid "This will delete cache files not referenced by any post."
@@ -423,4 +447,31 @@ msgstr "您没有编辑此文章的权限。"
 #: includes/class-player.php:109
 msgid "Your browser does not support the audio element."
 msgstr "您的浏览器不支持音频元素。"
+
+msgid "Audio Format"
+msgstr "音频格式"
+
+msgid "Output audio format. MP3 is universally supported. Opus offers better quality at the same bitrate but has narrower browser support."
+msgstr "输出音频格式。MP3 被普遍支持。Opus 在相同比特率下提供更好的质量，但浏览器支持较窄。"
+
+msgid "Opus Bitrate"
+msgstr "Opus 比特率"
+
+msgid "Bitrate for Opus encoding. Opus achieves good quality at much lower bitrates than MP3. Mono output."
+msgstr "Opus 编码的比特率。Opus 在比 MP3 低得多的比特率下仍能实现良好的质量。单声道输出。"
+
+msgid "24 kbps (standard)"
+msgstr "24 kbps（标准）"
+
+msgid "16 kbps (compact)"
+msgstr "16 kbps（紧凑）"
+
+msgid "12 kbps (minimal)"
+msgstr "12 kbps（最小）"
+
+msgid "Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty."
+msgstr "ffmpeg 工具的绝对路径，用于 MP3/Opus 转换。留空则自动检测。"
+
+msgid "FFmpeg Binaries Path"
+msgstr "FFmpeg 二进制文件路径"
 

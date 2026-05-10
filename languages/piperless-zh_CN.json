@@ -2,9 +2,9 @@
   "_meta": {
     "locale": "zh_CN",
     "source": "translations.json",
-    "generated": "2026-05-09",
-    "total_strings": 102,
-    "translated": 102,
+    "generated": "2026-05-10",
+    "total_strings": 117,
+    "translated": 117,
     "locked": false
   },
   "strings": {
@@ -23,6 +23,8 @@
     "Cache Management": "缓存管理",
     "Cache flushed.": "缓存已清空。",
     "Choose a visual theme for the audio player.": "为音频播放器选择一个视觉主题。",
+    "Chunk Silence": "块间静音",
+    "Chunked — pre-split text at sentence boundaries for better pacing": "分块 — 在句子边界预先分割文本",
     "Classic": "经典",
     "Clear Log": "清除日志",
     "Clear Orphaned Audio": "清除孤立音频",
@@ -95,12 +97,16 @@
     "Post not found.": "未找到文章。",
     "Preview how the selected player style looks with a sample audio clip.": "使用示例音频片段预览所选播放器样式的效果。",
     "Quality tier override": "质量级别覆盖",
+    "Raw mode passes text directly to Piper. Chunked mode splits text into sentences first, avoiding false breaks on abbreviations and decimals while improving sentence pacing.": "原始模式直接将文本传递给 Piper。分块模式先将文本分割成句子。",
+    "Raw — send text as-is to Piper": "原始 — 直接将文本发送给 Piper",
     "Refresh Log": "刷新日志",
+    "Seconds of silence inserted between sentence chunks when Text Processing is set to Chunked. Default: 2.0. Range: 0.5–5.0.": "分块模式下句子块之间插入的静音秒数。默认：2.0。范围：0.5–5.0。",
     "Show Duration": "显示时长",
     "Skip Embedded Content": "跳过嵌入内容",
     "Styling": "样式",
     "Test Connection": "测试连接",
     "Testing…": "正在测试…",
+    "Text Processing": "文本处理",
     "This will delete cache files not referenced by any post.": "这将删除未被任何文章引用的缓存文件。",
     "Too many requests. Please try again later.": "请求过多。请稍后再试。",
     "Unsupported post type.": "不支持的文章类型。",
@@ -109,6 +115,15 @@
     "When falling back to post body (no excerpt), skip text from embedded blocks like YouTube, Twitter, and third-party embeds.": "当回退到文章正文（无摘要）时，跳过 YouTube、Twitter 和第三方嵌入等嵌入块中的文本。",
     "Where to insert the audio player relative to the post content.": "音频播放器相对于文章内容的插入位置。",
     "You do not have permission to edit this post.": "您没有编辑此文章的权限。",
-    "Your browser does not support the audio element.": "您的浏览器不支持音频元素。"
+    "Your browser does not support the audio element.": "您的浏览器不支持音频元素。",
+    "Audio Format": "音频格式",
+    "Output audio format. MP3 is universally supported. Opus offers better quality at the same bitrate but has narrower browser support.": "输出音频格式。MP3 被普遍支持。Opus 在相同比特率下提供更好的质量，但浏览器支持较窄。",
+    "Opus Bitrate": "Opus 比特率",
+    "Bitrate for Opus encoding. Opus achieves good quality at much lower bitrates than MP3. Mono output.": "Opus 编码的比特率。Opus 在比 MP3 低得多的比特率下仍能实现良好的质量。单声道输出。",
+    "24 kbps (standard)": "24 kbps（标准）",
+    "16 kbps (compact)": "16 kbps（紧凑）",
+    "12 kbps (minimal)": "12 kbps（最小）",
+    "Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty.": "ffmpeg 工具的绝对路径，用于 MP3/Opus 转换。留空则自动检测。",
+    "FFmpeg Binaries Path": "FFmpeg 二进制文件路径"
   }
 }

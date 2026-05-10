@@ -2,9 +2,9 @@
   "_meta": {
     "locale": "fr_FR",
     "source": "translations.json",
-    "generated": "2026-05-09",
-    "total_strings": 102,
-    "translated": 102,
+    "generated": "2026-05-10",
+    "total_strings": 117,
+    "translated": 117,
     "locked": false
   },
   "strings": {
@@ -23,6 +23,8 @@
     "Cache Management": "Gestion du cache",
     "Cache flushed.": "Cache vidé.",
     "Choose a visual theme for the audio player.": "Choisissez un thème visuel pour le lecteur audio.",
+    "Chunk Silence": "Silence entre phrases",
+    "Chunked — pre-split text at sentence boundaries for better pacing": "Segmenté — prédécouper le texte aux limites de phrase",
     "Classic": "Classique",
     "Clear Log": "Effacer le journal",
     "Clear Orphaned Audio": "Supprimer les audios orphelins",
@@ -95,12 +97,16 @@
     "Post not found.": "Article introuvable.",
     "Preview how the selected player style looks with a sample audio clip.": "Aperçu du style de lecteur sélectionné avec un extrait audio d'exemple.",
     "Quality tier override": "Remplacement du niveau de qualité",
+    "Raw mode passes text directly to Piper. Chunked mode splits text into sentences first, avoiding false breaks on abbreviations and decimals while improving sentence pacing.": "Le mode Brut envoie le texte directement à Piper. Le mode Segmenté divise d'abord le texte en phrases.",
+    "Raw — send text as-is to Piper": "Brut — envoyer le texte tel quel à Piper",
     "Refresh Log": "Actualiser le journal",
+    "Seconds of silence inserted between sentence chunks when Text Processing is set to Chunked. Default: 2.0. Range: 0.5–5.0.": "Secondes de silence insérées entre les blocs de phrases en mode Segmenté. Défaut : 2.0. Plage : 0.5–5.0.",
     "Show Duration": "Afficher la durée",
     "Skip Embedded Content": "Ignorer le contenu intégré",
     "Styling": "Style",
     "Test Connection": "Tester la connexion",
     "Testing…": "Test en cours…",
+    "Text Processing": "Traitement du texte",
     "This will delete cache files not referenced by any post.": "Cela supprimera les fichiers cache non référencés par un article.",
     "Too many requests. Please try again later.": "Trop de requêtes. Veuillez réessayer plus tard.",
     "Unsupported post type.": "Type d'article non pris en charge.",
@@ -109,6 +115,15 @@
     "When falling back to post body (no excerpt), skip text from embedded blocks like YouTube, Twitter, and third-party embeds.": "Lors du repli sur le corps de l'article (pas d'extrait), ignorer le texte des blocs intégrés comme YouTube, Twitter et les intégrations tierces.",
     "Where to insert the audio player relative to the post content.": "Où insérer le lecteur audio par rapport au contenu de l'article.",
     "You do not have permission to edit this post.": "Vous n'avez pas l'autorisation de modifier cet article.",
-    "Your browser does not support the audio element.": "Votre navigateur ne prend pas en charge l'élément audio."
+    "Your browser does not support the audio element.": "Votre navigateur ne prend pas en charge l'élément audio.",
+    "Audio Format": "Format audio",
+    "Output audio format. MP3 is universally supported. Opus offers better quality at the same bitrate but has narrower browser support.": "Format audio de sortie. Le MP3 est universellement pris en charge. L'Opus offre une meilleure qualité au même débit mais a une compatibilité navigateur plus limitée.",
+    "Opus Bitrate": "Débit Opus",
+    "Bitrate for Opus encoding. Opus achieves good quality at much lower bitrates than MP3. Mono output.": "Débit pour l'encodage Opus. Opus atteint une bonne qualité à des débits bien inférieurs au MP3. Sortie mono.",
+    "24 kbps (standard)": "24 kbps (standard)",
+    "16 kbps (compact)": "16 kbps (compact)",
+    "12 kbps (minimal)": "12 kbps (minimal)",
+    "Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty.": "Chemin absolu vers les outils ffmpeg pour la conversion MP3/Opus. Auto-détecté depuis les chemins courants si laissé vide.",
+    "FFmpeg Binaries Path": "Chemin des binaires FFmpeg"
   }
 }

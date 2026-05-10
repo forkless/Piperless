@@ -255,6 +255,11 @@
 	color: #50575e;
 }
 
+.piperless-cache-badge--opus {
+	background: #e3f2fd;
+	color: #1565c0;
+}
+
 .piperless-cache-badge--orphan {
 	background: #fcf0f1;
 	color: #b32d2e;
