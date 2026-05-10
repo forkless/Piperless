@@ -2,6 +2,16 @@
 
 All notable changes to the Piperless WordPress plugin.
 
+## [1.1.1] — 2026-05-10
+
+### Fixed
+
+- **Player not rendering for logged-out users** — removed `in_the_loop()` guard from `maybe_prepend_player()`. Some themes override `in_the_loop()` in non-admin contexts, causing the player HTML to be suppressed for logged-out visitors. `is_main_query()` is retained as the sole duplicate-check guard.
+
+### Changed
+
+- **Audio Format field moved above MP3 Bitrate** — the Piper tab now shows Audio Format first, then the relevant bitrate selectors.
+
 ## [1.1.0] — 2026-05-10
 
 ### Added

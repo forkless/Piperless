@@ -192,19 +192,19 @@ class Settings {
 			'description' => __( 'Absolute path to the ffprobe binary for audio duration detection. Auto-detected from the ffmpeg directory if left empty.', 'piperless' ),
 		], $this->page_slug_piper );
 
-		$this->add_field( 'piper_mp3_bitrate', __( 'MP3 Bitrate', 'piperless' ), 'select', 'piperless_piper_section', [
-			'description' => __( 'Audio quality for MP3 conversion. Lower = smaller files.', 'piperless' ),
-			'options'     => [
-				'24k' => __( '24 kbps (compact)', 'piperless' ),
-				'32k' => __( '32 kbps (standard)', 'piperless' ),
-			],
-		], $this->page_slug_piper );
-
 		$this->add_field( 'piper_audio_format', __( 'Audio Format', 'piperless' ), 'select', 'piperless_piper_section', [
 			'description' => __( 'Output audio format. MP3 is universally supported. Opus offers better quality at the same bitrate but has narrower browser support.', 'piperless' ),
 			'options'     => [
 				'mp3'  => 'MP3',
 				'opus' => 'Opus',
+			],
+		], $this->page_slug_piper );
+
+		$this->add_field( 'piper_mp3_bitrate', __( 'MP3 Bitrate', 'piperless' ), 'select', 'piperless_piper_section', [
+			'description' => __( 'Audio quality for MP3 conversion. Lower = smaller files.', 'piperless' ),
+			'options'     => [
+				'24k' => __( '24 kbps (compact)', 'piperless' ),
+				'32k' => __( '32 kbps (standard)', 'piperless' ),
 			],
 		], $this->page_slug_piper );
 
