@@ -3,8 +3,8 @@
     "locale": "ja",
     "source": "translations.json",
     "generated": "2026-05-10",
-    "total_strings": 102,
-    "translated": 102,
+    "total_strings": 117,
+    "translated": 117,
     "locked": false
   },
   "strings": {
@@ -23,6 +23,8 @@
     "Cache Management": "キャッシュ管理",
     "Cache flushed.": "キャッシュをフラッシュしました。",
     "Choose a visual theme for the audio player.": "オーディオプレーヤーのビジュアルテーマを選択してください。",
+    "Chunk Silence": "チャンク間の無音",
+    "Chunked — pre-split text at sentence boundaries for better pacing": "Chunked — 文の区切りでテキストを分割",
     "Classic": "クラシック",
     "Clear Log": "ログをクリア",
     "Clear Orphaned Audio": "孤立したオーディオをクリア",
@@ -95,12 +97,16 @@
     "Post not found.": "投稿が見つかりません。",
     "Preview how the selected player style looks with a sample audio clip.": "選択したプレイヤースタイルがサンプルオーディオクリップでどのように見えるかプレビューします。",
     "Quality tier override": "品質ティアの上書き",
+    "Raw mode passes text directly to Piper. Chunked mode splits text into sentences first, avoiding false breaks on abbreviations and decimals while improving sentence pacing.": "Rawモードはテキストを直接Piperに渡します。Chunkedモードは最初にテキストを文に分割します。",
+    "Raw — send text as-is to Piper": "Raw — テキストをそのままPiperに送信",
     "Refresh Log": "ログの更新",
+    "Seconds of silence inserted between sentence chunks when Text Processing is set to Chunked. Default: 2.0. Range: 0.5–5.0.": "Chunkedモードで文チャンク間に挿入される無音の秒数。デフォルト: 2.0。範囲: 0.5–5.0。",
     "Show Duration": "再生時間を表示",
     "Skip Embedded Content": "埋め込みコンテンツをスキップ",
     "Styling": "スタイリング",
     "Test Connection": "接続テスト",
     "Testing…": "テスト中…",
+    "Text Processing": "テキスト処理",
     "This will delete cache files not referenced by any post.": "これにより、どの投稿からも参照されていないキャッシュファイルが削除されます。",
     "Too many requests. Please try again later.": "リクエストが多すぎます。後でもう一度お試しください。",
     "Unsupported post type.": "サポートされていない投稿タイプです。",
@@ -109,6 +115,15 @@
     "When falling back to post body (no excerpt), skip text from embedded blocks like YouTube, Twitter, and third-party embeds.": "抜粋がない場合に投稿本文にフォールバックする際、YouTube、Twitter、サードパーティの埋め込みブロックのテキストをスキップします。",
     "Where to insert the audio player relative to the post content.": "投稿コンテンツに対するオーディオプレーヤーの挿入位置。",
     "You do not have permission to edit this post.": "この投稿を編集する権限がありません。",
-    "Your browser does not support the audio element.": "お使いのブラウザはオーディオ要素をサポートしていません。"
+    "Your browser does not support the audio element.": "お使いのブラウザはオーディオ要素をサポートしていません。",
+    "Audio Format": "オーディオフォーマット",
+    "Output audio format. MP3 is universally supported. Opus offers better quality at the same bitrate but has narrower browser support.": "出力オーディオフォーマット。MP3は普遍的にサポートされています。Opusは同じビットレートでより高品質ですが、ブラウザのサポートは限定的です。",
+    "Opus Bitrate": "Opusビットレート",
+    "Bitrate for Opus encoding. Opus achieves good quality at much lower bitrates than MP3. Mono output.": "Opusエンコーディングのビットレート。OpusはMP3よりはるかに低いビットレートで良好な品質を実現します。モノラル出力。",
+    "24 kbps (standard)": "24 kbps（標準）",
+    "16 kbps (compact)": "16 kbps（コンパクト）",
+    "12 kbps (minimal)": "12 kbps（最小）",
+    "Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty.": "MP3/Opus変換用のffmpegツールへの絶対パス。空の場合は自動検出されます。",
+    "FFmpeg Binaries Path": "FFmpegバイナリパス"
   }
 }

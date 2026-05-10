@@ -2,9 +2,9 @@
   "_meta": {
     "locale": "es_ES",
     "source": "translations.json",
-    "generated": "2026-05-09",
-    "total_strings": 102,
-    "translated": 102,
+    "generated": "2026-05-10",
+    "total_strings": 117,
+    "translated": 117,
     "locked": false
   },
   "strings": {
@@ -23,6 +23,8 @@
     "Cache Management": "Gestión de caché",
     "Cache flushed.": "Caché vaciada.",
     "Choose a visual theme for the audio player.": "Elige un tema visual para el reproductor de audio.",
+    "Chunk Silence": "Silencio entre frases",
+    "Chunked — pre-split text at sentence boundaries for better pacing": "Segmentado — dividir texto en oraciones",
     "Classic": "Clásico",
     "Clear Log": "Limpiar registro",
     "Clear Orphaned Audio": "Eliminar audio huérfano",
@@ -95,12 +97,16 @@
     "Post not found.": "Entrada no encontrada.",
     "Preview how the selected player style looks with a sample audio clip.": "Vista previa de cómo se ve el estilo de reproductor seleccionado con un clip de audio de muestra.",
     "Quality tier override": "Anulación de nivel de calidad",
+    "Raw mode passes text directly to Piper. Chunked mode splits text into sentences first, avoiding false breaks on abbreviations and decimals while improving sentence pacing.": "El modo Crudo envía el texto directamente a Piper. El modo Segmentado divide el texto en oraciones.",
+    "Raw — send text as-is to Piper": "Crudo — enviar texto tal cual a Piper",
     "Refresh Log": "Actualizar registro",
+    "Seconds of silence inserted between sentence chunks when Text Processing is set to Chunked. Default: 2.0. Range: 0.5–5.0.": "Segundos de silencio insertados entre bloques de oraciones en modo Segmentado. Predeterminado: 2.0. Rango: 0.5–5.0.",
     "Show Duration": "Mostrar duración",
     "Skip Embedded Content": "Omitir contenido incrustado",
     "Styling": "Estilo",
     "Test Connection": "Probar conexión",
     "Testing…": "Probando…",
+    "Text Processing": "Procesamiento de texto",
     "This will delete cache files not referenced by any post.": "Esto eliminará los archivos de caché no referenciados por ninguna entrada.",
     "Too many requests. Please try again later.": "Demasiadas solicitudes. Por favor inténtalo de nuevo más tarde.",
     "Unsupported post type.": "Tipo de entrada no soportado.",
@@ -109,6 +115,15 @@
     "When falling back to post body (no excerpt), skip text from embedded blocks like YouTube, Twitter, and third-party embeds.": "Al recurrir al cuerpo del artículo (sin extracto), omitir el texto de bloques incrustados como YouTube, Twitter e integraciones de terceros.",
     "Where to insert the audio player relative to the post content.": "Dónde insertar el reproductor de audio en relación con el contenido de la entrada.",
     "You do not have permission to edit this post.": "No tienes permiso para editar este artículo.",
-    "Your browser does not support the audio element.": "Tu navegador no soporta el elemento de audio."
+    "Your browser does not support the audio element.": "Tu navegador no soporta el elemento de audio.",
+    "Audio Format": "Formato de audio",
+    "Output audio format. MP3 is universally supported. Opus offers better quality at the same bitrate but has narrower browser support.": "Formato de audio de salida. MP3 es compatible universalmente. Opus ofrece mejor calidad a la misma tasa de bits pero tiene un soporte de navegador más limitado.",
+    "Opus Bitrate": "Bitrate de Opus",
+    "Bitrate for Opus encoding. Opus achieves good quality at much lower bitrates than MP3. Mono output.": "Bitrate para codificación Opus. Opus logra buena calidad a tasas de bits mucho más bajas que MP3. Salida mono.",
+    "24 kbps (standard)": "24 kbps (estándar)",
+    "16 kbps (compact)": "16 kbps (compacto)",
+    "12 kbps (minimal)": "12 kbps (mínimo)",
+    "Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty.": "Ruta absoluta a las herramientas ffmpeg para conversión MP3/Opus. Se detecta automáticamente si se deja vacío.",
+    "FFmpeg Binaries Path": "Ruta de binarios FFmpeg"
   }
 }

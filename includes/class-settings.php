@@ -184,8 +184,8 @@ class Settings {
 			],
 		], $this->page_slug_piper );
 
-		$this->add_field( 'piper_ffmpeg_binary', __( 'FFmpeg Binary Path', 'piperless' ), 'text', 'piperless_piper_section', [
-			'description' => __( 'Absolute path to ffmpeg for MP3 conversion. Auto-detected from common paths if left empty.', 'piperless' ),
+		$this->add_field( 'piper_ffmpeg_binary', __( 'FFmpeg Binaries Path', 'piperless' ), 'text', 'piperless_piper_section', [
+			'description' => __( 'Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty.', 'piperless' ),
 		], $this->page_slug_piper );
 
 		$this->add_field( 'piper_mp3_bitrate', __( 'MP3 Bitrate', 'piperless' ), 'select', 'piperless_piper_section', [
@@ -193,6 +193,23 @@ class Settings {
 			'options'     => [
 				'24k' => __( '24 kbps (compact)', 'piperless' ),
 				'32k' => __( '32 kbps (standard)', 'piperless' ),
+			],
+		], $this->page_slug_piper );
+
+		$this->add_field( 'piper_audio_format', __( 'Audio Format', 'piperless' ), 'select', 'piperless_piper_section', [
+			'description' => __( 'Output audio format. MP3 is universally supported. Opus offers better quality at the same bitrate but has narrower browser support.', 'piperless' ),
+			'options'     => [
+				'mp3'  => 'MP3',
+				'opus' => 'Opus',
+			],
+		], $this->page_slug_piper );
+
+		$this->add_field( 'piper_opus_bitrate', __( 'Opus Bitrate', 'piperless' ), 'select', 'piperless_piper_section', [
+			'description' => __( 'Bitrate for Opus encoding. Opus achieves good quality at much lower bitrates than MP3. Mono output.', 'piperless' ),
+			'options'     => [
+				'24k' => __( '24 kbps (standard)', 'piperless' ),
+				'16k' => __( '16 kbps (compact)', 'piperless' ),
+				'12k' => __( '12 kbps (minimal)', 'piperless' ),
 			],
 		], $this->page_slug_piper );
 
@@ -453,6 +470,10 @@ class Settings {
 		$clean['default_quality']       = sanitize_text_field( $input['default_quality'] ?? 'medium' );
 		$clean['piper_ffmpeg_binary']    = sanitize_text_field( $input['piper_ffmpeg_binary'] ?? '' );
 		$clean['piper_mp3_bitrate']      = sanitize_text_field( $input['piper_mp3_bitrate'] ?? '32k' );
+		$clean['piper_audio_format']     = in_array( $input['piper_audio_format'] ?? 'mp3', [ 'mp3', 'opus' ], true )
+			? $input['piper_audio_format'] : 'mp3';
+		$clean['piper_opus_bitrate']     = in_array( $input['piper_opus_bitrate'] ?? '24k', [ '24k', '16k', '12k' ], true )
+			? $input['piper_opus_bitrate'] : '24k';
 		$clean['piper_sentence_silence'] = sanitize_text_field( $input['piper_sentence_silence'] ?? '' );
 		$clean['piper_length_scale']     = sanitize_text_field( $input['piper_length_scale'] ?? '' );
 		$clean['player_style']           = sanitize_text_field( $input['player_style'] ?? 'classic' );
@@ -863,8 +884,10 @@ class Settings {
 
 		$page     = max( 1, (int) ( $_POST['page'] ?? 1 ) );
 		$per_page = max( 5, min( 50, (int) ( $_POST['per_page'] ?? 20 ) ) );
+		$sort_by  = in_array( $_POST['sort_by'] ?? 'created', [ 'created', 'size' ], true ) ? $_POST['sort_by'] : 'created';
+		$sort_asc = ( 'asc' === ( $_POST['sort_order'] ?? 'desc' ) );
 
-		wp_send_json_success( $this->cache->get_entries( $page, $per_page ) );
+		wp_send_json_success( $this->cache->get_entries( $page, $per_page, $sort_by, $sort_asc ) );
 	}
 
 	/**
@@ -884,6 +907,36 @@ class Settings {
 		}
 
 		$deleted = $this->cache->delete_entry( $key );
+
+		// Clear post meta if this entry was linked to a post.
+		if ( $deleted ) {
+			global $wpdb;
+			$rows = $wpdb->get_results( $wpdb->prepare(
+				"SELECT post_id, meta_value FROM {$wpdb->postmeta} WHERE meta_key = %s",
+				'_piperless_cache_key'
+			) );
+
+			foreach ( $rows as $row ) {
+				$keys = maybe_unserialize( $row->meta_value );
+				$owns = false;
+				if ( is_array( $keys ) ) {
+					$owns = array_key_exists( $key, $keys );
+				} elseif ( is_string( $keys ) ) {
+					$owns = ( $keys === $key );
+				}
+
+				if ( $owns ) {
+					delete_post_meta( (int) $row->post_id, '_piperless_audio_url' );
+					delete_post_meta( (int) $row->post_id, '_piperless_cache_key' );
+					delete_post_meta( (int) $row->post_id, '_piperless_duration' );
+					delete_post_meta( (int) $row->post_id, '_piperless_model_name' );
+					delete_post_meta( (int) $row->post_id, '_piperless_generated_at' );
+					delete_post_meta( (int) $row->post_id, '_piperless_audio_format' );
+					break;
+				}
+			}
+		}
+
 		wp_send_json_success( [ 'deleted' => $deleted ] );
 	}
 

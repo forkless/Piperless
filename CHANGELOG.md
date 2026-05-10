@@ -2,6 +2,24 @@
 
 All notable changes to the Piperless WordPress plugin.
 
+## [1.1.0] — 2026-05-10
+
+### Added
+
+- **Opus audio format** — new "Audio Format" selector (MP3 / Opus) in the Piper tab. Opus encodes with `libopus` (`-application voip`) for better quality at lower bitrates. Separate bitrate selector for Opus: 24k (standard), 16k (compact), 12k (minimal). Cache key includes format so switching regenerates files.
+- **Gutenberg sidebar format support** — preview player uses `<source>` with explicit `type="audio/ogg"` for Opus files. Format tracked in `_piperless_audio_format` post meta and returned in REST responses.
+- **ffprobe-based duration detection** — for MP3 and Opus files, uses `find_ffprobe()` (same directory as resolved ffmpeg) to read exact duration. Falls back to WAV header calculation.
+- **Cache entry deletion clears post meta** — deleting an entry now removes all related meta fields from the owning post.
+- **Server-side cache sorting** — Size and Created columns now sort the entire dataset before pagination, not just the current page.
+- **Professional pagination** — Previous/Next/First/Last buttons, smart page numbers with ellipsis, "X items" count, placed at both top and bottom of the cache browser.
+
+### Changed
+
+- **FFmpeg Binaries Path** — field renamed from "FFmpeg Binary Path" to reflect that the directory is used for the full toolchain (ffmpeg, ffprobe). Description updated to mention MP3/Opus.
+- **Cache scanning includes `.opus`** — all cache methods (`get_entries`, `clear`, `delete`, `stats`, `clear_orphans`) now handle `.opus` alongside `.mp3` and `.wav`.
+- **Opus cache badge** — blue badge (#1565c0) in the cache browser Format column.
+- **Translations** — all 8 locales at 117/117 strings.
+
 ## [1.0.0] — 2026-05-09
 
 ### Added

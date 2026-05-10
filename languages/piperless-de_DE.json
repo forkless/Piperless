@@ -2,9 +2,9 @@
   "_meta": {
     "locale": "de_DE",
     "source": "translations.json",
-    "generated": "2026-05-09",
-    "total_strings": 102,
-    "translated": 102,
+    "generated": "2026-05-10",
+    "total_strings": 117,
+    "translated": 117,
     "locked": false
   },
   "strings": {
@@ -23,6 +23,8 @@
     "Cache Management": "Cache-Verwaltung",
     "Cache flushed.": "Cache geleert.",
     "Choose a visual theme for the audio player.": "Wähle ein visuelles Thema für den Audioplayer.",
+    "Chunk Silence": "Pausenlänge",
+    "Chunked — pre-split text at sentence boundaries for better pacing": "Segmentiert — Text vorab an Satzgrenzen aufteilen",
     "Classic": "Klassisch",
     "Clear Log": "Log löschen",
     "Clear Orphaned Audio": "Verwaiste Audiodateien löschen",
@@ -95,12 +97,16 @@
     "Post not found.": "Beitrag nicht gefunden.",
     "Preview how the selected player style looks with a sample audio clip.": "Vorschau, wie der gewählte Player-Stil mit einem Beispiel-Audioclip aussieht.",
     "Quality tier override": "Qualitätsstufen-Überschreibung",
+    "Raw mode passes text directly to Piper. Chunked mode splits text into sentences first, avoiding false breaks on abbreviations and decimals while improving sentence pacing.": "Roh-Modus sendet Text direkt an Piper. Segmentiert-Modus teilt Text zunächst in Sätze auf.",
+    "Raw — send text as-is to Piper": "Roh — Text unverändert an Piper senden",
     "Refresh Log": "Protokoll aktualisieren",
+    "Seconds of silence inserted between sentence chunks when Text Processing is set to Chunked. Default: 2.0. Range: 0.5–5.0.": "Sekunden Stille zwischen Satzblöcken im Segmentiert-Modus. Standard: 2.0. Bereich: 0.5–5.0.",
     "Show Duration": "Dauer anzeigen",
     "Skip Embedded Content": "Eingebettete Inhalte überspringen",
     "Styling": "Styling",
     "Test Connection": "Verbindung testen",
     "Testing…": "Teste…",
+    "Text Processing": "Textverarbeitung",
     "This will delete cache files not referenced by any post.": "Dies löscht Cache-Dateien, die keinem Beitrag zugeordnet sind.",
     "Too many requests. Please try again later.": "Zu viele Anfragen. Bitte versuche es später erneut.",
     "Unsupported post type.": "Nicht unterstützter Beitragstyp.",
@@ -109,6 +115,15 @@
     "When falling back to post body (no excerpt), skip text from embedded blocks like YouTube, Twitter, and third-party embeds.": "Beim Zurückfallen auf den Beitragstext (kein Auszug) Text aus eingebetteten Blöcken wie YouTube, Twitter und Drittanbieter-Einbettungen überspringen.",
     "Where to insert the audio player relative to the post content.": "Wo der Audioplayer relativ zum Beitragsinhalt eingefügt werden soll.",
     "You do not have permission to edit this post.": "Du hast keine Berechtigung, diesen Beitrag zu bearbeiten.",
-    "Your browser does not support the audio element.": "Dein Browser unterstützt das Audio-Element nicht."
+    "Your browser does not support the audio element.": "Dein Browser unterstützt das Audio-Element nicht.",
+    "Audio Format": "Audioformat",
+    "Output audio format. MP3 is universally supported. Opus offers better quality at the same bitrate but has narrower browser support.": "Ausgabe-Audioformat. MP3 wird universell unterstützt. Opus bietet bessere Qualität bei gleicher Bitrate, hat aber eingeschränktere Browser-Unterstützung.",
+    "Opus Bitrate": "Opus-Bitrate",
+    "Bitrate for Opus encoding. Opus achieves good quality at much lower bitrates than MP3. Mono output.": "Bitrate für Opus-Kodierung. Opus erreicht gute Qualität bei viel niedrigeren Bitraten als MP3. Mono-Ausgabe.",
+    "24 kbps (standard)": "24 kbps (Standard)",
+    "16 kbps (compact)": "16 kbps (Kompakt)",
+    "12 kbps (minimal)": "12 kbps (Minimal)",
+    "Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty.": "Absoluter Pfad zu den ffmpeg-Tools für MP3/Opus-Konvertierung. Automatische Erkennung aus üblichen Pfaden, wenn leer.",
+    "FFmpeg Binaries Path": "FFmpeg-Binärpfad"
   }
 }

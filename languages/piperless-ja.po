@@ -76,6 +76,14 @@ msgstr "キャッシュをフラッシュしました。"
 msgid "Choose a visual theme for the audio player."
 msgstr "オーディオプレーヤーのビジュアルテーマを選択してください。"
 
+#: includes/class-settings.php:now
+msgid "Chunk Silence"
+msgstr "チャンク間の無音"
+
+#: includes/class-settings.php:now
+msgid "Chunked — pre-split text at sentence boundaries for better pacing"
+msgstr "Chunked — 文の区切りでテキストを分割"
+
 #: includes/class-settings.php:385
 msgid "Classic"
 msgstr "クラシック"
@@ -364,9 +372,21 @@ msgstr "選択したプレイヤースタイルがサンプルオーディオク
 msgid "Quality tier override"
 msgstr "品質ティアの上書き"
 
+#: includes/class-settings.php:now
+msgid "Raw mode passes text directly to Piper. Chunked mode splits text into sentences first, avoiding false breaks on abbreviations and decimals while improving sentence pacing."
+msgstr "Rawモードはテキストを直接Piperに渡します。Chunkedモードは最初にテキストを文に分割します。"
+
+#: includes/class-settings.php:now
+msgid "Raw — send text as-is to Piper"
+msgstr "Raw — テキストをそのままPiperに送信"
+
 #: includes/class-settings.php:607
 msgid "Refresh Log"
 msgstr "ログの更新"
+
+#: includes/class-settings.php:now
+msgid "Seconds of silence inserted between sentence chunks when Text Processing is set to Chunked. Default: 2.0. Range: 0.5–5.0."
+msgstr "Chunkedモードで文チャンク間に挿入される無音の秒数。デフォルト: 2.0。範囲: 0.5–5.0。"
 
 #: includes/class-settings.php:405
 msgid "Show Duration"
@@ -387,6 +407,10 @@ msgstr "接続テスト"
 #: includes/class-settings.php:645
 msgid "Testing…"
 msgstr "テスト中…"
+
+#: includes/class-settings.php:now
+msgid "Text Processing"
+msgstr "テキスト処理"
 
 #: includes/class-settings.php:649
 msgid "This will delete cache files not referenced by any post."
@@ -423,4 +447,31 @@ msgstr "この投稿を編集する権限がありません。"
 #: includes/class-player.php:109
 msgid "Your browser does not support the audio element."
 msgstr "お使いのブラウザはオーディオ要素をサポートしていません。"
+
+msgid "Audio Format"
+msgstr "オーディオフォーマット"
+
+msgid "Output audio format. MP3 is universally supported. Opus offers better quality at the same bitrate but has narrower browser support."
+msgstr "出力オーディオフォーマット。MP3は普遍的にサポートされています。Opusは同じビットレートでより高品質ですが、ブラウザのサポートは限定的です。"
+
+msgid "Opus Bitrate"
+msgstr "Opusビットレート"
+
+msgid "Bitrate for Opus encoding. Opus achieves good quality at much lower bitrates than MP3. Mono output."
+msgstr "Opusエンコーディングのビットレート。OpusはMP3よりはるかに低いビットレートで良好な品質を実現します。モノラル出力。"
+
+msgid "24 kbps (standard)"
+msgstr "24 kbps（標準）"
+
+msgid "16 kbps (compact)"
+msgstr "16 kbps（コンパクト）"
+
+msgid "12 kbps (minimal)"
+msgstr "12 kbps（最小）"
+
+msgid "Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty."
+msgstr "MP3/Opus変換用のffmpegツールへの絶対パス。空の場合は自動検出されます。"
+
+msgid "FFmpeg Binaries Path"
+msgstr "FFmpegバイナリパス"
 

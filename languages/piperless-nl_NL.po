@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Piperless 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/example/piperless/issues\n"
 "POT-Creation-Date: 2024-01-01 00:00+0000\n"
-"PO-Revision-Date: 2026-05-09 00:00+0000\n"
+"PO-Revision-Date: 2026-05-10 00:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Dutch <LL@li.org>\n"
 "Language: nl_NL\n"
@@ -75,6 +75,14 @@ msgstr "Cache geleegd."
 #: includes/class-settings.php:383
 msgid "Choose a visual theme for the audio player."
 msgstr "Kies een visueel thema voor de audiospeler."
+
+#: includes/class-settings.php:now
+msgid "Chunk Silence"
+msgstr "Pauzelengte"
+
+#: includes/class-settings.php:now
+msgid "Chunked — pre-split text at sentence boundaries for better pacing"
+msgstr "Gesegmenteerd — splits tekst vooraf op zinsgrenzen"
 
 #: includes/class-settings.php:385
 msgid "Classic"
@@ -364,9 +372,21 @@ msgstr "Bekijk hoe de geselecteerde spelerstijl eruitziet met een voorbeeld-audi
 msgid "Quality tier override"
 msgstr "Kwaliteitsniveau overschrijven"
 
+#: includes/class-settings.php:now
+msgid "Raw mode passes text directly to Piper. Chunked mode splits text into sentences first, avoiding false breaks on abbreviations and decimals while improving sentence pacing."
+msgstr "Ruwe modus stuurt tekst direct naar Piper. Gesegmenteerde modus splitst tekst eerst in zinnen."
+
+#: includes/class-settings.php:now
+msgid "Raw — send text as-is to Piper"
+msgstr "Ruw — stuur tekst ongewijzigd naar Piper"
+
 #: includes/class-settings.php:607
 msgid "Refresh Log"
 msgstr "Log vernieuwen"
+
+#: includes/class-settings.php:now
+msgid "Seconds of silence inserted between sentence chunks when Text Processing is set to Chunked. Default: 2.0. Range: 0.5–5.0."
+msgstr "Seconden stilte tussen zinsblokken in Gesegmenteerde modus. Standaard: 2.0. Bereik: 0.5–5.0."
 
 #: includes/class-settings.php:405
 msgid "Show Duration"
@@ -387,6 +407,10 @@ msgstr "Verbinding testen"
 #: includes/class-settings.php:645
 msgid "Testing…"
 msgstr "Testen…"
+
+#: includes/class-settings.php:now
+msgid "Text Processing"
+msgstr "Tekstverwerking"
 
 #: includes/class-settings.php:649
 msgid "This will delete cache files not referenced by any post."
@@ -423,4 +447,31 @@ msgstr "Je hebt geen rechten om dit bericht te bewerken."
 #: includes/class-player.php:109
 msgid "Your browser does not support the audio element."
 msgstr "Je browser ondersteunt het audio-element niet."
+
+msgid "Audio Format"
+msgstr "Audioformaat"
+
+msgid "Output audio format. MP3 is universally supported. Opus offers better quality at the same bitrate but has narrower browser support."
+msgstr "Uitvoer audioformaat. MP3 wordt universeel ondersteund. Opus biedt betere kwaliteit bij dezelfde bitrate maar heeft beperktere browserondersteuning."
+
+msgid "Opus Bitrate"
+msgstr "Opus-bitrate"
+
+msgid "Bitrate for Opus encoding. Opus achieves good quality at much lower bitrates than MP3. Mono output."
+msgstr "Bitrate voor Opus-codering. Opus bereikt goede kwaliteit bij veel lagere bitrates dan MP3. Mono-uitvoer."
+
+msgid "24 kbps (standard)"
+msgstr "24 kbps (standaard)"
+
+msgid "16 kbps (compact)"
+msgstr "16 kbps (compact)"
+
+msgid "12 kbps (minimal)"
+msgstr "12 kbps (minimaal)"
+
+msgid "Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty."
+msgstr "Absoluut pad naar ffmpeg-tools voor MP3/Opus-conversie. Automatisch gedetecteerd als leeg gelaten."
+
+msgid "FFmpeg Binaries Path"
+msgstr "FFmpeg-binaries-pad"
 

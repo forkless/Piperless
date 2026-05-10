@@ -132,9 +132,11 @@ class Transcriber {
 			return $this->error( __( 'No text content available for this post.', 'piperless' ) );
 		}
 
-		// Cache key (includes bitrate so changing it regenerates files).
-		$bitrate   = get_option( 'piperless_settings', [] )['piper_mp3_bitrate'] ?? '32k';
-		$cache_key = $this->cache->cache_key( $text, $model, $language, $quality, $bitrate );
+		// Cache key (includes bitrate and format so changing them regenerates files).
+		$settings_cache = get_option( 'piperless_settings', [] );
+		$bitrate        = $settings_cache['piper_mp3_bitrate'] ?? '32k';
+		$audio_format   = $settings_cache['piper_audio_format'] ?? 'mp3';
+		$cache_key      = $this->cache->cache_key( $text, $model, $language, $quality, $bitrate, $audio_format );
 
 		// Store cache key in post meta before generation so it is tracked.
 		$model_basename = basename( $model, '.onnx' );
@@ -211,11 +213,14 @@ class Transcriber {
 		$duration  = get_post_meta( $post_id, '_piperless_duration', true );
 		$cache_key = get_post_meta( $post_id, '_piperless_cache_key', true );
 
+		$format = get_post_meta( $post_id, '_piperless_audio_format', true );
+
 		return [
 			'has_audio'  => ! empty( $url ),
 			'url'        => $url ?: null,
 			'duration'   => $duration ? (float) $duration : null,
 			'cache_key'  => $cache_key ?: null,
+			'format'     => $format ?: 'mp3',
 		];
 	}
 
@@ -376,6 +381,10 @@ class Transcriber {
 		update_post_meta( $post_id, '_piperless_duration', $duration );
 		update_post_meta( $post_id, '_piperless_generated_at', current_time( 'mysql', true ) );
 
+		// Store the audio format for the sidebar preview player.
+		$settings = get_option( 'piperless_settings', [] );
+		update_post_meta( $post_id, '_piperless_audio_format', $settings['piper_audio_format'] ?? 'mp3' );
+
 		if ( '' !== $model_basename ) {
 			update_post_meta( $post_id, '_piperless_model_name', $model_basename );
 		}
@@ -388,13 +397,35 @@ class Transcriber {
 	 * @return float Duration in seconds.
 	 */
 	public function wav_duration( string $cache_key ): float {
-		$file_path = $this->cache->file_path( $cache_key );
+		// Try compressed formats first via ffprobe.
+		$settings = get_option( 'piperless_settings', [] );
+		$format   = $settings['piper_audio_format'] ?? 'mp3';
+		$path     = $this->cache->file_path( $cache_key, $format );
+		if ( file_exists( $path ) ) {
+			$dur = $this->ffprobe_duration( $path );
+			if ( $dur > 0.0 ) {
+				return $dur;
+			}
+		}
+
+		// Fall back to WAV header reading.
+		$file_path = $this->cache->file_path( $cache_key, 'mp3' );
 		if ( ! file_exists( $file_path ) ) {
-			// Try legacy WAV path.
+			$file_path = $this->cache->file_path( $cache_key, 'opus' );
+		}
+		if ( ! file_exists( $file_path ) ) {
 			$file_path = $this->cache->dir() . '/' . $cache_key . '.wav';
 		}
 		if ( ! file_exists( $file_path ) ) {
 			return 0.0;
+		}
+
+		// If not WAV, try ffprobe.
+		if ( ! str_ends_with( $file_path, '.wav' ) ) {
+			$dur = $this->ffprobe_duration( $file_path );
+			if ( $dur > 0.0 ) {
+				return $dur;
+			}
 		}
 
 		$fp = @fopen( $file_path, 'rb' );
@@ -454,5 +485,75 @@ class Transcriber {
 			'url'     => null,
 			'error'   => $message,
 		];
+	}
+
+	/**
+	 * Get audio duration using ffprobe.
+	 *
+	 * @param string $file_path Absolute path to the audio file.
+	 * @return float Duration in seconds, or 0.0 on failure.
+	 */
+	private function ffprobe_duration( string $file_path ): float {
+		$ffprobe = $this->find_ffprobe();
+		if ( null === $ffprobe ) {
+			return 0.0;
+		}
+
+		$cmd = sprintf(
+			'%s -v error -show_entries format=duration -of csv=p=0 %s 2>&1',
+			escapeshellarg( $ffprobe ),
+			escapeshellarg( $file_path )
+		);
+
+		$output = [];
+		$ret    = 0;
+		exec( $cmd, $output, $ret );
+
+		if ( 0 !== $ret || empty( $output ) ) {
+			return 0.0;
+		}
+
+		return (float) trim( $output[0] );
+	}
+
+	/**
+	 * Find ffprobe binary on the system.
+	 *
+	 * @return string|null Absolute path, or null.
+	 */
+	private function find_ffprobe(): ?string {
+		static $cached   = null;
+		static $resolved = null;
+
+		if ( null !== $cached ) {
+			return $resolved;
+		}
+
+		$cached = true;
+
+		// Use the same directory as ffmpeg — wherever it was resolved,
+		// ffprobe is likely right next to it.
+		$ffmpeg_path = $this->cache->find_ffmpeg();
+		if ( null !== $ffmpeg_path ) {
+			$candidate = dirname( $ffmpeg_path ) . '/ffprobe';
+			if ( @is_executable( $candidate ) ) {
+				$resolved = $candidate;
+				return $resolved;
+			}
+		}
+
+		// Fallback: common paths extended via filter.
+		$candidates = apply_filters(
+			'piperless_ffprobe_paths',
+			[ '/usr/bin/ffprobe', '/usr/local/bin/ffprobe', '/opt/bin/ffprobe' ]
+		);
+		foreach ( $candidates as $candidate ) {
+			if ( @is_executable( $candidate ) ) {
+				$resolved = $candidate;
+				return $resolved;
+			}
+		}
+
+		return null;
 	}
 }

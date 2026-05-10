@@ -149,6 +149,30 @@ msgstr ""
 msgid "When falling back to post body (no excerpt), skip text from embedded blocks like YouTube, Twitter, and third-party embeds."
 msgstr ""
 
+#: includes/class-settings.php:now
+msgid "Text Processing"
+msgstr ""
+
+#: includes/class-settings.php:now
+msgid "Raw — send text as-is to Piper"
+msgstr ""
+
+#: includes/class-settings.php:now
+msgid "Chunked — pre-split text at sentence boundaries for better pacing"
+msgstr ""
+
+#: includes/class-settings.php:now
+msgid "Raw mode passes text directly to Piper. Chunked mode splits text into sentences first, avoiding false breaks on abbreviations and decimals while improving sentence pacing."
+msgstr ""
+
+#: includes/class-settings.php:now
+msgid "Chunk Silence"
+msgstr ""
+
+#: includes/class-settings.php:now
+msgid "Seconds of silence inserted between sentence chunks when Text Processing is set to Chunked. Default: 2.0. Range: 0.5–5.0."
+msgstr ""
+
 #: includes/class-settings.php:378
 msgid "Audio Player Settings"
 msgstr ""

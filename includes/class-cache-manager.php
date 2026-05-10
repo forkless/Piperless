@@ -79,10 +79,13 @@ class Cache_Manager {
 	 * @param string $quality  Quality tier.
 	 * @return string SHA-256 hash.
 	 */
-	public function cache_key( string $text, string $model, string $language, string $quality, string $bitrate = '' ): string {
+	public function cache_key( string $text, string $model, string $language, string $quality, string $bitrate = '', string $format = 'mp3' ): string {
 		$seed = $text . '|' . $model . '|' . $language . '|' . $quality;
 		if ( '' !== $bitrate ) {
 			$seed .= '|br:' . $bitrate;
+		}
+		if ( '' !== $format ) {
+			$seed .= '|fmt:' . $format;
 		}
 		return hash( 'sha256', $seed );
 	}
@@ -94,7 +97,12 @@ class Cache_Manager {
 	 * @return bool
 	 */
 	public function exists( string $cache_key ): bool {
-		return file_exists( $this->file_path( $cache_key ) );
+		$settings = get_option( 'piperless_settings', [] );
+		$format   = $settings['piper_audio_format'] ?? 'mp3';
+		return file_exists( $this->file_path( $cache_key, $format ) )
+			|| file_exists( $this->file_path( $cache_key, 'mp3' ) )
+			|| file_exists( $this->file_path( $cache_key, 'opus' ) )
+			|| file_exists( $this->cache_dir . '/' . $cache_key . '.wav' );
 	}
 
 	/**
@@ -103,8 +111,8 @@ class Cache_Manager {
 	 * @param string $cache_key Cache key.
 	 * @return string
 	 */
-	public function file_path( string $cache_key ): string {
-		return $this->cache_dir . '/' . $cache_key . '.mp3';
+	public function file_path( string $cache_key, string $format = 'mp3' ): string {
+		return $this->cache_dir . '/' . $cache_key . '.' . $format;
 	}
 
 	/**
@@ -127,9 +135,13 @@ class Cache_Manager {
 	public function put( string $cache_key, string $data ): bool {
 		$settings = get_option( 'piperless_settings', [] );
 		$ffmpeg   = $this->find_ffmpeg();
+		$format   = $settings['piper_audio_format'] ?? 'mp3';
+		$bitrate  = ( 'opus' === $format )
+			? ( $settings['piper_opus_bitrate'] ?? '24k' )
+			: ( $settings['piper_mp3_bitrate'] ?? '32k' );
 
 		if ( null !== $ffmpeg ) {
-			// Write WAV to temp, convert to MP3, store MP3.
+			// Write WAV to temp, convert to selected format.
 			$wav_tmp = tempnam( sys_get_temp_dir(), 'piperless_' ) . '.wav';
 
 			error_clear_last();
@@ -139,30 +151,41 @@ class Cache_Manager {
 				return false;
 			}
 
-			$mp3_path = $this->file_path( $cache_key );
-			$bitrate  = $settings['piper_mp3_bitrate'] ?? '32k';
-			$cmd = sprintf(
-				'%s -i %s -codec:a libmp3lame -b:a %s -ac 1 -y %s 2>&1',
-				escapeshellarg( $ffmpeg ),
-				escapeshellarg( $wav_tmp ),
-				escapeshellarg( $bitrate ),
-				escapeshellarg( $mp3_path )
-			);
+			$out_path = $this->file_path( $cache_key, $format );
+
+			if ( 'opus' === $format ) {
+				$cmd = sprintf(
+					'%s -i %s -c:a libopus -b:a %s -ac 1 -application voip -y %s 2>&1',
+					escapeshellarg( $ffmpeg ),
+					escapeshellarg( $wav_tmp ),
+					escapeshellarg( $bitrate ),
+					escapeshellarg( $out_path )
+				);
+			} else {
+				$cmd = sprintf(
+					'%s -i %s -codec:a libmp3lame -b:a %s -ac 1 -y %s 2>&1',
+					escapeshellarg( $ffmpeg ),
+					escapeshellarg( $wav_tmp ),
+					escapeshellarg( $bitrate ),
+					escapeshellarg( $out_path )
+				);
+			}
 
 			$output = [];
 			$ret    = 0;
 			exec( $cmd, $output, $ret );
 			@unlink( $wav_tmp );
 
-			if ( 0 === $ret && file_exists( $mp3_path ) && filesize( $mp3_path ) > 0 ) {
-				$this->logger->info( 'Cached MP3: {key} ({size} bytes)', [
+			if ( 0 === $ret && file_exists( $out_path ) && filesize( $out_path ) > 0 ) {
+				$format_label = strtoupper( $format );
+				$this->logger->info( "Cached {$format_label}: {key} ({size} bytes)", [
 					'key'  => $cache_key,
-					'size' => filesize( $mp3_path ),
+					'size' => filesize( $out_path ),
 				] );
 				return true;
 			}
 
-			$this->logger->error( 'ffmpeg conversion failed for {key}, code {code}', [
+			$this->logger->error( "ffmpeg {$format} conversion failed for {key}, code {code}", [
 				'key'  => $cache_key,
 				'code' => $ret,
 			] );
@@ -215,12 +238,20 @@ class Cache_Manager {
 		$deleted = false;
 
 		// Delete MP3.
-		$mp3_path = $this->file_path( $cache_key );
+		$mp3_path = $this->file_path( $cache_key, 'mp3' );
 		if ( file_exists( $mp3_path ) ) {
 			if ( @unlink( $mp3_path ) ) {
 				$deleted = true;
 			} else {
 				$this->logger->warning( 'Failed to unlink: {path}', [ 'path' => $mp3_path ] );
+			}
+		}
+
+		// Delete Opus.
+		$opus_path = $this->file_path( $cache_key, 'opus' );
+		if ( file_exists( $opus_path ) ) {
+			if ( @unlink( $opus_path ) ) {
+				$deleted = true;
 			}
 		}
 
@@ -259,6 +290,14 @@ class Cache_Manager {
 		$mp3_files = glob( $this->cache_dir . '/*.mp3' );
 		if ( false !== $mp3_files ) {
 			foreach ( $mp3_files as $file ) {
+				if ( @unlink( $file ) ) { $count++; }
+			}
+		}
+
+		// Delete Opus files.
+		$opus_files = glob( $this->cache_dir . '/*.opus' );
+		if ( false !== $opus_files ) {
+			foreach ( $opus_files as $file ) {
 				if ( @unlink( $file ) ) { $count++; }
 			}
 		}
@@ -314,16 +353,12 @@ class Cache_Manager {
 		// "orphaned audio" in the user-facing sense.
 		$preview_patterns = [ 'model_preview_*', 'piperless_test_preview*' ];
 		foreach ( $preview_patterns as $pattern ) {
-			$preview_files = glob( $this->cache_dir . '/' . $pattern . '.mp3' );
-			if ( false !== $preview_files ) {
-				foreach ( $preview_files as $file ) {
-					@unlink( $file );
-				}
-			}
-			$preview_wavs = glob( $this->cache_dir . '/' . $pattern . '.wav' );
-			if ( false !== $preview_wavs ) {
-				foreach ( $preview_wavs as $file ) {
-					@unlink( $file );
+			foreach ( [ '.mp3', '.opus', '.wav' ] as $ext ) {
+				$matches = glob( $this->cache_dir . '/' . $pattern . $ext );
+				if ( false !== $matches ) {
+					foreach ( $matches as $file ) {
+						@unlink( $file );
+					}
 				}
 			}
 		}
@@ -347,12 +382,13 @@ class Cache_Manager {
 
 		$all_files = array_merge(
 			(array) glob( $this->cache_dir . '/*.mp3' ),
+			(array) glob( $this->cache_dir . '/*.opus' ),
 			(array) glob( $this->cache_dir . '/*.wav' )
 		);
 
 		foreach ( $all_files as $file ) {
 			$key = basename( $file );
-			$key = str_replace( [ '.mp3', '.wav' ], '', $key );
+			$key = str_replace( [ '.mp3', '.opus', '.wav' ], '', $key );
 			if ( str_starts_with( $key, 'model_preview_' ) || str_starts_with( $key, 'piperless_test_preview' ) ) {
 				continue;
 			}
@@ -384,7 +420,7 @@ class Cache_Manager {
 	 *
 	 * @return string|null
 	 */
-	private function find_ffmpeg(): ?string {
+	public function find_ffmpeg(): ?string {
 		static $cached = null;
 		static $resolved_path = null;
 
@@ -400,6 +436,10 @@ class Cache_Manager {
 		$custom   = $settings['piper_ffmpeg_binary'] ?? '';
 
 		if ( '' !== $custom ) {
+			// Support both full binary path and directory-only path.
+			if ( @is_dir( $custom ) ) {
+				$custom = rtrim( $custom, '/' ) . '/ffmpeg';
+			}
 			if ( @file_exists( $custom ) && @is_executable( $custom ) ) {
 				$cached        = true;
 				$resolved_path = $custom;
@@ -440,7 +480,7 @@ class Cache_Manager {
 	 * @param int $per_page Entries per page.
 	 * @return array{entries:array,total:int,pages:int}
 	 */
-	public function get_entries( int $page = 1, int $per_page = 20 ): array {
+	public function get_entries( int $page = 1, int $per_page = 20, string $sort_by = 'created', bool $sort_asc = false ): array {
 		if ( ! is_dir( $this->cache_dir ) ) {
 			return [ 'entries' => [], 'total' => 0, 'pages' => 0 ];
 		}
@@ -480,9 +520,10 @@ class Cache_Manager {
 			)
 		);
 
-		// Scan both MP3 and legacy WAV files.
+		// Scan MP3, Opus, and legacy WAV files.
 		$all_files = array_merge(
 			(array) glob( $this->cache_dir . '/*.mp3' ),
+			(array) glob( $this->cache_dir . '/*.opus' ),
 			(array) glob( $this->cache_dir . '/*.wav' )
 		);
 
@@ -513,9 +554,10 @@ class Cache_Manager {
 			$size_bytes = filesize( $path );
 			$is_mp3     = ( 'mp3' === $ext );
 
-			// Check for the companion format.
-			$has_mp3 = $is_mp3 || file_exists( $this->cache_dir . '/' . $key . '.mp3' );
-			$has_wav = ( ! $is_mp3 ) || file_exists( $this->cache_dir . '/' . $key . '.wav' );
+			// Check for companion formats.
+			$has_mp3  = $is_mp3 || file_exists( $this->cache_dir . '/' . $key . '.mp3' );
+			$has_opus = ( 'opus' === $ext ) || file_exists( $this->cache_dir . '/' . $key . '.opus' );
+			$has_wav  = file_exists( $this->cache_dir . '/' . $key . '.wav' );
 
 			// Check if this entry is the active audio for its post.
 			$enabled = false;
@@ -533,7 +575,9 @@ class Cache_Manager {
 				'filename'   => basename( $path ),
 				'size_bytes' => $size_bytes,
 				'has_mp3'    => $has_mp3,
-				'bitrate'    => $has_mp3 ? ( $settings['piper_mp3_bitrate'] ?? '32k' ) : '',
+				'has_opus'   => $has_opus,
+				'bitrate'    => $has_opus ? ( $settings['piper_opus_bitrate'] ?? '24k' )
+					: ( $has_mp3 ? ( $settings['piper_mp3_bitrate'] ?? '32k' ) : '' ),
 				'created'    => $mtime ? gmdate( 'Y-m-d H:i', $mtime ) : '',
 				'enabled'    => $enabled,
 				'model'      => $model,
@@ -543,6 +587,21 @@ class Cache_Manager {
 				'orphaned'   => ( null === $post_id ),
 				'proxy_url'  => $this->proxy_url( $key ),
 			];
+		}
+
+		// ── Sort before pagination ──────────────────────────────
+		if ( 'size' === $sort_by ) {
+			usort( $entries, function ( $a, $b ) use ( $sort_asc ) {
+				return $sort_asc
+					? ( ( $a['size_bytes'] ?? 0 ) <=> ( $b['size_bytes'] ?? 0 ) )
+					: ( ( $b['size_bytes'] ?? 0 ) <=> ( $a['size_bytes'] ?? 0 ) );
+			} );
+		} else {
+			usort( $entries, function ( $a, $b ) use ( $sort_asc ) {
+				return $sort_asc
+					? ( $a['created'] ?? '' ) <=> ( $b['created'] ?? '' )
+					: ( $b['created'] ?? '' ) <=> ( $a['created'] ?? '' );
+			} );
 		}
 
 		$total = count( $entries );

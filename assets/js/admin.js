@@ -214,6 +214,54 @@
 	let cacheSortKey  = 'created';
 	let cacheSortAsc  = false;
 
+	/**
+	 * Build WordPress-style pagination bar with Previous / Next buttons
+	 * and page numbers.  Renders a full .tablenav div.
+	 *
+	 * @param {number} current Current page.
+	 * @param {number} totalPages Total pages.
+	 * @param {number} totalItems Total items.
+	 * @return {string} HTML string, or empty string if only one page.
+	 */
+	function buildPaginationHtml( current, totalPages, totalItems ) {
+		if ( totalPages <= 1 ) return '';
+
+		var html  = '<div class="tablenav top" style="display:flex;align-items:center;justify-content:flex-end;gap:12px;margin-bottom:8px;">';
+			html += '<div class="tablenav-pages" style="display:flex;align-items:center;gap:4px;">';
+			html += '<span class="displaying-num" style="margin-right:8px;">' + totalItems + ' items</span>';
+
+			// First page button.
+			html += '<a href="#" class="first-page button piperless-cache-page' + ( current === 1 ? ' disabled' : '' ) + '" data-page="1" aria-label="First page">&laquo;</a>';
+			// Previous button.
+			html += '<a href="#" class="prev-page button piperless-cache-page' + ( current === 1 ? ' disabled' : '' ) + '" data-page="' + ( current - 1 ) + '" aria-label="Previous page">&lsaquo;</a>';
+
+			// Page numbers.
+			html += '<span class="paging-input" style="display:flex;align-items:center;gap:2px;">';
+			for ( var i = 1; i <= totalPages; i++ ) {
+				if ( Math.abs( i - current ) <= 2 || i === 1 || i === totalPages ) {
+					if ( i === current ) {
+						html += '<span class="tablenav-paging-text"><strong>' + i + '</strong></span>';
+					} else {
+						html += '<a href="#" class="piperless-cache-page" data-page="' + i + '" style="text-decoration:none;padding:0 4px;">' + i + '</a>';
+					}
+				} else if ( i === 2 && current > 4 ) {
+					html += '<span class="tablenav-paging-text">&hellip;</span>';
+				} else if ( i === totalPages - 1 && current < totalPages - 3 ) {
+					html += '<span class="tablenav-paging-text">&hellip;</span>';
+				}
+			}
+			html += '</span>';
+
+			// Next button.
+			html += '<a href="#" class="next-page button piperless-cache-page' + ( current === totalPages ? ' disabled' : '' ) + '" data-page="' + ( current + 1 ) + '" aria-label="Next page">&rsaquo;</a>';
+			// Last page button.
+			html += '<a href="#" class="last-page button piperless-cache-page' + ( current === totalPages ? ' disabled' : '' ) + '" data-page="' + totalPages + '" aria-label="Last page">&raquo;</a>';
+
+			html += '</div></div>';
+
+		return html;
+	}
+
 	function loadCacheBrowser( page ) {
 		const $browser = $( '#piperless-cache-browser' );
 		$browser.html( '<p>' + 'Loading…' + '</p>' );
@@ -223,6 +271,8 @@
 			nonce:  admin.nonce,
 			page:   page || 1,
 			per_page: 15,
+			sort_by: cacheSortKey,
+			sort_order: cacheSortAsc ? 'asc' : 'desc',
 		} ).done( function ( resp ) {
 			if ( ! resp.success || ! resp.data ) {
 				$browser.html( '<p>Failed to load cache entries.</p>' );
@@ -236,6 +286,12 @@
 			if ( d.total === 0 ) {
 				html = '<p>No cached audio files.</p>';
 			} else {
+				// ── Pagination bar (top) ──
+				var paginationHtml = buildPaginationHtml( cachePage, d.pages, d.total );
+				if ( paginationHtml ) {
+					html += paginationHtml;
+				}
+
 				html += '<table class="wp-list-table widefat fixed striped">';
 				html += '<thead><tr>';
 				html += '<th><input type="checkbox" class="piperless-select-all"></th>';
@@ -245,23 +301,7 @@
 				html += '<th>Format</th><th>Model</th><th>Shortcode</th><th>Status</th><th>Actions</th>';
 				html += '</tr></thead><tbody>';
 
-				// Apply client-side sort if active.
-				let entries = d.entries;
-				if ( cacheSortKey === 'size' ) {
-					entries = entries.slice().sort( function ( a, b ) {
-						return cacheSortAsc
-							? ( a.size_bytes || 0 ) - ( b.size_bytes || 0 )
-							: ( b.size_bytes || 0 ) - ( a.size_bytes || 0 );
-					} );
-				} else if ( cacheSortKey === 'created' ) {
-					entries = entries.slice().sort( function ( a, b ) {
-						const da = a.created || '';
-						const db = b.created || '';
-						return cacheSortAsc ? da.localeCompare( db ) : db.localeCompare( da );
-					} );
-				}
-
-				entries.forEach( function ( entry ) {
+				d.entries.forEach( function ( entry ) {
 					const sizeKB = ( entry.size_bytes / 1024 ).toFixed( 1 );
 					const postIdCell = entry.post_id
 						? '<a href="' + entry.edit_url + '">#' + entry.post_id + '</a>'
@@ -272,9 +312,12 @@
 					const bitrateSuffix = entry.bitrate ? ' &middot; ' + entry.bitrate : '';
 					const formatBadge = entry.orphaned
 						? '<span class="piperless-cache-badge piperless-cache-badge--orphan">—</span>'
-						: ( entry.has_mp3
-							? '<span class="piperless-cache-badge piperless-cache-badge--ok">MP3' + bitrateSuffix + '</span>'
-							: '<span class="piperless-cache-badge piperless-cache-badge--wav">WAV only</span>'
+						: ( entry.has_opus
+							? '<span class="piperless-cache-badge piperless-cache-badge--opus">Opus' + bitrateSuffix + '</span>'
+							: ( entry.has_mp3
+								? '<span class="piperless-cache-badge piperless-cache-badge--ok">MP3' + bitrateSuffix + '</span>'
+								: '<span class="piperless-cache-badge piperless-cache-badge--wav">WAV only</span>'
+							)
 						);
 					const statusBadge = entry.enabled
 						? '<span class="piperless-cache-badge piperless-cache-badge--ok">Enabled</span>'
@@ -300,18 +343,9 @@
 
 				html += '</tbody></table>';
 
-				// Pagination.
-				if ( d.pages > 1 ) {
-					html += '<div class="tablenav"><div class="tablenav-pages">';
-					html += '<span class="displaying-num">' + d.total + ' items</span>';
-					for ( let i = 1; i <= d.pages; i++ ) {
-						if ( i === cachePage ) {
-							html += '<span class="page-numbers current">' + i + '</span>';
-						} else {
-							html += '<a href="#" class="page-numbers piperless-cache-page" data-page="' + i + '">' + i + '</a>';
-						}
-					}
-					html += '</div></div>';
+				// ── Pagination bar (bottom) ──
+				if ( paginationHtml ) {
+					html += paginationHtml;
 				}
 			}
 

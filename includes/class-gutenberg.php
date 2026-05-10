@@ -365,6 +365,7 @@ class Gutenberg {
 		return rest_ensure_response( [
 			'url'      => $result['url'],
 			'duration' => get_post_meta( $post_id, '_piperless_duration', true ),
+			'format'   => get_post_meta( $post_id, '_piperless_audio_format', true ) ?: 'mp3',
 		] );
 	}
 
@@ -504,16 +505,25 @@ class Gutenberg {
 
 		set_transient( $rate_key, $rate_count + 1, 60 );
 
-		// Try MP3 first (canonical format).
-		$mp3_path = $this->cache->file_path( $cache_key );
+		// Try configured format first, then MP3, then Opus, fall back to WAV.
+		$settings    = get_option( 'piperless_settings', [] );
+		$audio_format = $settings['piper_audio_format'] ?? 'mp3';
 
-		if ( file_exists( $mp3_path ) ) {
-			return $this->stream_file( $mp3_path, 'audio/mpeg' );
+		// Try the configured format.
+		$format_path = $this->cache->file_path( $cache_key, $audio_format );
+		if ( file_exists( $format_path ) ) {
+			return $this->stream_file( $format_path, 'opus' === $audio_format ? 'audio/ogg' : 'audio/mpeg' );
+		}
+
+		// Try the other format.
+		$alt_format  = ( 'opus' === $audio_format ) ? 'mp3' : 'opus';
+		$alt_path    = $this->cache->file_path( $cache_key, $alt_format );
+		if ( file_exists( $alt_path ) ) {
+			return $this->stream_file( $alt_path, 'opus' === $alt_format ? 'audio/ogg' : 'audio/mpeg' );
 		}
 
 		// Fall back to legacy WAV.
 		$wav_path = $this->cache->dir() . '/' . $cache_key . '.wav';
-
 		if ( ! file_exists( $wav_path ) ) {
 			return new \WP_Error( 'not_found', __( 'Audio file not found.', 'piperless' ), [ 'status' => 404 ] );
 		}

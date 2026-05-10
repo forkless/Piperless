@@ -2,9 +2,9 @@
   "_meta": {
     "locale": "nl_NL",
     "source": "translations.json",
-    "generated": "2026-05-09",
-    "total_strings": 102,
-    "translated": 102,
+    "generated": "2026-05-10",
+    "total_strings": 117,
+    "translated": 117,
     "locked": false
   },
   "strings": {
@@ -23,6 +23,8 @@
     "Cache Management": "Cachebeheer",
     "Cache flushed.": "Cache geleegd.",
     "Choose a visual theme for the audio player.": "Kies een visueel thema voor de audiospeler.",
+    "Chunk Silence": "Pauzelengte",
+    "Chunked — pre-split text at sentence boundaries for better pacing": "Gesegmenteerd — splits tekst vooraf op zinsgrenzen",
     "Classic": "Klassiek",
     "Clear Log": "Log wissen",
     "Clear Orphaned Audio": "Verweesde audio wissen",
@@ -95,12 +97,16 @@
     "Post not found.": "Bericht niet gevonden.",
     "Preview how the selected player style looks with a sample audio clip.": "Bekijk hoe de geselecteerde spelerstijl eruitziet met een voorbeeld-audiofragment.",
     "Quality tier override": "Kwaliteitsniveau overschrijven",
+    "Raw mode passes text directly to Piper. Chunked mode splits text into sentences first, avoiding false breaks on abbreviations and decimals while improving sentence pacing.": "Ruwe modus stuurt tekst direct naar Piper. Gesegmenteerde modus splitst tekst eerst in zinnen.",
+    "Raw — send text as-is to Piper": "Ruw — stuur tekst ongewijzigd naar Piper",
     "Refresh Log": "Log vernieuwen",
+    "Seconds of silence inserted between sentence chunks when Text Processing is set to Chunked. Default: 2.0. Range: 0.5–5.0.": "Seconden stilte tussen zinsblokken in Gesegmenteerde modus. Standaard: 2.0. Bereik: 0.5–5.0.",
     "Show Duration": "Toon duur",
     "Skip Embedded Content": "Ingesloten inhoud overslaan",
     "Styling": "Vormgeving",
     "Test Connection": "Verbinding testen",
     "Testing…": "Testen…",
+    "Text Processing": "Tekstverwerking",
     "This will delete cache files not referenced by any post.": "Hiermee worden cachebestanden verwijderd die niet aan een bericht zijn gekoppeld.",
     "Too many requests. Please try again later.": "Te veel verzoeken. Probeer het later opnieuw.",
     "Unsupported post type.": "Niet-ondersteund berichttype.",
@@ -109,6 +115,15 @@
     "When falling back to post body (no excerpt), skip text from embedded blocks like YouTube, Twitter, and third-party embeds.": "Bij terugvallen op berichtinhoud (geen samenvatting), tekst van ingesloten blokken zoals YouTube, Twitter en embeds van derden overslaan.",
     "Where to insert the audio player relative to the post content.": "Waar de audiospeler moet worden ingevoegd ten opzichte van de berichtinhoud.",
     "You do not have permission to edit this post.": "Je hebt geen rechten om dit bericht te bewerken.",
-    "Your browser does not support the audio element.": "Je browser ondersteunt het audio-element niet."
+    "Your browser does not support the audio element.": "Je browser ondersteunt het audio-element niet.",
+    "Audio Format": "Audioformaat",
+    "Output audio format. MP3 is universally supported. Opus offers better quality at the same bitrate but has narrower browser support.": "Uitvoer audioformaat. MP3 wordt universeel ondersteund. Opus biedt betere kwaliteit bij dezelfde bitrate maar heeft beperktere browserondersteuning.",
+    "Opus Bitrate": "Opus-bitrate",
+    "Bitrate for Opus encoding. Opus achieves good quality at much lower bitrates than MP3. Mono output.": "Bitrate voor Opus-codering. Opus bereikt goede kwaliteit bij veel lagere bitrates dan MP3. Mono-uitvoer.",
+    "24 kbps (standard)": "24 kbps (standaard)",
+    "16 kbps (compact)": "16 kbps (compact)",
+    "12 kbps (minimal)": "12 kbps (minimaal)",
+    "Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty.": "Absoluut pad naar ffmpeg-tools voor MP3/Opus-conversie. Automatisch gedetecteerd als leeg gelaten.",
+    "FFmpeg Binaries Path": "FFmpeg-binaries-pad"
   }
 }

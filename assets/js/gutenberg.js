@@ -53,6 +53,7 @@
 
 		const [ generating, setGenerating ]     = useState( false );
 		const [ audioUrl, setAudioUrl ]         = useState( null );
+		const [ audioFormat, setAudioFormat ]   = useState( 'mp3' );
 		const [ audioDuration, setAudioDuration ] = useState( null );
 		const [ models, setModels ]             = useState( [] );
 		const [ voices, setVoices ]             = useState( [] );
@@ -70,6 +71,7 @@
 				.then( function ( data ) {
 					if ( data.has_audio ) {
 						setAudioUrl( data.url );
+						setAudioFormat( data.format || 'mp3' );
 						setAudioDuration( data.duration );
 					}
 				} )
@@ -108,6 +110,7 @@
 			} )
 				.then( function ( data ) {
 					setAudioUrl( data.url );
+					setAudioFormat( data.format || 'mp3' );
 					setAudioDuration( data.duration );
 					setGenerating( false );
 					createNotice( 'success', piperlessEditor.i18n.success, {
@@ -243,7 +246,7 @@
 					placeholder: '1.0',
 					value: postMeta._piperless_length_scale || '',
 					onChange: function ( val ) { updateMeta( '_piperless_length_scale', val ); },
-				} )
+				} ),
 			),
 			// ── Display Settings ────────────────────────────────────────
 			createElement(
@@ -283,9 +286,14 @@
 					? createElement( 'div', null,
 						createElement( 'audio', {
 							controls: true,
-							src: audioUrl,
 							style: { width: '100%', marginBottom: '8px' },
-						}, piperlessEditor.i18n.noAudio ),
+						},
+							createElement( 'source', {
+								src: audioUrl,
+								type: audioFormat === 'opus' ? 'audio/ogg' : 'audio/mpeg',
+							} ),
+							piperlessEditor.i18n.noAudio
+						),
 						audioDuration && createElement( 'p', {
 							style: { color: '#757575', fontSize: '12px' },
 						}, piperlessEditor.i18n.duration + ' ' + formatDuration( audioDuration ) )
