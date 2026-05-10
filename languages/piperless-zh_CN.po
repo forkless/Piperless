@@ -1,0 +1,426 @@
+# Piperless — Audio Transcripts
+# Copyright (C) 2024 Piperless Team
+# This file is distributed under the MIT license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Piperless 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/example/piperless/issues\n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2026-05-09 00:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: zh <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: includes/class-settings.php:now
+msgid "Above & below content"
+msgstr "内容上下方"
+
+#: includes/class-settings.php:342
+msgid "Absolute path to the Piper executable (e.g. /usr/bin/piper)."
+msgstr "Piper 可执行文件的绝对路径（例如 /usr/bin/piper）。"
+
+#: includes/class-settings.php:346
+msgid "Absolute path to the directory containing Piper .onnx model files."
+msgstr "包含 Piper .onnx 模型文件的目录的绝对路径。"
+
+#: includes/class-settings.php:400
+msgid "After content"
+msgstr "内容之后"
+
+#: includes/class-settings.php:now
+msgid "Alias"
+msgstr "别名"
+
+#: includes/class-settings.php:648
+msgid "Are you sure? This will delete all cached audio files."
+msgstr "确定吗？这将删除所有缓存的音频文件。"
+
+#: includes/class-settings.php:now
+msgid "Audio Endpoint Rate Limit"
+msgstr "音频端点速率限制"
+
+#: includes/class-settings.php:378
+msgid "Audio Player Settings"
+msgstr "音频播放器设置"
+
+#: includes/class-transcriber.php:now
+msgid "Audio generation already in progress for this content. Please wait."
+msgstr "此内容的音频生成已在进行中。请稍候。"
+
+#: includes/class-player.php:now
+msgid "Audio transcript: %s"
+msgstr "音频转录：%s"
+
+#: includes/class-settings.php:358
+msgid "Balance between speed and audio quality."
+msgstr "速度与音频质量之间的平衡。"
+
+#: includes/class-settings.php:399
+msgid "Before content"
+msgstr "内容之前"
+
+#: includes/class-settings.php:587
+msgid "Cache Management"
+msgstr "缓存管理"
+
+#: includes/class-settings.php:650
+msgid "Cache flushed."
+msgstr "缓存已清空。"
+
+#: includes/class-settings.php:383
+msgid "Choose a visual theme for the audio player."
+msgstr "为音频播放器选择一个视觉主题。"
+
+#: includes/class-settings.php:385
+msgid "Classic"
+msgstr "经典"
+
+#: includes/class-settings.php:610
+msgid "Clear Log"
+msgstr "清除日志"
+
+#: includes/class-settings.php:593
+msgid "Clear Orphaned Audio"
+msgstr "清除孤立音频"
+
+#: includes/class-settings.php:486
+msgid "Configure the Piper TTS engine."
+msgstr "配置 Piper TTS 引擎。"
+
+#: includes/class-settings.php:432
+msgid "Content"
+msgstr "内容"
+
+#: includes/class-settings.php:now
+msgid "Content Parsing"
+msgstr "内容解析"
+
+#: includes/class-settings.php:392
+msgid "Custom CSS"
+msgstr "自定义 CSS"
+
+#: includes/class-settings.php:393
+msgid "Custom CSS rules applied when \\\"Custom CSS\\\" style is selected."
+msgstr "选择 \\\"自定义 CSS\\\" 样式时应用的自定义 CSS 规则。"
+
+#: includes/class-settings.php:369
+msgid "Debug (verbose)"
+msgstr "调试（详细）"
+
+#: includes/class-settings.php:603
+msgid "Debug Log"
+msgstr "调试日志"
+
+#: includes/class-settings.php:353
+msgid "Default Language"
+msgstr "默认语言"
+
+#: includes/class-settings.php:357
+msgid "Default Quality"
+msgstr "默认质量"
+
+#: includes/class-settings.php:349
+msgid "Default Voice"
+msgstr "默认声音"
+
+#: includes/class-settings.php:354
+msgid "Default language code (e.g. en_US, de_DE)."
+msgstr "默认语言代码（例如 en_US, de_DE）。"
+
+#: includes/class-settings.php:350
+msgid "Default voice name (e.g. amy, ryan). Leave empty to use first available."
+msgstr "默认声音名称（例如 amy, ryan）。留空则使用第一个可用的。"
+
+#: assets/js/gutenberg.js
+msgid "Display Settings"
+msgstr "显示设置"
+
+#: includes/class-settings.php:406
+msgid "Display the total listening time on the player."
+msgstr "在播放器上显示总收听时间。"
+
+#: includes/class-settings.php:372
+msgid "Error only"
+msgstr "仅错误"
+
+#: includes/class-transcriber.php:111
+msgid "Failed to create cache directory."
+msgstr "创建缓存目录失败。"
+
+#: includes/class-transcriber.php:126
+msgid "Failed to write audio file to cache."
+msgstr "将音频文件写入缓存失败。"
+
+#: includes/class-settings.php:596
+msgid "Flush Entire Cache"
+msgstr "清空全部缓存"
+
+#: includes/class-settings.php:362
+msgid "High (best quality)"
+msgstr "高（最佳质量）"
+
+#: includes/class-settings.php:370
+msgid "Info"
+msgstr "信息"
+
+#: includes/class-gutenberg.php:285
+msgid "Language code override"
+msgstr "语言代码覆盖"
+
+#: includes/class-settings.php:589
+msgid "Loading cache statistics…"
+msgstr "正在加载缓存统计…"
+
+#: includes/class-settings.php:604
+msgid "Loading…"
+msgstr "正在加载…"
+
+#: includes/class-settings.php:652
+msgid "Log cleared."
+msgstr "日志已清除。"
+
+#: includes/class-settings.php:366
+msgid "Logging Level"
+msgstr "日志级别"
+
+#: includes/class-settings.php:360
+msgid "Low (fastest)"
+msgstr "低（最快）"
+
+#: includes/class-settings.php:401
+msgid "Manual (shortcode only)"
+msgstr "手动（仅短代码）"
+
+#: includes/class-settings.php:now
+msgid "Maximum requests per minute per visitor IP to the audio streaming endpoint. Prevents abuse of the public proxy. Default: 60."
+msgstr "每个访问者 IP 每分钟对音频流端点的最大请求数。防止公共代理被滥用。默认值：60。"
+
+#: includes/class-settings.php:now
+msgid "Maximum seconds a single Piper synthesis may run before the PHP worker is terminated. Increase for very long posts or slow hardware. Default: 300."
+msgstr "单次 Piper 合成在 PHP 工作进程终止前可运行的最大秒数。对于非常长的文章或慢速硬件可增加此值。默认值：300。"
+
+#: includes/class-settings.php:now
+msgid "Maximum width of the player in pixels. Leave empty or set to 0 for 100% width. Default: 680."
+msgstr "播放器的最大宽度（像素）。留空或设为 0 则为 100%% 宽度。默认值：680。"
+
+#: includes/class-settings.php:361
+msgid "Medium"
+msgstr "中"
+
+#: includes/class-settings.php:387
+msgid "Minimal"
+msgstr "极简"
+
+#: includes/class-settings.php:367
+msgid "Minimum severity to record in the log."
+msgstr "记录到日志的最低严重程度。"
+
+#: includes/class-settings.php:345
+msgid "Models Directory"
+msgstr "模型目录"
+
+#: includes/class-settings.php:386
+msgid "Modern Dark"
+msgstr "现代深色"
+
+#: includes/class-settings.php:now
+msgid "NewsViews Classic"
+msgstr "NewsViews Classic"
+
+#: includes/class-transcriber.php:83
+msgid "No suitable Piper voice model found. Check your models directory."
+msgstr "未找到合适的 Piper 声音模型。请检查您的模型目录。"
+
+#: includes/class-transcriber.php:90
+msgid "No text content available for this post."
+msgstr "此文章没有可用的文本内容。"
+
+#: includes/class-settings.php:651
+msgid "Orphaned files cleared."
+msgstr "孤立文件已清除。"
+
+#: includes/class-settings.php:now
+msgid "Performance"
+msgstr "性能"
+
+#: includes/class-settings.php:669
+msgid "Permission denied."
+msgstr "权限被拒绝。"
+
+#: includes/class-settings.php:428
+msgid "Piper"
+msgstr "Piper"
+
+#: includes/class-settings.php:341
+msgid "Piper Binary Path"
+msgstr "Piper 二进制路径"
+
+#: includes/class-settings.php:now
+msgid "Piper Process Timeout"
+msgstr "Piper 进程超时"
+
+#: includes/class-settings.php:335
+msgid "Piper TTS Configuration"
+msgstr "Piper TTS 配置"
+
+#: includes/class-settings.php:610
+msgid "Piper binary is not executable."
+msgstr "Piper 二进制文件不可执行。"
+
+#: includes/class-settings.php:603
+msgid "Piper binary not found at the configured path."
+msgstr "在配置的路径中未找到 Piper 二进制文件。"
+
+#: includes/class-settings.php:596
+msgid "Piper binary path is not configured."
+msgstr "Piper 二进制路径未配置。"
+
+#: includes/class-transcriber.php:121
+msgid "Piper failed to generate audio. Check the logs for details."
+msgstr "Piper 无法生成音频。请查看日志了解详情。"
+
+#: includes/class-settings.php:646
+msgid "Piper is working correctly."
+msgstr "Piper 工作正常。"
+
+#: includes/class-settings.php:623
+msgid "Piper returned an error: %s"
+msgstr "Piper 返回了一个错误：%s"
+
+#: includes/class-settings.php:647
+msgid "Piper test failed."
+msgstr "Piper 测试失败。"
+
+#: includes/class-settings.php:318
+msgid "Piperless"
+msgstr "Piperless"
+
+#: piperless.php:43
+msgid "Piperless requires PHP %s or higher."
+msgstr "Piperless 需要 PHP %s 或更高版本。"
+
+#: piperless.php:52
+msgid "Piperless requires WordPress %s or higher."
+msgstr "Piperless 需要 WordPress %s 或更高版本。"
+
+#: includes/class-settings.php:317
+msgid "Piperless — Audio Transcripts"
+msgstr "Piperless — 音频转录"
+
+#: includes/class-settings.php:now
+msgid "Piperless: Piper binary is not executable. Check file permissions."
+msgstr "Piperless：Piper 二进制文件不可执行。请检查文件权限。"
+
+#: includes/class-settings.php:now
+msgid "Piperless: Piper binary not found at the configured path. Text-to-speech will not work until the path is corrected."
+msgstr "Piperless：在配置的路径中未找到 Piper 二进制文件。在路径修正之前，文本转语音将无法工作。"
+
+#: includes/class-settings.php:now
+msgid "Piperless: Piper binary path is not configured. Text-to-speech will not work until you set the path in the Piper tab."
+msgstr "Piperless：Piper 二进制路径未配置。在您于 Piper 选项卡中设置路径之前，文本转语音将无法工作。"
+
+#: includes/class-player.php:115
+msgid "Play"
+msgstr "播放"
+
+#: includes/class-settings.php:now
+msgid "Player Max Width"
+msgstr "播放器最大宽度"
+
+#: includes/class-settings.php:396
+msgid "Player Placement"
+msgstr "播放器位置"
+
+#: includes/class-settings.php:567
+msgid "Player Preview"
+msgstr "播放器预览"
+
+#: includes/class-settings.php:382
+msgid "Player Style"
+msgstr "播放器样式"
+
+#: piperless.php:47 piperless.php:56
+msgid "Plugin Activation Error"
+msgstr "插件激活错误"
+
+#: includes/class-gutenberg.php:277
+msgid "Post ID"
+msgstr "文章 ID"
+
+#: includes/class-transcriber.php:66
+msgid "Post not found."
+msgstr "未找到文章。"
+
+#: includes/class-settings.php:568
+msgid "Preview how the selected player style looks with a sample audio clip."
+msgstr "使用示例音频片段预览所选播放器样式的效果。"
+
+#: includes/class-gutenberg.php:289
+msgid "Quality tier override"
+msgstr "质量级别覆盖"
+
+#: includes/class-settings.php:607
+msgid "Refresh Log"
+msgstr "刷新日志"
+
+#: includes/class-settings.php:405
+msgid "Show Duration"
+msgstr "显示时长"
+
+#: includes/class-settings.php:172
+msgid "Skip Embedded Content"
+msgstr "跳过嵌入内容"
+
+#: includes/class-settings.php:436
+msgid "Styling"
+msgstr "样式"
+
+#: includes/class-settings.php:488
+msgid "Test Connection"
+msgstr "测试连接"
+
+#: includes/class-settings.php:645
+msgid "Testing…"
+msgstr "正在测试…"
+
+#: includes/class-settings.php:649
+msgid "This will delete cache files not referenced by any post."
+msgstr "这将删除未被任何文章引用的缓存文件。"
+
+#: includes/class-gutenberg.php:now
+msgid "Too many requests. Please try again later."
+msgstr "请求过多。请稍后再试。"
+
+#: includes/class-transcriber.php:70
+msgid "Unsupported post type."
+msgstr "不支持的文章类型。"
+
+#: includes/class-gutenberg.php:281
+msgid "Voice name override"
+msgstr "声音名称覆盖"
+
+#: includes/class-settings.php:371
+msgid "Warning"
+msgstr "警告"
+
+#: includes/class-settings.php:173
+msgid "When falling back to post body (no excerpt), skip text from embedded blocks like YouTube, Twitter, and third-party embeds."
+msgstr "当回退到文章正文（无摘要）时，跳过 YouTube、Twitter 和第三方嵌入等嵌入块中的文本。"
+
+#: includes/class-settings.php:397
+msgid "Where to insert the audio player relative to the post content."
+msgstr "音频播放器相对于文章内容的插入位置。"
+
+#: includes/class-gutenberg.php:now
+msgid "You do not have permission to edit this post."
+msgstr "您没有编辑此文章的权限。"
+
+#: includes/class-player.php:109
+msgid "Your browser does not support the audio element."
+msgstr "您的浏览器不支持音频元素。"
+

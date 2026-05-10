@@ -1,0 +1,56 @@
+/**
+ * Piperless Player — Modern Dark Theme
+ *
+ * Sleek dark theme with gradient accents.
+ * Ideal for dark-mode sites or as a striking contrast element.
+ */
+
+.piperless-player--dark {
+	background: linear-gradient( 135deg, #1e1e2e 0%, #2d2d44 100% );
+	border-radius: 14px;
+	padding: 16px 20px;
+	color: #e0e0f0;
+	box-shadow: 0 4px 24px rgba( 0, 0, 0, 0.25 );
+}
+
+.piperless-player--dark .piperless-player__play {
+	background: linear-gradient( 135deg, #7c3aed 0%, #3b82f6 100% );
+	color: #ffffff;
+	border-radius: 12px;
+	box-shadow: 0 2px 12px rgba( 124, 58, 237, 0.4 );
+}
+
+.piperless-player--dark .piperless-player__play:hover {
+	box-shadow: 0 4px 18px rgba( 124, 58, 237, 0.55 );
+}
+
+.piperless-player--dark .piperless-player__progress {
+	background: rgba( 255, 255, 255, 0.08 );
+}
+
+.piperless-player--dark .piperless-player__progress-buffered {
+	background: rgba( 255, 255, 255, 0.12 );
+}
+
+.piperless-player--dark .piperless-player__progress-bar {
+	background: linear-gradient( 90deg, #7c3aed 0%, #3b82f6 100% );
+}
+
+.piperless-player--dark .piperless-player__time {
+	color: #a0a0c0;
+}
+
+/* Progress hover */
+.piperless-player--dark .piperless-player__progress:hover {
+	height: 8px;
+	margin-top: -1px;
+}
+
+/* Volume accent */
+.piperless-player--dark .piperless-player__volume-slider input[type="range"] {
+	background: linear-gradient(to top, #7c3aed var(--vol-pct), #dee2e6 var(--vol-pct)) !important;
+}
+
+.piperless-player--dark .piperless-player__volume-slider input[type="range"]::-moz-range-track {
+	background: linear-gradient(to top, #7c3aed var(--vol-pct), #dee2e6 var(--vol-pct)) !important;
+}

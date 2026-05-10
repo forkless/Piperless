@@ -1,0 +1,55 @@
+/**
+ * Piperless Player — Classic Theme
+ *
+ * Clean, traditional player with blue accents.
+ * Works well on light backgrounds.
+ */
+
+.piperless-player--classic {
+	background: #f8f9fa;
+	border: 1px solid #dee2e6;
+	border-radius: 10px;
+	padding: 14px 18px;
+}
+
+.piperless-player--classic .piperless-player__play {
+	background: #2271b1;
+	color: #ffffff;
+	border-radius: 50%;
+	box-shadow: 0 2px 6px rgba( 34, 113, 177, 0.35 );
+}
+
+.piperless-player--classic .piperless-player__play:hover {
+	background: #135e96;
+}
+
+.piperless-player--classic .piperless-player__progress {
+	background: #dee2e6;
+}
+
+.piperless-player--classic .piperless-player__progress-buffered {
+	background: #ced4da;
+}
+
+.piperless-player--classic .piperless-player__progress-bar {
+	background: #2271b1;
+}
+
+.piperless-player--classic .piperless-player__time {
+	color: #495057;
+}
+
+/* Hover effect on progress */
+.piperless-player--classic .piperless-player__progress:hover {
+	height: 8px;
+	margin-top: -1px;
+}
+
+/* Volume accent */
+.piperless-player--classic .piperless-player__volume-slider input[type="range"] {
+	background: linear-gradient(to top, #2271b1 var(--vol-pct), #dee2e6 var(--vol-pct)) !important;
+}
+
+.piperless-player--classic .piperless-player__volume-slider input[type="range"]::-moz-range-track {
+	background: linear-gradient(to top, #2271b1 var(--vol-pct), #dee2e6 var(--vol-pct)) !important;
+}

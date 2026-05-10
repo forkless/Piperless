@@ -1,0 +1,273 @@
+/**
+ * Piperless Admin Panel Styles
+ */
+
+.piperless-admin .piperless-preview-area {
+	background: #ffffff;
+	border: 1px solid #c3c4c7;
+	border-radius: 6px;
+	padding: 24px;
+	margin: 16px 0;
+	max-width: 720px;
+}
+
+.piperless-admin .piperless-preview-area .piperless-player {
+	margin: 0;
+}
+
+.piperless-admin #piperless-test-result {
+	font-size: 13px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.piperless-admin #piperless-cache-stats {
+	margin-bottom: 8px;
+}
+
+.piperless-admin #piperless-cache-stats p {
+	font-size: 13px;
+	color: #50575e;
+}
+
+.piperless-admin #piperless-cache-result {
+	font-size: 13px;
+}
+
+.piperless-admin .button-caution {
+	color: #b32d2e;
+	border-color: #b32d2e;
+}
+
+.piperless-admin .button-caution:hover {
+	color: #ffffff;
+	background: #b32d2e;
+	border-color: #b32d2e;
+}
+
+.piperless-admin #piperless-log-viewer {
+	font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Menlo, Consolas,
+		monospace;
+	margin-top: 8px;
+}
+
+.piperless-admin .form-table td .description {
+	margin-top: 4px;
+}
+
+/* Voice Model Table */
+.piperless-admin .piperless-model-table {
+	margin-top: 12px;
+	max-width: 620px;
+	table-layout: auto;
+}
+
+.piperless-admin .piperless-model-table th {
+	font-weight: 600;
+}
+
+.piperless-admin .piperless-model-table td {
+	vertical-align: middle;
+}
+
+.piperless-admin .piperless-col-voice,
+.piperless-admin .piperless-col-lang {
+	width: 1%;
+	white-space: nowrap;
+	padding-right: 24px;
+}
+
+.piperless-admin .piperless-col-quality {
+	width: 1%;
+	white-space: nowrap;
+	padding-right: 24px;
+}
+
+.piperless-admin .piperless-model-table td:first-child,
+.piperless-admin .piperless-model-table th:first-child {
+	padding-left: 12px;
+}
+
+.piperless-admin .piperless-col-preview {
+	width: 1%;
+	white-space: nowrap;
+	text-align: center;
+}
+
+/* Quality badges */
+.piperless-quality-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 3px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.piperless-quality-badge--low {
+	background: #f0f0f1;
+	color: #50575e;
+}
+
+.piperless-quality-badge--medium {
+	background: #e5f0fa;
+	color: #135e96;
+}
+
+.piperless-quality-badge--high {
+	background: #e8f5e9;
+	color: #1e7a2e;
+}
+
+/* Model preview button */
+.piperless-model-preview-btn {
+	position: relative;
+	min-width: 110px;
+}
+
+.piperless-model-preview-btn .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	vertical-align: text-bottom;
+	margin-right: 2px;
+}
+
+.piperless-model-preview-btn.piperless-preview-loading {
+	opacity: 0.7;
+	cursor: wait;
+}
+
+.piperless-model-preview-btn.piperless-preview-playing {
+	background: #2271b1;
+	color: #ffffff;
+	border-color: #2271b1;
+}
+
+/* Tab content spacing */
+.piperless-tab-content {
+	margin-top: 16px;
+}
+
+/* Cache browser checkbox column */
+#piperless-cache-browser th:first-child,
+#piperless-cache-browser td:first-child {
+	width: 30px;
+	padding: 8px 0;
+	text-align: center;
+}
+
+#piperless-cache-browser th:first-child input[type="checkbox"] {
+	margin: 0;
+}
+
+/* Sortable column header */
+.piperless-sortable {
+	cursor: pointer;
+	user-select: none;
+}
+
+.piperless-sortable:hover {
+	color: #2271b1;
+}
+
+/* Help card */
+.piperless-help-card {
+	background: #ffffff;
+	border: 1px solid #c3c4c7;
+	border-radius: 8px;
+	padding: 24px 32px;
+	max-width: 600px;
+}
+
+.piperless-help-card p {
+	margin: 0 0 12px;
+	font-size: 14px;
+	line-height: 1.7;
+	color: #3c434a;
+}
+
+.piperless-help-card p:last-child {
+	margin-bottom: 0;
+}
+
+.piperless-help-card h3 {
+	margin: 16px 0 8px;
+	font-size: 15px;
+}
+
+/* About card */
+.piperless-about-card {
+	background: #ffffff;
+	border: 1px solid #c3c4c7;
+	border-radius: 8px;
+	padding: 32px;
+	max-width: 520px;
+	text-align: center;
+}
+
+.piperless-about-icon {
+	font-size: 36px;
+	margin-bottom: 12px;
+	color: #2271b1;
+}
+
+.piperless-about-card h2 {
+	margin: 0 0 4px;
+	font-size: 22px;
+}
+
+.piperless-about-version {
+	margin: 0 0 20px;
+	font-size: 13px;
+	color: #757575;
+}
+
+.piperless-about-blurb {
+	margin: 0 0 20px;
+	font-size: 14px;
+	line-height: 1.7;
+	color: #3c434a;
+}
+
+.piperless-about-contact {
+	margin: 0;
+	font-size: 13px;
+	color: #757575;
+}
+
+/* Cache browser badges */
+.piperless-cache-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 3px;
+	font-size: 11px;
+	font-weight: 600;
+}
+
+.piperless-cache-badge--ok {
+	background: #e8f5e9;
+	color: #1e7a2e;
+}
+
+.piperless-cache-badge--wav {
+	background: #f0f0f1;
+	color: #50575e;
+}
+
+.piperless-cache-badge--orphan {
+	background: #fcf0f1;
+	color: #b32d2e;
+}
+
+/* Responsive adjustments */
+@media ( max-width: 782px ) {
+	.piperless-admin .piperless-preview-area {
+		padding: 16px;
+	}
+
+	.piperless-admin .piperless-model-table .piperless-col-quality,
+	.piperless-admin .piperless-model-table .piperless-col-lang {
+		display: none;
+	}
+}
