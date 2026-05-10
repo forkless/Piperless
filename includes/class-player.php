@@ -67,7 +67,7 @@ class Player {
 	 */
 	public function maybe_prepend_player( string $content ): string {
 		// Only on singular views.
-		if ( ! is_singular() || ! in_the_loop() || ! is_main_query() ) {
+		if ( ! is_singular() || ! is_main_query() ) {
 			return $content;
 		}
 
