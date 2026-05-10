@@ -3,8 +3,8 @@
     "locale": "it_IT",
     "source": "translations.json",
     "generated": "2026-05-10",
-    "total_strings": 117,
-    "translated": 117,
+    "total_strings": 118,
+    "translated": 118,
     "locked": false
   },
   "strings": {
@@ -123,7 +123,8 @@
     "24 kbps (standard)": "24 kbps (standard)",
     "16 kbps (compact)": "16 kbps (compatto)",
     "12 kbps (minimal)": "12 kbps (minimo)",
-    "Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty.": "Percorso assoluto agli strumenti ffmpeg per la conversione MP3/Opus. Rilevato automaticamente se lasciato vuoto.",
-    "FFmpeg Binaries Path": "Percorso binari FFmpeg"
+    "FFprobe Binary Path": "Percorso binario FFprobe",
+    "Absolute path to the ffprobe binary for audio duration detection. Auto-detected from the ffmpeg directory if left empty.": "Percorso assoluto al binario ffprobe per il rilevamento della durata audio. Rilevato automaticamente dalla directory ffmpeg se lasciato vuoto.",
+    "Absolute path to the ffmpeg binary for MP3/Opus conversion. Auto-detected from common paths if left empty.": "Percorso assoluto al binario ffmpeg per la conversione MP3/Opus. Rilevato automaticamente se lasciato vuoto."
   }
 }

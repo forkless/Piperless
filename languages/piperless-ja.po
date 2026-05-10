@@ -469,9 +469,12 @@ msgstr "16 kbps（コンパクト）"
 msgid "12 kbps (minimal)"
 msgstr "12 kbps（最小）"
 
-msgid "Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty."
-msgstr "MP3/Opus変換用のffmpegツールへの絶対パス。空の場合は自動検出されます。"
+msgid "FFprobe Binary Path"
+msgstr "FFprobeバイナリパス"
 
-msgid "FFmpeg Binaries Path"
-msgstr "FFmpegバイナリパス"
+msgid "Absolute path to the ffprobe binary for audio duration detection. Auto-detected from the ffmpeg directory if left empty."
+msgstr "音声の長さ検出用ffprobeバイナリへの絶対パス。空の場合はffmpegディレクトリから自動検出されます。"
+
+msgid "Absolute path to the ffmpeg binary for MP3/Opus conversion. Auto-detected from common paths if left empty."
+msgstr "MP3/Opus変換用ffmpegバイナリへの絶対パス。空の場合は自動検出されます。"
 

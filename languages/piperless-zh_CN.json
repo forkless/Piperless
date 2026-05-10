@@ -3,8 +3,8 @@
     "locale": "zh_CN",
     "source": "translations.json",
     "generated": "2026-05-10",
-    "total_strings": 117,
-    "translated": 117,
+    "total_strings": 118,
+    "translated": 118,
     "locked": false
   },
   "strings": {
@@ -123,7 +123,8 @@
     "24 kbps (standard)": "24 kbps（标准）",
     "16 kbps (compact)": "16 kbps（紧凑）",
     "12 kbps (minimal)": "12 kbps（最小）",
-    "Absolute path to ffmpeg tools for MP3/Opus conversion. Auto-detected from common paths if left empty.": "ffmpeg 工具的绝对路径，用于 MP3/Opus 转换。留空则自动检测。",
-    "FFmpeg Binaries Path": "FFmpeg 二进制文件路径"
+    "FFprobe Binary Path": "FFprobe 二进制文件路径",
+    "Absolute path to the ffprobe binary for audio duration detection. Auto-detected from the ffmpeg directory if left empty.": "ffprobe 二进制文件的绝对路径，用于音频时长检测。留空则从 ffmpeg 目录自动检测。",
+    "Absolute path to the ffmpeg binary for MP3/Opus conversion. Auto-detected from common paths if left empty.": "ffmpeg 二进制文件的绝对路径，用于 MP3/Opus 转换。留空则自动检测。"
   }
 }

@@ -529,10 +529,19 @@ class Transcriber {
 			return $resolved;
 		}
 
-		$cached = true;
+		$cached   = true;
+		$settings = get_option( 'piperless_settings', [] );
+		$custom   = $settings['piper_ffprobe_binary'] ?? '';
 
-		// Use the same directory as ffmpeg — wherever it was resolved,
-		// ffprobe is likely right next to it.
+		// 1. Try the configured ffprobe path.
+		if ( '' !== $custom ) {
+			if ( @file_exists( $custom ) && @is_executable( $custom ) ) {
+				$resolved = $custom;
+				return $resolved;
+			}
+		}
+
+		// 2. Try the same directory as resolved ffmpeg.
 		$ffmpeg_path = $this->cache->find_ffmpeg();
 		if ( null !== $ffmpeg_path ) {
 			$candidate = dirname( $ffmpeg_path ) . '/ffprobe';
@@ -542,7 +551,7 @@ class Transcriber {
 			}
 		}
 
-		// Fallback: common paths extended via filter.
+		// 3. Fallback: common paths extended via filter.
 		$candidates = apply_filters(
 			'piperless_ffprobe_paths',
 			[ '/usr/bin/ffprobe', '/usr/local/bin/ffprobe', '/opt/bin/ffprobe' ]
