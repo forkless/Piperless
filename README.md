@@ -167,7 +167,7 @@ Piperless shells out to system binaries. It was built with defense-in-depth from
 - **Process isolation** — `set_time_limit()` guards with configurable timeouts
 - **open_basedir aware** — string-prefix matching before any filesystem call to prevent hangs
 
-Comprehensive review: **29/29 categories cleared. Zero critical, zero high, zero medium findings.**
+Comprehensive review: **29/29 categories cleared. 1 logic bug found and fixed. Zero open findings.** [See full audit →](AUDIT.md)
 
 ---
 
