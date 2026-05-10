@@ -1,0 +1,426 @@
+# Piperless — Audio Transcripts
+# Copyright (C) 2024 Piperless Team
+# This file is distributed under the MIT license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Piperless 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/example/piperless/issues\n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2026-05-10 00:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: it <LL@li.org>\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: includes/class-settings.php:now
+msgid "Above & below content"
+msgstr "Contenuto sopra e sotto"
+
+#: includes/class-settings.php:342
+msgid "Absolute path to the Piper executable (e.g. /usr/bin/piper)."
+msgstr "Percorso assoluto dell'eseguibile Piper (es. /usr/bin/piper)."
+
+#: includes/class-settings.php:346
+msgid "Absolute path to the directory containing Piper .onnx model files."
+msgstr "Percorso assoluto della directory contenente i file modello .onnx di Piper."
+
+#: includes/class-settings.php:400
+msgid "After content"
+msgstr "Dopo il contenuto"
+
+#: includes/class-settings.php:now
+msgid "Alias"
+msgstr "Alias"
+
+#: includes/class-settings.php:648
+msgid "Are you sure? This will delete all cached audio files."
+msgstr "Sei sicuro? Questa operazione eliminerà tutti i file audio memorizzati nella cache."
+
+#: includes/class-settings.php:now
+msgid "Audio Endpoint Rate Limit"
+msgstr "Limite di frequenza dell'endpoint audio"
+
+#: includes/class-settings.php:378
+msgid "Audio Player Settings"
+msgstr "Impostazioni del lettore audio"
+
+#: includes/class-transcriber.php:now
+msgid "Audio generation already in progress for this content. Please wait."
+msgstr "Generazione audio già in corso per questo contenuto. Attendere."
+
+#: includes/class-player.php:now
+msgid "Audio transcript: %s"
+msgstr "Trascrizione audio: %s"
+
+#: includes/class-settings.php:358
+msgid "Balance between speed and audio quality."
+msgstr "Bilanciamento tra velocità e qualità audio."
+
+#: includes/class-settings.php:399
+msgid "Before content"
+msgstr "Prima del contenuto"
+
+#: includes/class-settings.php:587
+msgid "Cache Management"
+msgstr "Gestione cache"
+
+#: includes/class-settings.php:650
+msgid "Cache flushed."
+msgstr "Cache svuotata."
+
+#: includes/class-settings.php:383
+msgid "Choose a visual theme for the audio player."
+msgstr "Scegli un tema visivo per il lettore audio."
+
+#: includes/class-settings.php:385
+msgid "Classic"
+msgstr "Classico"
+
+#: includes/class-settings.php:610
+msgid "Clear Log"
+msgstr "Cancella log"
+
+#: includes/class-settings.php:593
+msgid "Clear Orphaned Audio"
+msgstr "Rimuovi audio orfani"
+
+#: includes/class-settings.php:486
+msgid "Configure the Piper TTS engine."
+msgstr "Configura il motore TTS Piper."
+
+#: includes/class-settings.php:432
+msgid "Content"
+msgstr "Contenuto"
+
+#: includes/class-settings.php:now
+msgid "Content Parsing"
+msgstr "Analisi del contenuto"
+
+#: includes/class-settings.php:392
+msgid "Custom CSS"
+msgstr "CSS personalizzato"
+
+#: includes/class-settings.php:393
+msgid "Custom CSS rules applied when \\\"Custom CSS\\\" style is selected."
+msgstr "Regole CSS personalizzate applicate quando viene selezionato lo stile \\\"Custom CSS\\\"."
+
+#: includes/class-settings.php:369
+msgid "Debug (verbose)"
+msgstr "Debug (verbose)"
+
+#: includes/class-settings.php:603
+msgid "Debug Log"
+msgstr "Log di debug"
+
+#: includes/class-settings.php:353
+msgid "Default Language"
+msgstr "Lingua predefinita"
+
+#: includes/class-settings.php:357
+msgid "Default Quality"
+msgstr "Qualità predefinita"
+
+#: includes/class-settings.php:349
+msgid "Default Voice"
+msgstr "Voce predefinita"
+
+#: includes/class-settings.php:354
+msgid "Default language code (e.g. en_US, de_DE)."
+msgstr "Codice lingua predefinito (es. en_US, de_DE)."
+
+#: includes/class-settings.php:350
+msgid "Default voice name (e.g. amy, ryan). Leave empty to use first available."
+msgstr "Nome voce predefinito (es. amy, ryan). Lascia vuoto per utilizzare la prima disponibile."
+
+#: assets/js/gutenberg.js
+msgid "Display Settings"
+msgstr "Impostazioni display"
+
+#: includes/class-settings.php:406
+msgid "Display the total listening time on the player."
+msgstr "Mostra il tempo di ascolto totale sul lettore."
+
+#: includes/class-settings.php:372
+msgid "Error only"
+msgstr "Solo errori"
+
+#: includes/class-transcriber.php:111
+msgid "Failed to create cache directory."
+msgstr "Impossibile creare la directory della cache."
+
+#: includes/class-transcriber.php:126
+msgid "Failed to write audio file to cache."
+msgstr "Impossibile scrivere il file audio nella cache."
+
+#: includes/class-settings.php:596
+msgid "Flush Entire Cache"
+msgstr "Svuota l'intera cache"
+
+#: includes/class-settings.php:362
+msgid "High (best quality)"
+msgstr "Alta (massima qualità)"
+
+#: includes/class-settings.php:370
+msgid "Info"
+msgstr "Informazioni"
+
+#: includes/class-gutenberg.php:285
+msgid "Language code override"
+msgstr "Override del codice lingua"
+
+#: includes/class-settings.php:589
+msgid "Loading cache statistics…"
+msgstr "Caricamento statistiche cache…"
+
+#: includes/class-settings.php:604
+msgid "Loading…"
+msgstr "Caricamento…"
+
+#: includes/class-settings.php:652
+msgid "Log cleared."
+msgstr "Registro cancellato."
+
+#: includes/class-settings.php:366
+msgid "Logging Level"
+msgstr "Livello di registrazione"
+
+#: includes/class-settings.php:360
+msgid "Low (fastest)"
+msgstr "Bassa (più veloce)"
+
+#: includes/class-settings.php:401
+msgid "Manual (shortcode only)"
+msgstr "Manuale (solo shortcode)"
+
+#: includes/class-settings.php:now
+msgid "Maximum requests per minute per visitor IP to the audio streaming endpoint. Prevents abuse of the public proxy. Default: 60."
+msgstr "Numero massimo di richieste al minuto per IP visitatore all'endpoint di streaming audio. Previene abusi del proxy pubblico. Predefinito: 60."
+
+#: includes/class-settings.php:now
+msgid "Maximum seconds a single Piper synthesis may run before the PHP worker is terminated. Increase for very long posts or slow hardware. Default: 300."
+msgstr "Secondi massimi per cui una singola sintesi Piper può essere eseguita prima che il worker PHP venga terminato. Aumentare per post molto lunghi o hardware lento. Predefinito: 300."
+
+#: includes/class-settings.php:now
+msgid "Maximum width of the player in pixels. Leave empty or set to 0 for 100% width. Default: 680."
+msgstr "Larghezza massima del player in pixel. Lasciare vuoto o impostare a 0 per larghezza al 100%. Predefinito: 680."
+
+#: includes/class-settings.php:361
+msgid "Medium"
+msgstr "Media"
+
+#: includes/class-settings.php:387
+msgid "Minimal"
+msgstr "Minimo"
+
+#: includes/class-settings.php:367
+msgid "Minimum severity to record in the log."
+msgstr "Livello di gravità minimo da registrare nel log."
+
+#: includes/class-settings.php:345
+msgid "Models Directory"
+msgstr "Directory dei modelli"
+
+#: includes/class-settings.php:386
+msgid "Modern Dark"
+msgstr "Modern Dark"
+
+#: includes/class-settings.php:now
+msgid "NewsViews Classic"
+msgstr "NewsViews Classic"
+
+#: includes/class-transcriber.php:83
+msgid "No suitable Piper voice model found. Check your models directory."
+msgstr "Nessun modello vocale Piper adatto trovato. Controlla la directory dei modelli."
+
+#: includes/class-transcriber.php:90
+msgid "No text content available for this post."
+msgstr "Nessun contenuto testuale disponibile per questo post."
+
+#: includes/class-settings.php:651
+msgid "Orphaned files cleared."
+msgstr "File orfani eliminati."
+
+#: includes/class-settings.php:now
+msgid "Performance"
+msgstr "Prestazioni"
+
+#: includes/class-settings.php:669
+msgid "Permission denied."
+msgstr "Permesso negato."
+
+#: includes/class-settings.php:428
+msgid "Piper"
+msgstr "Piper"
+
+#: includes/class-settings.php:341
+msgid "Piper Binary Path"
+msgstr "Percorso del binario Piper"
+
+#: includes/class-settings.php:now
+msgid "Piper Process Timeout"
+msgstr "Timeout del processo Piper"
+
+#: includes/class-settings.php:335
+msgid "Piper TTS Configuration"
+msgstr "Configurazione TTS Piper"
+
+#: includes/class-settings.php:610
+msgid "Piper binary is not executable."
+msgstr "Il binario Piper non è eseguibile."
+
+#: includes/class-settings.php:603
+msgid "Piper binary not found at the configured path."
+msgstr "Binario Piper non trovato nel percorso configurato."
+
+#: includes/class-settings.php:596
+msgid "Piper binary path is not configured."
+msgstr "Il percorso del binario Piper non è configurato."
+
+#: includes/class-transcriber.php:121
+msgid "Piper failed to generate audio. Check the logs for details."
+msgstr "Piper non è riuscito a generare l'audio. Controlla i log per i dettagli."
+
+#: includes/class-settings.php:646
+msgid "Piper is working correctly."
+msgstr "Piper funziona correttamente."
+
+#: includes/class-settings.php:623
+msgid "Piper returned an error: %s"
+msgstr "Piper ha restituito un errore: %s"
+
+#: includes/class-settings.php:647
+msgid "Piper test failed."
+msgstr "Test di Piper non riuscito."
+
+#: includes/class-settings.php:318
+msgid "Piperless"
+msgstr "Piperless"
+
+#: piperless.php:43
+msgid "Piperless requires PHP %s or higher."
+msgstr "Piperless richiede PHP %s o superiore."
+
+#: piperless.php:52
+msgid "Piperless requires WordPress %s or higher."
+msgstr "Piperless richiede WordPress %s o superiore."
+
+#: includes/class-settings.php:317
+msgid "Piperless — Audio Transcripts"
+msgstr "Piperless — Trascrizioni audio"
+
+#: includes/class-settings.php:now
+msgid "Piperless: Piper binary is not executable. Check file permissions."
+msgstr "Piperless: Il binario di Piper non è eseguibile. Controlla i permessi dei file."
+
+#: includes/class-settings.php:now
+msgid "Piperless: Piper binary not found at the configured path. Text-to-speech will not work until the path is corrected."
+msgstr "Piperless: Binario di Piper non trovato nel percorso configurato. La sintesi vocale non funzionerà finché il percorso non verrà corretto."
+
+#: includes/class-settings.php:now
+msgid "Piperless: Piper binary path is not configured. Text-to-speech will not work until you set the path in the Piper tab."
+msgstr "Piperless: Il percorso del binario di Piper non è configurato. La sintesi vocale non funzionerà finché non imposterai il percorso nella scheda Piper."
+
+#: includes/class-player.php:115
+msgid "Play"
+msgstr "Riproduci"
+
+#: includes/class-settings.php:now
+msgid "Player Max Width"
+msgstr "Larghezza massima del player"
+
+#: includes/class-settings.php:396
+msgid "Player Placement"
+msgstr "Posizionamento del player"
+
+#: includes/class-settings.php:567
+msgid "Player Preview"
+msgstr "Anteprima del player"
+
+#: includes/class-settings.php:382
+msgid "Player Style"
+msgstr "Stile del player"
+
+#: piperless.php:47 piperless.php:56
+msgid "Plugin Activation Error"
+msgstr "Errore di attivazione del plugin"
+
+#: includes/class-gutenberg.php:277
+msgid "Post ID"
+msgstr "ID del post"
+
+#: includes/class-transcriber.php:66
+msgid "Post not found."
+msgstr "Post non trovato."
+
+#: includes/class-settings.php:568
+msgid "Preview how the selected player style looks with a sample audio clip."
+msgstr "Anteprima di come appare lo stile del player selezionato con un clip audio di esempio."
+
+#: includes/class-gutenberg.php:289
+msgid "Quality tier override"
+msgstr "Override del livello di qualità"
+
+#: includes/class-settings.php:607
+msgid "Refresh Log"
+msgstr "Aggiorna log"
+
+#: includes/class-settings.php:405
+msgid "Show Duration"
+msgstr "Mostra durata"
+
+#: includes/class-settings.php:172
+msgid "Skip Embedded Content"
+msgstr "Salta contenuti incorporati"
+
+#: includes/class-settings.php:436
+msgid "Styling"
+msgstr "Stile"
+
+#: includes/class-settings.php:488
+msgid "Test Connection"
+msgstr "Test connessione"
+
+#: includes/class-settings.php:645
+msgid "Testing…"
+msgstr "Test in corso…"
+
+#: includes/class-settings.php:649
+msgid "This will delete cache files not referenced by any post."
+msgstr "Questo eliminerà i file di cache non referenziati da alcun post."
+
+#: includes/class-gutenberg.php:now
+msgid "Too many requests. Please try again later."
+msgstr "Troppe richieste. Riprova più tardi."
+
+#: includes/class-transcriber.php:70
+msgid "Unsupported post type."
+msgstr "Tipo di post non supportato."
+
+#: includes/class-gutenberg.php:281
+msgid "Voice name override"
+msgstr "Override del nome della voce"
+
+#: includes/class-settings.php:371
+msgid "Warning"
+msgstr "Avviso"
+
+#: includes/class-settings.php:173
+msgid "When falling back to post body (no excerpt), skip text from embedded blocks like YouTube, Twitter, and third-party embeds."
+msgstr "Quando si utilizza il corpo del post come fallback (nessun estratto), salta il testo da blocchi incorporati come YouTube, Twitter e embed di terze parti."
+
+#: includes/class-settings.php:397
+msgid "Where to insert the audio player relative to the post content."
+msgstr "Dove inserire il player audio rispetto al contenuto del post."
+
+#: includes/class-gutenberg.php:now
+msgid "You do not have permission to edit this post."
+msgstr "Non hai il permesso di modificare questo post."
+
+#: includes/class-player.php:109
+msgid "Your browser does not support the audio element."
+msgstr "Il tuo browser non supporta l'elemento audio."
+

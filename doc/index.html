@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piperless v1.0.0 — Developer Documentation</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --fg: #1a1a2e;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --accent: #233452;
+  --accent-light: #e8ecf1;
+  --code-bg: #f8f9fa;
+  --tag-bg: #f0f0f1;
+  --warn-bg: #fff8e1;
+  --warn-border: #ffc107;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+  color: var(--fg);
+  line-height: 1.7;
+  background: var(--bg);
+}
+nav {
+  position: fixed; top: 0; left: 0; width: 260px; height: 100vh;
+  background: var(--accent); color: #fff;
+  padding: 32px 24px; overflow-y: auto;
+}
+nav h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; opacity: 0.7; }
+nav a { display: block; color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; padding: 4px 0; }
+nav a:hover { color: #fff; }
+main { margin-left: 260px; padding: 48px 56px; max-width: 960px; }
+h1 { font-size: 28px; margin-bottom: 4px; color: var(--accent); }
+h1 + p { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
+h2 { font-size: 20px; margin: 48px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--accent); color: var(--accent); }
+h3 { font-size: 16px; margin: 32px 0 8px; }
+h4 { font-size: 14px; font-family: "SF Mono", Monaco, monospace; background: var(--code-bg); padding: 4px 10px; border-radius: 4px; display: inline-block; margin: 16px 0 4px; }
+p, ul, ol { margin: 0 0 12px; }
+code { font-family: "SF Mono", Monaco, Consolas, monospace; font-size: 13px; background: var(--code-bg); padding: 1px 5px; border-radius: 3px; }
+pre { background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px; padding: 16px; overflow-x: auto; margin: 12px 0; font-size: 13px; line-height: 1.6; }
+.tag { display: inline-block; background: var(--tag-bg); color: var(--muted); font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; font-weight: 600; text-transform: uppercase; }
+.tag-public { background: #e8f5e9; color: #1e7a2e; }
+.tag-private { background: #fce4ec; color: #b71c1c; }
+.warn { background: var(--warn-bg); border-left: 4px solid var(--warn-border); padding: 12px 16px; margin: 16px 0; border-radius: 0 4px 4px 0; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+th { text-align: left; background: var(--accent-light); padding: 8px 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+td { padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 14px; }
+td:first-child { font-family: "SF Mono", Monaco, monospace; font-size: 13px; }
+.arch-diagram { background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px; padding: 20px 24px; font-family: "SF Mono", Monaco, monospace; font-size: 12px; line-height: 1.8; margin: 16px 0; white-space: pre; }
+</style>
+</head>
+<body>
+
+<nav>
+  <h2>Piperless 1.0.0</h2>
+  <a href="#overview">Overview</a>
+  <a href="#architecture">Architecture</a>
+  <a href="#plugin">Plugin (Orchestrator)</a>
+  <a href="#piper">Piper (TTS Engine)</a>
+  <a href="#transcriber">Transcriber</a>
+  <a href="#cache-manager">Cache Manager</a>
+  <a href="#gutenberg">Gutenberg Integration</a>
+  <a href="#settings">Settings Panel</a>
+  <a href="#player">Audio Player</a>
+  <a href="#logger">Logger</a>
+  <a href="#rest-api">REST API</a>
+  <a href="#hooks">Filters &amp; Actions</a>
+  <a href="#security">Security Model</a>
+</nav>
+
+<main>
+
+<h1>Piperless</h1>
+<p>WordPress Plugin — Audio Transcripts via Piper TTS &middot; v1.0.0 &middot; Generated 2026-05-09</p>
+
+<h2 id="overview">Overview</h2>
+<p>
+Piperless generates audio transcripts of WordPress posts using the <strong>Piper</strong> neural text-to-speech engine.
+It shells out to the Piper CLI via <code>proc_open</code>, caches the resulting WAV/MP3 files in
+<code>wp-content/uploads/piperless/</code>, and serves them through a REST API proxy with an
+HTML5 audio player on the frontend.
+</p>
+
+<ul>
+  <li>Requires PHP 8.0+, WordPress 6.0+</li>
+  <li>MIT</li>
+  <li>8 PHP classes, ~4,000 lines</li>
+  <li>7 admin panel tabs, 4 REST API endpoints</li>
+  <li>6 player themes + Custom CSS</li>
+  <li>Full nl_NL translation (98 strings)</li>
+</ul>
+
+<h2 id="architecture">Architecture</h2>
+
+<div class="arch-diagram">┌─────────────────────────────────────────────────────┐
+│                    Plugin (singleton)                │
+│  Creates all subsystems, wires init() hooks          │
+├─────────────────────────────────────────────────────┤
+│  ┌──────────┐  ┌──────────┐  ┌───────────────────┐  │
+│  │  Logger  │  │  Piper   │  │  Cache_Manager     │  │
+│  │          │  │          │  │                    │  │
+│  │ piperless│  │ proc_open│  │ wp-content/upload/ │  │
+│  │ .log     │  │ 3 modes  │  │ piperless/*.mp3    │  │
+│  └──────────┘  └──────────┘  └───────────────────┘  │
+│  ┌──────────┐  ┌──────────┐  ┌───────────────────┐  │
+│  │ Settings │  │Transcriber│  │  Gutenberg         │  │
+│  │          │  │          │  │                    │  │
+│  │ 7 tabs   │  │text→cache │  │ REST API + sidebar │  │
+│  │ admin UI │  │→Piper→wav │  │ 4 endpoints        │  │
+│  └──────────┘  └──────────┘  └───────────────────┘  │
+│  ┌──────────┐                                        │
+│  │  Player  │  the_content filter, shortcode         │
+│  │  6 themes│  per-post style/placement overrides    │
+│  └──────────┘                                        │
+└─────────────────────────────────────────────────────┘</div>
+
+<p>
+<strong>Data flow for audio generation:</strong><br>
+<code>REST POST /generate</code> → <code>Gutenberg::rest_generate()</code> → <code>Transcriber::generate()</code>
+→ extract text → SHA-256 cache key → check cache → acquire mutex →
+<code>Piper::synthesise()</code> → <code>Cache_Manager::put()</code> → update post meta → release mutex.
+</p>
+
+<h2 id="plugin">Plugin (Orchestrator)</h2>
+<p><code>includes/class-plugin.php</code> — <span class="tag tag-public">Singleton</span></p>
+
+<p>
+The entry point.  Instantiated once via <code>Plugin::instance()</code> and wired into WordPress
+via <code>piperless_init()</code> on <code>plugins_loaded</code>.
+</p>
+
+<h4>Properties</h4>
+<table>
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td>$logger</td><td>Logger</td><td>PSR-3 logger instance</td></tr>
+<tr><td>$piper</td><td>Piper</td><td>TTS CLI wrapper</td></tr>
+<tr><td>$settings</td><td>Settings</td><td>Admin panel</td></tr>
+<tr><td>$transcriber</td><td>Transcriber</td><td>Generation orchestrator</td></tr>
+<tr><td>$cache_manager</td><td>Cache_Manager</td><td>Audio file cache</td></tr>
+<tr><td>$player</td><td>Player</td><td>Frontend HTML5 player</td></tr>
+<tr><td>$gutenberg</td><td>Gutenberg</td><td>Block editor sidebar</td></tr>
+</table>
+
+<h4>Key Methods</h4>
+<table>
+<tr><th>Method</th><th>Description</th></tr>
+<tr><td>init()</td><td>Fires all subsystem init() calls, registers transition_post_status hook and piperless_auto_generate cron action</td></tr>
+<tr><td>maybe_auto_generate()</td><td>
+  Fires on transition_post_status.  When a post transitions to 'publish' from a non-publish state,
+  auto-generate is enabled, <strong>and no audio URL exists yet</strong>, schedules a one-shot cron event
+  5 seconds in the future.  This defers the expensive Piper call off the HTTP response path.
+</td></tr>
+<tr><td>do_auto_generate()</td><td>Cron callback — re-checks for existing audio as a safety net before calling Transcriber::generate()</td></tr>
+</table>
+
+<h2 id="piper">Piper (TTS Engine)</h2>
+<p><code>includes/class-piper.php</code> — <span class="tag tag-public">25 methods</span></p>
+
+<p>
+Wraps the Piper CLI tool.  Communicates via <code>proc_open</code> in three modes.
+</p>
+
+<h3>Interface Modes</h3>
+<table>
+<tr><th>Mode</th><th>How it works</th><th>Used by</th></tr>
+<tr><td><strong>raw</strong></td><td>Text → stdin, raw PCM ← stdout, wrapped in WAV. Streamed to temp file for large outputs.</td><td>Native Piper CLI (--output-raw)</td></tr>
+<tr><td><strong>file</strong></td><td>Text → stdin, Piper writes WAV via --output_file, read from disk.</td><td>Python wheel wrappers</td></tr>
+<tr><td><strong>positional</strong></td><td>Binary, model path, and text passed as positional args. Wrapper writes output.wav in CWD. Runs in isolated temp dir.</td><td>Custom wrapper scripts</td></tr>
+</table>
+
+<h4>Key Methods</h4>
+<table>
+<tr><th>Method</th><th>Visibility</th><th>Description</th></tr>
+<tr><td>synthesise()</td><td><span class="tag tag-public">public</span></td><td>Entry point. Validates binary/model paths, applies set_time_limit guard, dispatches to mode-specific method. Timeout restored in finally block.</td></tr>
+<tr><td>scan_models()</td><td><span class="tag tag-public">public</span></td><td>Recursively walks models directory for .onnx files. Parses filenames into voice/language/quality. Validates companion .json. Result cached per-request.</td></tr>
+<tr><td>find_model()</td><td><span class="tag tag-public">public</span></td><td>Fuzzy model lookup: exact match → voice+language → language-only → first available. Calls scan_models() (uses cache).</td></tr>
+<tr><td>detect_output_mode()</td><td><span class="tag tag-public">public</span></td><td>Auto-detects Piper's interface mode from --help output. Cached for process lifetime. Respects piper_interface setting override.</td></tr>
+<tr><td>test()</td><td><span class="tag tag-public">public</span></td><td>Pre-flight check: validates binary path, open_basedir access, file existence, executability. Runs --help to extract version. Tolerates wrappers without --help support.</td></tr>
+<tr><td>is_path_accessible()</td><td><span class="tag tag-private">private</span></td><td>Checks if a path is within PHP's open_basedir using pure string-prefix matching — no filesystem calls on blocked paths. Stops at root to avoid file_exists('/') warnings.</td></tr>
+<tr><td>is_valid_model_config()</td><td><span class="tag tag-public">public</span></td><td>Validates .onnx.json companion files: detects Git LFS pointers, empty files, malformed JSON.</td></tr>
+</table>
+
+<div class="warn">
+  <strong>Process safety:</strong> <code>synthesise()</code> reads <code>piper_process_timeout</code> from settings
+  (default 300s, clamped 30–3600) and calls <code>set_time_limit()</code> before proc_open.
+  The original limit is restored in a <code>finally</code> block.  All three synthesis methods use
+  <code>escapeshellarg()</code> — zero <code>escapeshellcmd()</code> calls remain.
+</div>
+
+<h2 id="transcriber">Transcriber</h2>
+<p><code>includes/class-transcriber.php</code></p>
+
+<h4>Generation Pipeline</h4>
+<ol>
+  <li>Resolve voice / language / quality from per-post meta → REST params → settings</li>
+  <li>Extract text — manual excerpt first, then content with optional embedded-block filtering</li>
+  <li>Generate SHA-256 cache key from text + model + language + quality + bitrate</li>
+  <li>Return cached audio if it exists</li>
+  <li><strong>Acquire mutex transient</strong> (piperless_synthesising_&lt;key&gt;) — prevents parallel Piper processes</li>
+  <li>Shell out to Piper, wrap raw PCM in WAV</li>
+  <li>Store in cache (MP3 via ffmpeg if available, WAV otherwise)</li>
+  <li>Update post meta, <strong>release mutex</strong></li>
+</ol>
+
+<h4>Concurrency Mutex</h4>
+<p>
+A transient-based lock prevents two requests from running Piper simultaneously for identical content.
+The lock is <strong>released on all exit paths</strong>: synthesis failure, cache-write failure, and success.
+A 5-minute TTL acts as a safety net against stranded locks.
+</p>
+
+<h4>Text Extraction</h4>
+<p>
+When <code>skip_embedded_content</code> is enabled and no manual excerpt exists, the post body is parsed
+as Gutenberg blocks.  Embed-type blocks (core/embed, core-embed/*, extensible via
+<code>piperless_skip_blocks</code> filter) are stripped.  Text is collected from <code>innerHTML</code>
+recursively through the block tree — avoiding double-processing through <code>render_block()</code> +
+<code>the_content</code>.
+</p>
+
+<h2 id="cache-manager">Cache Manager</h2>
+<p><code>includes/class-cache-manager.php</code></p>
+
+<h4>Storage</h4>
+<p>Files stored in <code>wp-content/uploads/piperless/</code>.  Content-addressed via SHA-256 hash of
+text + model + language + quality + bitrate — identical input always produces the same key.</p>
+
+<h4>MP3 Conversion</h4>
+<p>
+When ffmpeg is available (auto-detected from common paths or configured via
+<code>piper_ffmpeg_binary</code>), WAV data is written to a temp file, converted to MP3 via
+<code>exec()</code>, and stored as <code>.mp3</code>.  If ffmpeg is unavailable or conversion fails,
+the raw WAV is stored as <code>.wav</code>.  Both formats coexist; the REST proxy prefers MP3.
+</p>
+
+<h4>Orphan Detection</h4>
+<p>
+<code>clear_orphans()</code> cross-references every file against <code>_piperless_cache_key</code>
+post meta across all posts.  Files with no matching post are deleted.  Model preview and test
+preview files are silently cleaned up but not counted.
+</p>
+
+<h4>Key Methods</h4>
+<table>
+<tr><th>Method</th><th>Description</th></tr>
+<tr><td>put()</td><td>Store audio: WAV → temp → ffmpeg → MP3, or WAV fallback</td></tr>
+<tr><td>get()</td><td>Retrieve cached audio data</td></tr>
+<tr><td>delete()</td><td>Delete both MP3 and legacy WAV for a key</td></tr>
+<tr><td>flush()</td><td>Delete all cached audio files</td></tr>
+<tr><td>clear_orphans()</td><td>Delete files not referenced by any post + preview files</td></tr>
+<tr><td>stats()</td><td>Return file count and total bytes (excludes preview files)</td></tr>
+<tr><td>get_entries()</td><td>Paginated cache browser data with post associations</td></tr>
+</table>
+
+<h2 id="gutenberg">Gutenberg Integration</h2>
+<p><code>includes/class-gutenberg.php</code></p>
+
+<h4>Sidebar Panels</h4>
+<table>
+<tr><th>Panel</th><th>Fields</th></tr>
+<tr><td>Generation</td><td>Generate/Regenerate button, Player Title, Remove Audio link</td></tr>
+<tr><td>Voice Settings</td><td>Voice, Language, Quality, Sentence Silence, Length Scale</td></tr>
+<tr><td>Display Settings</td><td>Player Style, Placement</td></tr>
+<tr><td>Preview</td><td>HTML5 audio player with duration display</td></tr>
+</table>
+
+<h4>Per-Post Meta</h4>
+<table>
+<tr><th>Meta Key</th><th>Type</th><th>Purpose</th></tr>
+<tr><td>_piperless_voice</td><td>string</td><td>Voice name override</td></tr>
+<tr><td>_piperless_language</td><td>string</td><td>Language code override</td></tr>
+<tr><td>_piperless_quality</td><td>string</td><td>Quality tier override</td></tr>
+<tr><td>_piperless_style</td><td>string</td><td>Player theme override</td></tr>
+<tr><td>_piperless_placement</td><td>string</td><td>Player placement override</td></tr>
+<tr><td>_piperless_title</td><td>string</td><td>Player title override</td></tr>
+<tr><td>_piperless_sentence_silence</td><td>string</td><td>Sentence silence override</td></tr>
+<tr><td>_piperless_length_scale</td><td>string</td><td>Length scale override</td></tr>
+<tr><td>_piperless_audio_url</td><td>string</td><td>Current audio proxy URL</td></tr>
+<tr><td>_piperless_duration</td><td>number</td><td>Duration in seconds</td></tr>
+</table>
+
+<h2 id="rest-api">REST API</h2>
+
+<table>
+<tr><th>Method</th><th>Route</th><th>Auth</th><th>Description</th></tr>
+<tr><td>GET</td><td>/piperless/v1/audio?key=…</td><td>Public</td><td>Stream cached audio. Rate-limited 60 req/min/IP. Supports HTTP Range (206 Partial Content) for seeking.</td></tr>
+<tr><td>POST</td><td>/piperless/v1/generate</td><td>edit_post</td><td>Trigger audio generation. Checks per-post ownership.</td></tr>
+<tr><td>GET</td><td>/piperless/v1/status/&lt;id&gt;</td><td>edit_post</td><td>Check audio status for a post.</td></tr>
+<tr><td>GET</td><td>/piperless/v1/models</td><td>edit_posts</td><td>List available voice models (paths stripped to basename).</td></tr>
+<tr><td>DELETE</td><td>/piperless/v1/audio/&lt;id&gt;</td><td>edit_post</td><td>Remove audio: deletes cached files from disk, clears post meta.</td></tr>
+</table>
+
+<h2 id="settings">Settings Panel</h2>
+<p><code>includes/class-settings.php</code></p>
+
+<h4>Tabs</h4>
+<table>
+<tr><th>Tab</th><th>Section</th><th>Fields</th></tr>
+<tr><td>Piper</td><td>Piper TTS Configuration</td><td>Binary path, models directory, interface mode, model preview table, default voice/language/quality, FFmpeg path, MP3 bitrate, sentence silence, length scale, Test Connection button</td></tr>
+<tr><td>Content</td><td>Content Parsing</td><td>Auto-generate on publish, Skip embedded content</td></tr>
+<tr><td>Styling</td><td>Audio Player Settings</td><td>Player preview, player style, player max width, custom CSS, player placement, player title, show duration</td></tr>
+<tr><td>Performance</td><td>—</td><td>Piper process timeout (30–3600s), audio endpoint rate limit (1–600 req/min)</td></tr>
+<tr><td>Cache Management</td><td>—</td><td>Cache stats, clear orphaned audio, flush entire cache, cache browser with pagination</td></tr>
+<tr><td>Logs</td><td>—</td><td>Logging level, debug log viewer, refresh/clear buttons</td></tr>
+<tr><td>Help</td><td>—</td><td>Usage instructions</td></tr>
+<tr><td>About</td><td>—</td><td>Version and contact info</td></tr>
+</table>
+
+<h4>Architecture Note</h4>
+<p>
+The Piper, Content, Styling, and Performance tabs share a single <code>&lt;form&gt;</code> (same option group).
+Each tab group uses a separate "virtual" page slug passed to <code>add_settings_section()</code> and
+<code>do_settings_sections()</code>.  <code>render_page()</code> switches which sections are rendered
+based on the <code>?tab=</code> query parameter.  Custom field types (<code>model_preview_table</code>,
+<code>player_preview_block</code>, <code>voice_select</code>) are dispatched through <code>render_field()</code>.
+</p>
+
+<h2 id="player">Audio Player</h2>
+<p><code>includes/class-player.php</code></p>
+
+<h4>Themes</h4>
+<table>
+<tr><th>CSS Class</th><th>Name</th><th>Accent</th></tr>
+<tr><td>piperless-player--classic</td><td>Classic</td><td>#2271b1 (blue)</td></tr>
+<tr><td>piperless-player--minimal</td><td>Minimal</td><td>#333333 (dark gray), no border</td></tr>
+<tr><td>piperless-player--dark</td><td>Modern Dark</td><td>#2271b1 on dark bg</td></tr>
+<tr><td>piperless-player--newsviews</td><td>NewsViews</td><td>#B31942 (burgundy)</td></tr>
+<tr><td>piperless-player--newsviews-classic</td><td>NewsViews Classic</td><td>#233452 (navy)</td></tr>
+<tr><td>—</td><td>Custom CSS</td><td>User-defined via textarea (sanitized)</td></tr>
+</table>
+
+<h4>Placement</h4>
+<table>
+<tr><th>Value</th><th>Behavior</th></tr>
+<tr><td>before</td><td>Player before post content</td></tr>
+<tr><td>after</td><td>Player after post content</td></tr>
+<tr><td>both</td><td>Player both before and after content</td></tr>
+<tr><td>manual</td><td>No automatic insertion — use [piperless_player] shortcode</td></tr>
+</table>
+
+<h2 id="logger">Logger</h2>
+<p><code>includes/class-logger.php</code></p>
+
+<h4>Severity Levels (PSR-3)</h4>
+<table>
+<tr><th>Level</th><th>Value</th><th>Typical Use</th></tr>
+<tr><td>emergency</td><td>0</td><td>System unusable</td></tr>
+<tr><td>alert</td><td>1</td><td>Immediate action required</td></tr>
+<tr><td>critical</td><td>2</td><td>Critical conditions</td></tr>
+<tr><td>error</td><td>3</td><td>Runtime errors</td></tr>
+<tr><td>warning</td><td>4</td><td>Exceptional but non-error</td></tr>
+<tr><td>notice</td><td>5</td><td>Normal but significant</td></tr>
+<tr><td>info</td><td>6</td><td>Interesting events</td></tr>
+<tr><td>debug</td><td>7</td><td>Detailed debug information</td></tr>
+</table>
+
+<h4>Output Channels</h4>
+<ol>
+  <li><strong>WordPress debug.log</strong> — when WP_DEBUG + WP_DEBUG_LOG are enabled</li>
+  <li><strong>piperless.log</strong> — dedicated file in wp-content/uploads/piperless/</li>
+  <li><strong>PHP error_log()</strong> — fallback when the dedicated file can't be written</li>
+</ol>
+
+<p>
+The dedicated log file is <code>chmod 0600</code> after every write to prevent world-readable access
+on servers without .htaccess protection.  <code>log_last_error()</code> captures <code>error_get_last()</code>
+after @-suppressed filesystem operations — always call <code>error_clear_last()</code> before the @ call
+for deterministic attribution.
+</p>
+
+<h2 id="hooks">Filters &amp; Actions</h2>
+
+<h3>Filters (extend behaviour)</h3>
+<table>
+<tr><th>Hook</th><th>Type</th><th>Default</th><th>Purpose</th></tr>
+<tr><td>piperless_post_types</td><td>apply_filters</td><td>['post', 'page']</td><td>Post types supported by the plugin</td></tr>
+<tr><td>piperless_quality_tiers</td><td>apply_filters</td><td>['low','medium','high','lite','small','fast','quality']</td><td>Recognized quality tier labels in model filenames</td></tr>
+<tr><td>piperless_skip_blocks</td><td>apply_filters</td><td>['core/embed', 'core-embed/']</td><td>Block name prefixes to skip during text extraction</td></tr>
+<tr><td>piperless_ffmpeg_paths</td><td>apply_filters</td><td>['/usr/bin/ffmpeg','/usr/local/bin/ffmpeg','/opt/bin/ffmpeg']</td><td>ffmpeg binary paths to probe</td></tr>
+</table>
+
+<h3>Actions (hook into)</h3>
+<table>
+<tr><th>Hook</th><th>Purpose</th></tr>
+<tr><td>piperless_auto_generate</td><td>Cron event for deferred auto-generation (receives post ID)</td></tr>
+</table>
+
+<h3>Shortcodes</h3>
+<table>
+<tr><th>Shortcode</th><th>Attributes</th><th>Purpose</th></tr>
+<tr><td>[piperless_player]</td><td>post_id (optional)</td><td>Render audio player for a specific post or current post</td></tr>
+</table>
+
+<h2 id="security">Security Model</h2>
+
+<h4>Command Execution</h4>
+<ul>
+  <li>All binary/model paths use <code>escapeshellarg()</code> — zero <code>escapeshellcmd()</code> calls</li>
+  <li>Binary path validated with file_exists() + is_executable() before use</li>
+  <li>Model paths come from admin settings or validated scan results, not user input</li>
+  <li>FFmpeg path auto-detected from allowlisted directories</li>
+</ul>
+
+<h4>Authorization</h4>
+<ul>
+  <li>All AJAX handlers: nonce + <code>manage_options</code> capability</li>
+  <li>REST generate/status/remove: <code>edit_posts</code> + <code>current_user_can('edit_post', $post_id)</code></li>
+  <li>REST audio proxy: intentionally public (required by frontend players), rate-limited 60 req/min/IP, cache keys regex-validated</li>
+  <li>REST models: <code>edit_posts</code>, absolute paths stripped to basename</li>
+</ul>
+
+<h4>Input/Output</h4>
+<ul>
+  <li>All user input: <code>sanitize_text_field</code>, <code>(int)</code> casts, regex validation</li>
+  <li>All output: <code>esc_html</code>, <code>esc_attr</code>, <code>esc_url</code>, <code>esc_textarea</code></li>
+  <li>Custom CSS sanitized: HTML tags stripped, lines with <code>url()</code>, <code>expression()</code>, <code>@import</code>, <code>behavior:</code> removed</li>
+</ul>
+
+<h4>File Security</h4>
+<ul>
+  <li>Log file: <code>chmod 0600</code> after every write</li>
+  <li>Cache directory: <code>.htaccess</code> with <code>Deny from all</code>, <code>index.php</code> silence file</li>
+  <li>Audio served exclusively through PHP proxy with key validation and Range request support</li>
+  <li>Temp files cleaned up on all code paths (success, failure, early return)</li>
+</ul>
+
+<h4>Runtime Safety</h4>
+<ul>
+  <li><code>set_time_limit()</code> guard around proc_open (configurable, 30–3600s)</li>
+  <li>Synthesis mutex per cache key (transient, 5-min TTL)</li>
+  <li>Auto-generate deferred to cron (off HTTP response path)</li>
+  <li>open_basedir checks with string matching before filesystem calls</li>
+  <li>@ suppression on filesystem calls with error_clear_last() + log_last_error() for diagnostics</li>
+</ul>
+
+</main>
+</body>
+</html>

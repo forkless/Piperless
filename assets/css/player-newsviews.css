@@ -1,0 +1,59 @@
+/**
+ * Piperless Player — NewsViews Theme
+ *
+ * Based on the Classic style with #B31942 replacing the blue accent.
+ */
+
+.piperless-player--newsviews {
+	background: #f8f9fa;
+	border: 1px solid #dee2e6;
+	border-radius: 10px;
+	padding: 14px 18px;
+}
+
+.piperless-player--newsviews .piperless-player__play {
+	background: #B31942;
+	color: #ffffff;
+	border-radius: 50%;
+	box-shadow: 0 2px 6px rgba( 179, 25, 66, 0.35 );
+}
+
+.piperless-player--newsviews .piperless-player__play:hover {
+	background: #991435;
+}
+
+.piperless-player--newsviews .piperless-player__progress {
+	background: #dee2e6;
+}
+
+.piperless-player--newsviews .piperless-player__progress-buffered {
+	background: #ced4da;
+}
+
+.piperless-player--newsviews .piperless-player__progress-bar {
+	background: #B31942;
+}
+
+.piperless-player--newsviews .piperless-player__time {
+	color: #495057;
+}
+
+/* Hover effect on progress */
+.piperless-player--newsviews .piperless-player__progress:hover {
+	height: 8px;
+	margin-top: -1px;
+}
+
+/* Volume accent */
+.piperless-player--newsviews .piperless-player__volume-slider input[type="range"] {
+	background: linear-gradient(to top, #B31942 var(--vol-pct), #dee2e6 var(--vol-pct)) !important;
+}
+
+.piperless-player--newsviews .piperless-player__volume-slider input[type="range"]::-moz-range-track {
+	background: linear-gradient(to top, #B31942 var(--vol-pct), #dee2e6 var(--vol-pct)) !important;
+}
+
+.piperless-player--newsviews .piperless-player__volume-btn:hover {
+	color: #B31942;
+	background: transparent;
+}

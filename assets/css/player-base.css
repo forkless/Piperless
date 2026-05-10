@@ -1,0 +1,235 @@
+/**
+ * Piperless Player — Base Styles
+ *
+ * Structural layout shared by all themes.
+ * Theme-specific colors and decorations live in player-{theme}.css.
+ */
+
+.piperless-player {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px;
+	width: 100%;
+	margin: 0.5em 0;
+	box-sizing: border-box;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+/* Hidden native audio element */
+.piperless-player__audio {
+	display: none;
+}
+
+/* Player title — inside the flex container, spans full width. */
+.piperless-player__title {
+	flex: 0 0 100%;
+	font-size: 15px;
+	font-weight: 600;
+	margin: 0;
+	color: inherit;
+}
+
+/* Play / Pause button */
+.piperless-player__play {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 42px;
+	height: 42px;
+	border: none;
+	cursor: pointer;
+	background: transparent;
+	padding: 0;
+	transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.piperless-player__play:hover {
+	transform: scale(1.08);
+}
+
+.piperless-player__play:active {
+	transform: scale(0.96);
+}
+
+.piperless-player__play:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+/* Icons — show/hide based on state */
+.piperless-player__play-icon,
+.piperless-player__pause-icon {
+	width: 24px;
+	height: 24px;
+	fill: currentColor;
+}
+
+.piperless-player__pause-icon {
+	display: none;
+}
+
+.piperless-player--playing .piperless-player__play-icon {
+	display: none;
+}
+
+.piperless-player--playing .piperless-player__pause-icon {
+	display: block;
+}
+
+/* Progress bar wrapper */
+.piperless-player__progress-wrapper {
+	flex: 1;
+	min-width: 0;
+}
+
+.piperless-player__progress {
+	position: relative;
+	width: 100%;
+	height: 6px;
+	border-radius: 3px;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.piperless-player__progress-bar,
+.piperless-player__progress-buffered {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	border-radius: 3px;
+}
+
+.piperless-player__progress-buffered {
+	z-index: 1;
+}
+
+.piperless-player__progress-bar {
+	z-index: 2;
+	width: 0%;
+	will-change: width;
+}
+
+/* Time display */
+.piperless-player__time {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	font-size: 13px;
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+/* Volume control */
+.piperless-player__volume {
+	position: relative;
+	flex-shrink: 0;
+}
+
+.piperless-player__volume-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	border: none;
+	background: transparent !important;
+	cursor: pointer;
+	color: inherit;
+	opacity: 0.6;
+	padding: 0;
+	transition: opacity 0.15s ease;
+}
+
+.piperless-player__volume-btn:hover,
+.piperless-player__volume-btn:active,
+.piperless-player__volume-btn:focus {
+	opacity: 1;
+	background: transparent !important;
+	outline: none;
+}
+
+.piperless-player__volume-slider {
+	display: none;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 100%;
+	margin-bottom: 8px;
+	background: #ffffff;
+	border: 1px solid #dee2e6;
+	border-radius: 6px;
+	padding: 10px 0;
+	box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+	z-index: 10;
+	width: 30px;
+	text-align: center;
+}
+
+.piperless-player__volume-slider input[type="range"] {
+	-webkit-appearance: none;
+	appearance: none;
+	writing-mode: vertical-lr;
+	direction: rtl;
+	width: 6px;
+	height: 80px;
+	cursor: pointer;
+	margin: 0 auto;
+	display: block;
+	background: linear-gradient(to top, #2271b1 var(--vol-pct), #dee2e6 var(--vol-pct));
+	border-radius: 2px;
+	outline: none;
+}
+
+.piperless-player__volume-slider input[type="range"]::-webkit-slider-runnable-track {
+	background: transparent;
+	border-radius: 2px;
+	height: 100%;
+}
+
+.piperless-player__volume-slider input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 12px;
+	height: 12px;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.piperless-player__volume-slider input[type="range"]::-moz-range-thumb {
+	width: 12px;
+	height: 12px;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.piperless-player__volume-slider input[type="range"]::-moz-range-track {
+	background: linear-gradient(to top, #2271b1 var(--vol-pct), #dee2e6 var(--vol-pct));
+	border-radius: 2px;
+	height: 6px;
+}
+
+.piperless-player--volume-open .piperless-player__volume-slider {
+	display: block;
+}
+
+/* Keep volume button bright when slider is open. */
+.piperless-player--volume-open .piperless-player__volume-btn {
+	opacity: 1;
+}
+
+.piperless-player__separator {
+	opacity: 0.5;
+}
+
+/* Error state */
+.piperless-player--error {
+	opacity: 0.5;
+}
+
+.piperless-player--error .piperless-player__play {
+	pointer-events: none;
+}

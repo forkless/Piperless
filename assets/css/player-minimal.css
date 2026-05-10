@@ -1,0 +1,58 @@
+/**
+ * Piperless Player — Minimal Theme
+ *
+ * Bare-bones monochrome player that blends into most themes.
+ * Transparent background, thin borders.
+ */
+
+.piperless-player--minimal {
+	background: transparent;
+	border: none;
+	border-radius: 0;
+	padding: 10px 0;
+}
+
+.piperless-player--minimal .piperless-player__play {
+	background: transparent;
+	color: #333333;
+	border: 2px solid #333333;
+	border-radius: 50%;
+}
+
+.piperless-player--minimal .piperless-player__play:hover {
+	background: #333333;
+	color: #ffffff;
+}
+
+.piperless-player--minimal .piperless-player__progress {
+	background: #e0e0e0;
+	border-radius: 2px;
+}
+
+.piperless-player--minimal .piperless-player__progress-buffered {
+	display: none; /* clean look — no buffer indication */
+}
+
+.piperless-player--minimal .piperless-player__progress-bar {
+	background: #333333;
+	border-radius: 2px;
+}
+
+.piperless-player--minimal .piperless-player__time {
+	color: #666666;
+}
+
+/* Progress hover */
+.piperless-player--minimal .piperless-player__progress:hover {
+	height: 7px;
+	margin-top: -0.5px;
+}
+
+/* Volume accent */
+.piperless-player--minimal .piperless-player__volume-slider input[type="range"] {
+	background: linear-gradient(to top, #333333 var(--vol-pct), #dee2e6 var(--vol-pct)) !important;
+}
+
+.piperless-player--minimal .piperless-player__volume-slider input[type="range"]::-moz-range-track {
+	background: linear-gradient(to top, #333333 var(--vol-pct), #dee2e6 var(--vol-pct)) !important;
+}
