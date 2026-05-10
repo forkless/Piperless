@@ -436,19 +436,24 @@ class Cache_Manager {
 		$custom   = $settings['piper_ffmpeg_binary'] ?? '';
 
 		if ( '' !== $custom ) {
-			// Support both full binary path and directory-only path.
-			if ( @is_dir( $custom ) ) {
-				$custom = rtrim( $custom, '/' ) . '/ffmpeg';
+			// Support both full binary path AND directory-only path.
+			// `@is_dir` can return false under open_basedir, so we also
+			// try appending /ffmpeg if the raw path is not executable.
+			if ( ! @is_executable( $custom ) ) {
+				$candidate = rtrim( $custom, '/' ) . '/ffmpeg';
+				if ( @is_executable( $candidate ) ) {
+					$custom = $candidate;
+					$this->logger->info( 'FFmpeg path is a directory, resolved to: {path}', [ 'path' => $custom ] );
+				}
 			}
-			if ( @file_exists( $custom ) && @is_executable( $custom ) ) {
+			if ( @is_executable( $custom ) ) {
 				$cached        = true;
 				$resolved_path = $custom;
+				$this->logger->info( 'Found ffmpeg at configured path: {path}', [ 'path' => $custom ] );
 				return $resolved_path;
 			}
-			$this->logger->warning(
-				'Configured ffmpeg binary not found or not executable: {path}. Trying auto-detection.',
-				[ 'path' => $custom ]
-			);
+			$this->logger->warning( 'ffmpeg not found or not executable at configured path: {path}', [ 'path' => $original ] );
+			$this->logger->warning( 'Trying auto-detection.' );
 		}
 
 		$candidates = apply_filters(
