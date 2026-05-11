@@ -3,7 +3,7 @@
  * Plugin Name: Piperless — Audio Transcripts
  * Plugin URI:  https://forkless.com
  * Description: Generate audio transcripts of WordPress posts using Piper TTS. Customizable players, caching, and full Gutenberg integration.
- * Version:     1.1.2
+ * Version:     1.1.3
  * Requires at least: 6.0
  * Requires PHP:      8.0
  * Author:      Forkless
