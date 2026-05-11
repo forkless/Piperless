@@ -438,6 +438,24 @@ for deterministic attribution.
   <li>@ suppression on filesystem calls with error_clear_last() + log_last_error() for diagnostics</li>
 </ul>
 
+<h2 id="build">Build &amp; Tooling</h2>
+
+<p>The <code>Makefile</code> wraps the build and translation toolchain:</p>
+
+<table>
+<tr><th>Command</th><th>Action</th></tr>
+<tr><td><code>make build</code></td><td>Create piperless-X.Y.Z.zip</td></tr>
+<tr><td><code>make translations</code></td><td>Extract .pot → JSON, sync to all locales</td></tr>
+<tr><td><code>make json2po</code></td><td>Convert JSON translations back to .po/.mo</td></tr>
+<tr><td><code>make check-translations</code></td><td>Validate translation integrity</td></tr>
+<tr><td><code>make lock-translations</code></td><td>Lock all locales for translation work</td></tr>
+<tr><td><code>make unlock-translations</code></td><td>Release all translation locks</td></tr>
+<tr><td><code>make translation-status</code></td><td>Show lock/completion for each locale</td></tr>
+<tr><td><code>make clean</code></td><td>Remove build artifacts</td></tr>
+</table>
+
+<p>All tools run as standalone shell scripts in <code>tools/</code> — the Makefile is a convenience wrapper.</p>
+
 </main>
 </body>
 </html>

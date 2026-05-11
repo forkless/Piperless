@@ -211,6 +211,23 @@ includes/
 └── class-logger.php         # PSR-3 logger with dual-channel fallback
 ```
 
+### Build & Tooling
+
+The `Makefile` wraps the build and translation toolchain:
+
+```
+make build               → Create piperless-X.Y.Z.zip
+make translations        → Extract .pot → JSON, sync to all locales
+make json2po             → Convert JSON translations back to .po/.mo
+make check-translations  → Validate translation integrity
+make lock-translations   → Lock all locales for translation work
+make unlock-translations → Release all translation locks
+make translation-status  → Show lock/completion for each locale
+make clean               → Remove build artifacts
+```
+
+All tools run as standalone shell scripts in `tools/` — the Makefile is a convenience wrapper.
+
 See `doc/index.html` for full developer documentation with architecture diagram, method tables, and security model.
 
 
