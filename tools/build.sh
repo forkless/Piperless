@@ -13,18 +13,19 @@ set -euo pipefail
 
 PLUGIN_SLUG="piperless"
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_DIR="$( cd "$SCRIPT_DIR/.." && pwd )"
 
 # ── Read version from plugin header ───────────────────────────────────────
-VERSION=$( grep -oP '^\s*\*\s*Version:\s*\K[0-9.]+' "${SCRIPT_DIR}/${PLUGIN_SLUG}.php" | head -1 )
+VERSION=$( grep -oP '^\s*\*\s*Version:\s*\K[0-9.]+' "${PROJECT_DIR}/${PLUGIN_SLUG}.php" | head -1 )
 
 if [[ -z "${VERSION}" ]]; then
 	echo "Error: could not determine plugin version from ${PLUGIN_SLUG}.php"
 	exit 1
 fi
 
-BUILD_DIR="${SCRIPT_DIR}/build"
+BUILD_DIR="${PROJECT_DIR}/build"
 STAGING="${BUILD_DIR}/${PLUGIN_SLUG}"
-ZIP_FILE="${SCRIPT_DIR}/${PLUGIN_SLUG}-${VERSION}.zip"
+ZIP_FILE="${PROJECT_DIR}/${PLUGIN_SLUG}-${VERSION}.zip"
 
 echo "=== Piperless Build Script ==="
 echo "Version:  ${VERSION}"
@@ -49,7 +50,7 @@ INCLUDE=(
 )
 
 for item in "${INCLUDE[@]}"; do
-	src="${SCRIPT_DIR}/${item}"
+	src="${PROJECT_DIR}/${item}"
 	if [[ -e "${src}" ]]; then
 		cp -r "${src}" "${STAGING}/"
 	else
@@ -67,7 +68,7 @@ find "${STAGING}" -name '*.map'      -delete
 echo "Creating ZIP archive…"
 cd "${BUILD_DIR}"
 zip -r "${ZIP_FILE}" "${PLUGIN_SLUG}" > /dev/null
-cd "${SCRIPT_DIR}"
+cd "${PROJECT_DIR}"
 
 # ── Verify ────────────────────────────────────────────────────────────────
 ZIP_SIZE=$( du -h "${ZIP_FILE}" | cut -f1 )
