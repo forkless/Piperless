@@ -11,7 +11,7 @@ all: translations
 # ── Build ────────────────────────────────────────────────────────────────────
 build:
 	@echo "=== Building Piperless ==="
-	./build.sh
+	./tools/build.sh
 
 # ── Translations ─────────────────────────────────────────────────────────────
 translations:
