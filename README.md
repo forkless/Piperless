@@ -19,7 +19,7 @@ Piperless converts every published post into a natural-sounding audio transcript
 ## Features
 
 - **Automatic generation** — optionally generate audio when a post is published. No per-post action required.
-- **6 player themes** — Classic, Minimal, Modern Dark, NewsViews, NewsViews Classic, and Custom CSS. Match your brand.
+- **6 player themes** — Classic, Minimal, Modern Dark, Ron Burgundy, Dan Rather Blue, and Custom CSS. Match your brand.
 - **Per-post overrides** — customize voice, language, quality, player style, and placement for individual posts via the Gutenberg sidebar.
 - **Content-addressed caching** — identical text + voice + language always produces the same audio file. Never regenerate the same content twice.
 - **Multi-language** — Piper supports 20+ languages. Install the voice models you need and Piperless auto-discovers them.
@@ -127,10 +127,10 @@ Six built-in themes plus unlimited custom CSS:
 | Theme | Description |
 |-------|-------------|
 | **Classic** | Blue accent, clean borders |
-| **Minimal** | Dark text, no border decoration |
-| **Modern Dark** | Blue accent on dark background |
-| **NewsViews** | Burgundy accent (#B31942) |
-| **NewsViews Classic** | Navy accent (#233452) |
+| **Minimal** | Clean, understated |
+| **Modern Dark** | Dark background |
+| **Ron Burgundy** | Bold burgundy |
+| **Dan Rather Blue** | Classic navy |
 | **Custom CSS** | Full control — base theme with your own styles |
 
 Each theme is a standalone CSS file. Switch themes instantly from the Styling tab.
