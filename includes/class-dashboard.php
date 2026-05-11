@@ -251,8 +251,8 @@ class Dashboard {
 	 * @param int $bytes Raw byte count.
 	 * @return string e.g. "24.5 MB"
 	 */
-	private function human_size( int $bytes ): string {
-		if ( 0 === $bytes ) {
+	private function human_size( float $bytes ): string {
+		if ( $bytes <= 0.0 ) {
 			return '0 B';
 		}
 
