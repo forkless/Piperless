@@ -84,14 +84,14 @@ class Dashboard {
 			<?php else : ?>
 				<div class="piperless-dash-grid">
 					<?php $this->render_file_card(
-						__( 'MP3', 'piperless' ),
-						$file_stats['mp3'] ?? [ 'count' => 0, 'bytes' => 0 ],
-						'#008a20'
-					); ?>
-					<?php $this->render_file_card(
 						__( 'Opus', 'piperless' ),
 						$file_stats['opus'] ?? [ 'count' => 0, 'bytes' => 0 ],
 						'#1565c0'
+					); ?>
+					<?php $this->render_file_card(
+						__( 'MP3', 'piperless' ),
+						$file_stats['mp3'] ?? [ 'count' => 0, 'bytes' => 0 ],
+						'#008a20'
 					); ?>
 					<?php $this->render_file_card(
 						__( 'WAV', 'piperless' ),
