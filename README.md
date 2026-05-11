@@ -24,7 +24,7 @@ Piperless converts every published post into a natural-sounding audio transcript
 - **Content-addressed caching** — identical text + voice + language always produces the same audio file. Never regenerate the same content twice.
 - **Multi-language** — Piper supports 20+ languages. Install the voice models you need and Piperless auto-discovers them.
 - **Voice aliases** — rename technical model names like `en_US-lessac-low` to "American Female" in your admin panel.
-- **MP3 conversion** — auto-converts Piper's WAV output to compact MP3 using ffmpeg (optional, falls back to WAV).
+- **MP3 & Opus encoding** — auto-converts Piper's WAV output to MP3 or Opus using ffmpeg. Opus offers better quality at lower bitrates. Falls back to WAV if ffmpeg is unavailable.
 - **Smart text extraction** — uses the post excerpt when available to avoid reading embedded content (YouTube, Twitter, third-party embeds), decimal numbers, and other artifacts that produce garbled speech. Falls back to the full post body when no excerpt is set.
 - **No external services** — Piper runs on your server. Text never leaves your infrastructure. GDPR-compliant by architecture.
 - **Production-hardened** — 29/29 security audit clearance. Rate limiting, authorization layering, process timeout guards, open_basedir aware.
@@ -168,14 +168,14 @@ Piperless ships with complete translations for:
 
 | Language | Locale | Coverage |
 |----------|--------|----------|
-| Dutch | nl_NL | 102/102 |
-| German | de_DE | 102/102 |
-| French | fr_FR | 102/102 |
-| Spanish | es_ES | 102/102 |
-| Chinese (Simplified) | zh_CN | 102/102 |
-| Japanese | ja | 102/102 |
-| Portuguese (Brazil) | pt_BR | 102/102 |
-| Italian | it_IT | 102/102 |
+| Dutch | nl_NL | 118/118 |
+| German | de_DE | 118/118 |
+| French | fr_FR | 118/118 |
+| Spanish | es_ES | 118/118 |
+| Chinese (Simplified) | zh_CN | 118/118 |
+| Japanese | ja | 118/118 |
+| Portuguese (Brazil) | pt_BR | 118/118 |
+| Italian | it_IT | 118/118 |
 
 The admin panel, Gutenberg sidebar, and frontend player are fully translated. See `languages/` for `.po` and `.mo` files.
 
