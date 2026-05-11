@@ -15,7 +15,6 @@ Piperless converts every published post into a natural-sounding audio transcript
 - **Commuting** readers can consume posts as audio
 - **Non-native speakers** benefit from hearing correct pronunciation
 
----
 
 ## Features
 
@@ -31,7 +30,6 @@ Piperless converts every published post into a natural-sounding audio transcript
 - **Production-hardened** — 29/29 security audit clearance. Rate limiting, authorization layering, process timeout guards, open_basedir aware.
 - **8 admin languages** — Dutch, German, French, Spanish, Chinese (Simplified), Japanese, Brazilian Portuguese, and Italian translations included.
 
----
 
 ## Why the Excerpt Matters
 
@@ -45,7 +43,6 @@ Piperless solves this by **using the WordPress excerpt field first**. Write a cl
 
 **Pro tip:** Think of the excerpt as your "audio script." It doesn't replace the post — it's the version that sounds natural when read aloud.
 
----
 
 ## Requirements
 
@@ -60,7 +57,6 @@ Piperless solves this by **using the WordPress excerpt field first**. Write a cl
 
 **Piperless will not work on shared hosting.** It requires shell access to install Piper and the ability to run system binaries via `proc_open`.
 
----
 
 ## Quick Start
 
@@ -107,7 +103,6 @@ Go to **Settings → Piperless** and set:
 
 Open any post in the block editor. In the Piperless sidebar panel, click **Generate Audio**. The audio player will appear in your post automatically based on your placement settings.
 
----
 
 ## Admin Panel
 
@@ -124,7 +119,6 @@ Piperless adds a settings page under **Settings → Piperless** with 8 tabs:
 | **Help** | Usage instructions and ffmpeg notes |
 | **About** | Version and contact information |
 
----
 
 ## Player Themes
 
@@ -141,7 +135,6 @@ Six built-in themes plus unlimited custom CSS:
 
 Each theme is a standalone CSS file. Switch themes instantly from the Styling tab.
 
----
 
 ## Accessibility
 
@@ -152,7 +145,6 @@ Piperless was built with accessibility in mind:
 - **Keyboard navigation** — player is a navigable region
 - **Content-as-transcript** — since the audio is generated from the post text, the text itself serves as the transcript for WCAG compliance
 
----
 
 ## Security
 
@@ -169,7 +161,6 @@ Piperless shells out to system binaries. It was built with defense-in-depth from
 
 Comprehensive review: **29/29 categories cleared. 1 logic bug found and fixed. Zero open findings.** [See full audit →](AUDIT.md)
 
----
 
 ## Translation
 
@@ -188,7 +179,6 @@ Piperless ships with complete translations for:
 
 The admin panel, Gutenberg sidebar, and frontend player are fully translated. See `languages/` for `.po` and `.mo` files.
 
----
 
 ## Filters & Hooks
 
@@ -204,7 +194,6 @@ The admin panel, Gutenberg sidebar, and frontend player are fully translated. Se
 - `[piperless_player]` — render the audio player for the current post
 - `[piperless_player post_id="123"]` — render the player for a specific post
 
----
 
 ## Development
 
@@ -224,13 +213,11 @@ includes/
 
 See `doc/index.html` for full developer documentation with architecture diagram, method tables, and security model.
 
----
 
 ## License
 
 MIT-licensed. Piperless is free and open-source. Piper TTS is also MIT-licensed. Voice models vary — check individual model licenses.
 
----
 
 ## Links
 
