@@ -57,6 +57,9 @@ class Plugin {
 	/** @var Gutenberg */
 	private Gutenberg $gutenberg;
 
+	/** @var Dashboard */
+	private Dashboard $dashboard;
+
 	/**
 	 * Private constructor — use ::instance().
 	 */
@@ -68,6 +71,7 @@ class Plugin {
 		$this->transcriber   = new Transcriber( $this->logger, $this->piper, $this->cache_manager );
 		$this->player        = new Player( $this->logger );
 		$this->gutenberg     = new Gutenberg( $this->logger, $this->transcriber, $this->cache_manager );
+		$this->dashboard     = new Dashboard( $this->logger, $this->cache_manager );
 	}
 
 	/**
@@ -89,6 +93,7 @@ class Plugin {
 		$this->settings->init();
 		$this->gutenberg->init();
 		$this->player->init();
+		$this->dashboard->init();
 
 		// Auto-generate on publish.
 		add_action( 'transition_post_status', [ $this, 'maybe_auto_generate' ], 10, 3 );

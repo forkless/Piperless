@@ -1,0 +1,110 @@
+/**
+ * Piperless Dashboard Widget Styles
+ *
+ * Card-based layout for the WordPress admin dashboard widget
+ * showing audio storage stats at a glance.
+ *
+ * @package Piperless
+ */
+
+/* ── Dashboard container ───────────────────────────────────────────────── */
+.piperless-dashboard {
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+.piperless-dash-empty {
+	color: #757575;
+	font-style: italic;
+	margin: 0;
+}
+
+/* ── Stat cards grid ───────────────────────────────────────────────────── */
+.piperless-dash-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+	margin-bottom: 14px;
+}
+
+.piperless-dash-card {
+	background: #f8f9fa;
+	border: 1px solid #e5e7eb;
+	border-left: 4px solid var(--card-accent);
+	border-radius: 6px;
+	padding: 12px;
+	text-align: center;
+}
+
+.piperless-dash-card-value {
+	font-size: 26px;
+	font-weight: 700;
+	line-height: 1.2;
+	color: #1d2327;
+}
+
+.piperless-dash-card-label {
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: #646970;
+	margin: 2px 0;
+}
+
+.piperless-dash-card-sub {
+	font-size: 12px;
+	color: #757575;
+	margin-top: 2px;
+}
+
+/* ── Info rows ─────────────────────────────────────────────────────────── */
+.piperless-dash-info {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.piperless-dash-info-item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 12px;
+	background: #f8f9fa;
+	border: 1px solid #e5e7eb;
+	border-radius: 6px;
+}
+
+.piperless-dash-info-icon {
+	font-size: 18px;
+	flex-shrink: 0;
+	width: 24px;
+	text-align: center;
+}
+
+.piperless-dash-info-text {
+	flex: 1;
+	color: #1d2327;
+}
+
+.piperless-dash-info-link {
+	margin-left: auto;
+	font-size: 12px;
+	text-decoration: none;
+	color: #2271b1;
+	white-space: nowrap;
+}
+
+.piperless-dash-info-link:hover {
+	color: #135e96;
+	text-decoration: underline;
+}
+
+/* ── Color highlights per info row ─────────────────────────────────────── */
+.piperless-dash-info-posts {
+	border-left: 4px solid #dba617;
+}
+
+.piperless-dash-info-storage {
+	border-left: 4px solid #2271b1;
+}
