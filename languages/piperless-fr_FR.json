@@ -63,7 +63,6 @@
     "Minimum severity to record in the log.": "Sévérité minimale à enregistrer dans le journal.",
     "Models Directory": "Répertoire des modèles",
     "Modern Dark": "Sombre moderne",
-    "NewsViews Classic": "NewsViews Classic",
     "No suitable Piper voice model found. Check your models directory.": "Aucun modèle de voix Piper approprié trouvé. Vérifiez votre répertoire de modèles.",
     "No text content available for this post.": "Aucun contenu texte disponible pour cet article.",
     "Orphaned files cleared.": "Fichiers orphelins supprimés.",
@@ -125,6 +124,7 @@
     "12 kbps (minimal)": "12 kbps (minimal)",
     "FFprobe Binary Path": "Chemin du binaire FFprobe",
     "Absolute path to the ffprobe binary for audio duration detection. Auto-detected from the ffmpeg directory if left empty.": "Chemin absolu vers le binaire ffprobe pour la détection de la durée audio. Auto-détecté depuis le répertoire ffmpeg si laissé vide.",
-    "Absolute path to the ffmpeg binary for MP3/Opus conversion. Auto-detected from common paths if left empty.": "Chemin absolu vers le binaire ffmpeg pour la conversion MP3/Opus. Auto-détecté depuis les chemins courants si laissé vide."
+    "Absolute path to the ffmpeg binary for MP3/Opus conversion. Auto-detected from common paths if left empty.": "Chemin absolu vers le binaire ffmpeg pour la conversion MP3/Opus. Auto-détecté depuis les chemins courants si laissé vide.",
+    "Dan Rather Blue": "Dan Rather Blue"
   }
 }

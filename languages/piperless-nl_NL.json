@@ -63,7 +63,6 @@
     "Minimum severity to record in the log.": "Minimale ernst om in het log vast te leggen.",
     "Models Directory": "Modellenmap",
     "Modern Dark": "Modern Donker",
-    "NewsViews Classic": "NewsViews Classic",
     "No suitable Piper voice model found. Check your models directory.": "Geen geschikt Piper stemmodel gevonden. Controleer je modellenmap.",
     "No text content available for this post.": "Geen tekstinhoud beschikbaar voor dit bericht.",
     "Orphaned files cleared.": "Verweesde bestanden gewist.",
@@ -125,6 +124,7 @@
     "12 kbps (minimal)": "12 kbps (minimaal)",
     "FFprobe Binary Path": "FFprobe-binair pad",
     "Absolute path to the ffprobe binary for audio duration detection. Auto-detected from the ffmpeg directory if left empty.": "Absoluut pad naar de ffprobe binary voor audioduurdetectie. Automatisch gedetecteerd vanuit de ffmpeg-directory, indien leeg gelaten.",
-    "Absolute path to the ffmpeg binary for MP3/Opus conversion. Auto-detected from common paths if left empty.": "Absoluut pad naar de ffmpeg binary voor MP3/Opus-conversie. Automatisch gedetecteerd als leeg gelaten."
+    "Absolute path to the ffmpeg binary for MP3/Opus conversion. Auto-detected from common paths if left empty.": "Absoluut pad naar de ffmpeg binary voor MP3/Opus-conversie. Automatisch gedetecteerd als leeg gelaten.",
+    "Dan Rather Blue": "Dan Rather Blue"
   }
 }

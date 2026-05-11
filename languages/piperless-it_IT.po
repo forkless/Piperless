@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Piperless 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/example/piperless/issues\n"
 "POT-Creation-Date: 2024-01-01 00:00+0000\n"
-"PO-Revision-Date: 2026-05-10 00:00+0000\n"
+"PO-Revision-Date: 2026-05-11 00:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: it <LL@li.org>\n"
 "Language: it_IT\n"
@@ -235,10 +235,6 @@ msgstr "Directory dei modelli"
 #: includes/class-settings.php:386
 msgid "Modern Dark"
 msgstr "Modern Dark"
-
-#: includes/class-settings.php:now
-msgid "NewsViews Classic"
-msgstr "NewsViews Classic"
 
 #: includes/class-transcriber.php:83
 msgid "No suitable Piper voice model found. Check your models directory."
@@ -477,4 +473,8 @@ msgstr "Percorso assoluto al binario ffprobe per il rilevamento della durata aud
 
 msgid "Absolute path to the ffmpeg binary for MP3/Opus conversion. Auto-detected from common paths if left empty."
 msgstr "Percorso assoluto al binario ffmpeg per la conversione MP3/Opus. Rilevato automaticamente se lasciato vuoto."
+
+#: includes/class-settings.php:now
+msgid "Dan Rather Blue"
+msgstr "Dan Rather Blue"
 

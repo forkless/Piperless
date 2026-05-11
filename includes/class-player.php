@@ -29,8 +29,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * ## Player style
  *
- * Six themes are available (Classic, Minimal, Modern Dark, NewsViews,
- * NewsViews Classic, Custom CSS).  The theme class is applied as
+ * Six themes are available (Classic, Minimal, Modern Dark, Ron Burgundy,
+ * Dan Rather Blue, Custom CSS).  The theme class is applied as
  * piperless-player--<style> on the container div.  Per-post override
  * via _piperless_style meta.
  *

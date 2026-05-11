@@ -242,7 +242,7 @@ msgid "Above & below content"
 msgstr ""
 
 #: includes/class-settings.php:now
-msgid "NewsViews Classic"
+msgid "Dan Rather Blue"
 msgstr ""
 
 #: assets/js/gutenberg.js
