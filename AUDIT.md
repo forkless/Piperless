@@ -5,13 +5,11 @@
 **Findings:** 1 (fixed). Open: 0  
 **Auditor:** DeepSeek V4 Pro (systematic automated review)
 
----
 
 ## Summary
 
 29 categories reviewed. One logic-level bug found and fixed mid-session (settings data loss on partial form save). Zero outstanding security vulnerabilities — critical, high, medium, or low.
 
----
 
 ## Results
 
@@ -47,7 +45,6 @@
 | 28 | File permissions | ✅ Pass | Cache directory created with proper permissions. Log `chmod 0600`. |
 | 29 | HTTP security headers | ✅ Pass | `Content-Range`, `Accept-Ranges: bytes`, `Cache-Control: public, max-age=86400`. |
 
----
 
 ## Legend
 
@@ -56,7 +53,6 @@
 | ✅ Pass | No vulnerability found |
 | 🔧 Fixed | Bug found and resolved |
 
----
 
 ## Defense-in-Depth Layers
 
@@ -68,7 +64,6 @@ Piperless shells out to the Piper TTS engine and ffmpeg — both system binaries
 4. **Output layer:** All HTML output goes through WordPress escaping functions. REST responses use `sanitize_text_field()`. Player attributes use `esc_attr()` and `esc_url()`.
 5. **Failure safety:** Every execution path has a fallback. Failed MP3 conversion stores WAV. Failed ffprobe reads the WAV header. Failed temp writes clean up. Mutexes release in all branches.
 
----
 
 ## Audit Methodology
 
