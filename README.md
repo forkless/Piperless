@@ -28,6 +28,7 @@ Piperless converts every published post into a natural-sounding audio transcript
 - **Smart text extraction** — uses the post excerpt when available to avoid reading embedded content (YouTube, Twitter, third-party embeds), decimal numbers, and other artifacts that produce garbled speech. Falls back to the full post body when no excerpt is set.
 - **No external services** — Piper runs on your server. Text never leaves your infrastructure. GDPR-compliant by architecture.
 - **Production-hardened** — 29/29 security audit clearance. Rate limiting, authorization layering, process timeout guards, open_basedir aware.
+- **Dashboard widget** — at-a-glance storage stats on the WordPress dashboard (togglable via Screen Options). File counts and sizes by audio format, posts awaiting transcription, and disk usage bar.
 - **8 admin languages** — Dutch, German, French, Spanish, Chinese (Simplified), Japanese, Brazilian Portuguese, and Italian translations included.
 
 
@@ -117,6 +118,7 @@ Piperless adds a settings page under **Settings → Piperless** with 8 tabs:
 | **Cache Management** | Stats, cache browser, clear orphaned files, flush entire cache |
 | **Logs** | Logging level configuration, live log viewer, clear log |
 | **About** | Version, GitHub repository, and support links |
+| **Dashboard** | WordPress admin dashboard widget with audio storage stats and disk usage |
 
 
 ## Player Themes
@@ -206,6 +208,7 @@ includes/
 ├── class-cache-manager.php  # Content-addressed file cache, MP3 conversion
 ├── class-gutenberg.php      # Block editor sidebar, REST API endpoints
 ├── class-settings.php       # Admin panel (8 tabs), AJAX handlers
+├── class-dashboard.php      # Dashboard widget with file stats and disk usage
 ├── class-player.php         # Frontend HTML5 player (6 themes)
 └── class-logger.php         # PSR-3 logger with dual-channel fallback
 ```

@@ -2,6 +2,20 @@
 
 All notable changes to the Piperless WordPress plugin.
 
+## [1.1.4] — 2026-05-12
+
+### Added
+
+- **Dashboard widget** — new "Piperless — Audio Storage" widget on the WordPress admin dashboard (togglable via Screen Options). Shows Opus/MP3/WAV file counts and total sizes in a card grid, published posts without audio transcripts with a quick "View posts" link, and server disk usage with a horizontal usage bar and percentage indicator.
+
+### Changed
+
+- **About tab** — SVG icons now appear inline before the GitHub Repository and Buy Me a Coffee links for a polished look.
+
+### Fixed
+
+- **Dashboard TypeError** — `human_size()` parameter changed from `int` to `float` to handle `disk_free_space()` return type.
+
 ## [1.1.3] — 2026-05-11
 
 ### Changed
