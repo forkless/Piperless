@@ -633,6 +633,12 @@ class Settings {
 					<p class="piperless-about-blurb">
 						<?php esc_html_e( 'Piperless turns your WordPress posts into audio transcripts. Developed by Forkless, it makes your content accessible, engaging, and easy to listen to. Quick setup, high-quality speech, and seamless integration.', 'piperless' ); ?>
 					</p>
+					<p>
+						<a href="https://github.com/forkless/Piperless" target="_blank"><?php esc_html_e( 'GitHub Repository', 'piperless' ); ?></a>
+					</p>
+					<p>
+						<a href="https://buymeacoffee.com/forkless" target="_blank"><?php esc_html_e( 'Buy me a coffee', 'piperless' ); ?></a>
+					</p>
 					<p class="piperless-about-contact">
 						<?php esc_html_e( 'Questions? Contact the developers at', 'piperless' ); ?>
 						<a href="mailto:devs@forkless.com">devs@forkless.com</a>
