@@ -85,5 +85,6 @@ help:
 	@echo "  make check-translations   Validate translation integrity & lock state"
 	@echo "  make json2po             Convert all locale JSON files → .po files"
 	@echo "  make build               Create distribution ZIP via build.sh"
+	@echo "  make release             Build, tag, push, and upload a GitHub release"
 	@echo "  make clean               Remove build artifacts"
 	@echo ""

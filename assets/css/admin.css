@@ -236,6 +236,18 @@
 	color: #757575;
 }
 
+.piperless-about-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.piperless-about-link-icon {
+	width: 18px;
+	height: 18px;
+	flex-shrink: 0;
+}
+
 /* Cache browser badges */
 .piperless-cache-badge {
 	display: inline-block;

@@ -634,10 +634,16 @@ class Settings {
 						<?php esc_html_e( 'Piperless turns your WordPress posts into audio transcripts. Developed by Forkless, it makes your content accessible, engaging, and easy to listen to. Quick setup, high-quality speech, and seamless integration.', 'piperless' ); ?>
 					</p>
 					<p>
-						<a href="https://github.com/forkless/Piperless" target="_blank"><?php esc_html_e( 'GitHub Repository', 'piperless' ); ?></a>
+						<a href="https://github.com/forkless/Piperless" target="_blank" class="piperless-about-link">
+						<img src="<?php echo esc_url( PIPERLESS_PLUGIN_URL . 'assets/svg/github.svg' ); ?>" class="piperless-about-link-icon" alt="" aria-hidden="true" width="18" height="18">
+						<?php esc_html_e( 'GitHub Repository', 'piperless' ); ?>
+					</a>
 					</p>
 					<p>
-						<a href="https://buymeacoffee.com/forkless" target="_blank"><?php esc_html_e( 'Buy me a coffee', 'piperless' ); ?></a>
+						<a href="https://buymeacoffee.com/forkless" target="_blank" class="piperless-about-link">
+						<img src="<?php echo esc_url( PIPERLESS_PLUGIN_URL . 'assets/svg/coffee.svg' ); ?>" class="piperless-about-link-icon" alt="" aria-hidden="true" width="18" height="18">
+						<?php esc_html_e( 'Buy me a coffee', 'piperless' ); ?>
+					</a>
 					</p>
 					<p class="piperless-about-contact">
 						<?php esc_html_e( 'Questions? Contact the developers at', 'piperless' ); ?>
