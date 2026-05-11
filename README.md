@@ -116,8 +116,7 @@ Piperless adds a settings page under **Settings → Piperless** with 8 tabs:
 | **Performance** | Piper process timeout (30–3600s), audio endpoint rate limiting |
 | **Cache Management** | Stats, cache browser, clear orphaned files, flush entire cache |
 | **Logs** | Logging level configuration, live log viewer, clear log |
-| **Help** | Usage instructions and ffmpeg notes |
-| **About** | Version and contact information |
+| **About** | Version, GitHub repository, and support links |
 
 
 ## Player Themes

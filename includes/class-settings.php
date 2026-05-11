@@ -569,10 +569,6 @@ class Settings {
 				   class="nav-tab <?php echo 'logs' === $active_tab ? 'nav-tab-active' : ''; ?>">
 					<?php esc_html_e( 'Logs', 'piperless' ); ?>
 				</a>
-				<a href="?page=<?php echo esc_attr( $this->page_slug ); ?>&tab=help"
-				   class="nav-tab <?php echo 'help' === $active_tab ? 'nav-tab-active' : ''; ?>">
-					<?php esc_html_e( 'Help', 'piperless' ); ?>
-				</a>
 				<a href="?page=<?php echo esc_attr( $this->page_slug ); ?>&tab=about"
 				   class="nav-tab <?php echo 'about' === $active_tab ? 'nav-tab-active' : ''; ?>">
 					<?php esc_html_e( 'About', 'piperless' ); ?>
