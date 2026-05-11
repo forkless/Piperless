@@ -28,7 +28,7 @@ All notable changes to the Piperless WordPress plugin.
 - **FFmpeg Binaries Path** — field renamed from "FFmpeg Binary Path" to reflect that the directory is used for the full toolchain (ffmpeg, ffprobe). Description updated to mention MP3/Opus.
 - **Cache scanning includes `.opus`** — all cache methods (`get_entries`, `clear`, `delete`, `stats`, `clear_orphans`) now handle `.opus` alongside `.mp3` and `.wav`.
 - **Opus cache badge** — blue badge (#1565c0) in the cache browser Format column.
-- **Translations** — all 8 locales at 117/117 strings.
+- **Translations** — all 8 locales at 118/118 strings.
 
 ## [1.0.0] — 2026-05-09
 
