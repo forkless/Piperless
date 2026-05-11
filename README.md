@@ -167,14 +167,14 @@ Piperless ships with complete translations for:
 
 | Language | Locale | Coverage |
 |----------|--------|----------|
-| Dutch | nl_NL | 118/118 |
-| German | de_DE | 118/118 |
-| French | fr_FR | 118/118 |
-| Spanish | es_ES | 118/118 |
-| Chinese (Simplified) | zh_CN | 118/118 |
-| Japanese | ja | 118/118 |
-| Portuguese (Brazil) | pt_BR | 118/118 |
-| Italian | it_IT | 118/118 |
+| Dutch | nl_NL | 120/120 |
+| German | de_DE | 120/120 |
+| French | fr_FR | 120/120 |
+| Spanish | es_ES | 120/120 |
+| Chinese (Simplified) | zh_CN | 120/120 |
+| Japanese | ja | 120/120 |
+| Portuguese (Brazil) | pt_BR | 120/120 |
+| Italian | it_IT | 120/120 |
 
 The admin panel, Gutenberg sidebar, and frontend player are fully translated. See `languages/` for `.po` and `.mo` files.
 

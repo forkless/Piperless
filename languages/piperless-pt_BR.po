@@ -478,3 +478,9 @@ msgstr "Caminho absoluto para o binário ffmpeg para conversão MP3/Opus. Detect
 msgid "Dan Rather Blue"
 msgstr "Dan Rather Blue"
 
+msgid "GitHub Repository"
+msgstr "Repositório GitHub"
+
+msgid "Buy me a coffee"
+msgstr "Me pague um café"
+

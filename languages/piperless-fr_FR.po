@@ -478,3 +478,9 @@ msgstr "Chemin absolu vers le binaire ffmpeg pour la conversion MP3/Opus. Auto-d
 msgid "Dan Rather Blue"
 msgstr "Dan Rather Blue"
 
+msgid "GitHub Repository"
+msgstr "Dépôt GitHub"
+
+msgid "Buy me a coffee"
+msgstr "Offrez-moi un café"
+

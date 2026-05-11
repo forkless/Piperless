@@ -478,3 +478,9 @@ msgstr "Percorso assoluto al binario ffmpeg per la conversione MP3/Opus. Rilevat
 msgid "Dan Rather Blue"
 msgstr "Dan Rather Blue"
 
+msgid "GitHub Repository"
+msgstr "Repository GitHub"
+
+msgid "Buy me a coffee"
+msgstr "Offrimi un caffè"
+

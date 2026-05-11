@@ -3,8 +3,8 @@
     "locale": "pt_BR",
     "source": "translations.json",
     "generated": "2026-05-10",
-    "total_strings": 118,
-    "translated": 118,
+    "total_strings": 120,
+    "translated": 120,
     "locked": false
   },
   "strings": {
@@ -125,6 +125,8 @@
     "FFprobe Binary Path": "Caminho do binário FFprobe",
     "Absolute path to the ffprobe binary for audio duration detection. Auto-detected from the ffmpeg directory if left empty.": "Caminho absoluto para o binário ffprobe para detecção de duração do áudio. Detectado automaticamente do diretório ffmpeg se deixado vazio.",
     "Absolute path to the ffmpeg binary for MP3/Opus conversion. Auto-detected from common paths if left empty.": "Caminho absoluto para o binário ffmpeg para conversão MP3/Opus. Detectado automaticamente se deixado vazio.",
-    "Dan Rather Blue": "Dan Rather Blue"
+    "Dan Rather Blue": "Dan Rather Blue",
+    "GitHub Repository": "Repositório GitHub",
+    "Buy me a coffee": "Me pague um café"
   }
 }

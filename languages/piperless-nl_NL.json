@@ -3,8 +3,8 @@
     "locale": "nl_NL",
     "source": "translations.json",
     "generated": "2026-05-10",
-    "total_strings": 118,
-    "translated": 118,
+    "total_strings": 120,
+    "translated": 120,
     "locked": false
   },
   "strings": {
@@ -125,6 +125,8 @@
     "FFprobe Binary Path": "FFprobe-binair pad",
     "Absolute path to the ffprobe binary for audio duration detection. Auto-detected from the ffmpeg directory if left empty.": "Absoluut pad naar de ffprobe binary voor audioduurdetectie. Automatisch gedetecteerd vanuit de ffmpeg-directory, indien leeg gelaten.",
     "Absolute path to the ffmpeg binary for MP3/Opus conversion. Auto-detected from common paths if left empty.": "Absoluut pad naar de ffmpeg binary voor MP3/Opus-conversie. Automatisch gedetecteerd als leeg gelaten.",
-    "Dan Rather Blue": "Dan Rather Blue"
+    "Dan Rather Blue": "Dan Rather Blue",
+    "GitHub Repository": "GitHub-repository",
+    "Buy me a coffee": "Koop een kop koffie voor me"
   }
 }

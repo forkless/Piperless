@@ -478,3 +478,9 @@ msgstr "Absoluter Pfad zur ffmpeg-Binärdatei für MP3/Opus-Konvertierung. Autom
 msgid "Dan Rather Blue"
 msgstr "Dan Rather Blue"
 
+msgid "GitHub Repository"
+msgstr "GitHub-Repository"
+
+msgid "Buy me a coffee"
+msgstr "Kauf mir einen Kaffee"
+

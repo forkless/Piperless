@@ -2,6 +2,13 @@
 
 All notable changes to the Piperless WordPress plugin.
 
+## [1.1.3] — 2026-05-11
+
+### Changed
+
+- **About tab** — removed Help tab, added GitHub Repository and Buy Me a Coffee links with official SVG icons
+- **Style descriptions** — cleaned hex color codes from all player theme descriptions
+
 ## [1.1.1] — 2026-05-10
 
 ### Fixed

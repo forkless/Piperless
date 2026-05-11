@@ -3,8 +3,8 @@
     "locale": "ja",
     "source": "translations.json",
     "generated": "2026-05-10",
-    "total_strings": 118,
-    "translated": 118,
+    "total_strings": 120,
+    "translated": 120,
     "locked": false
   },
   "strings": {
@@ -125,6 +125,8 @@
     "FFprobe Binary Path": "FFprobeバイナリパス",
     "Absolute path to the ffprobe binary for audio duration detection. Auto-detected from the ffmpeg directory if left empty.": "音声の長さ検出用ffprobeバイナリへの絶対パス。空の場合はffmpegディレクトリから自動検出されます。",
     "Absolute path to the ffmpeg binary for MP3/Opus conversion. Auto-detected from common paths if left empty.": "MP3/Opus変換用ffmpegバイナリへの絶対パス。空の場合は自動検出されます。",
-    "Dan Rather Blue": "ダン・ラザー・ブルー"
+    "Dan Rather Blue": "ダン・ラザー・ブルー",
+    "GitHub Repository": "GitHubリポジトリ",
+    "Buy me a coffee": "コーヒーを奢ってください"
   }
 }

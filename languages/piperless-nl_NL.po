@@ -478,3 +478,9 @@ msgstr "Absoluut pad naar de ffmpeg binary voor MP3/Opus-conversie. Automatisch 
 msgid "Dan Rather Blue"
 msgstr "Dan Rather Blue"
 
+msgid "GitHub Repository"
+msgstr "GitHub-repository"
+
+msgid "Buy me a coffee"
+msgstr "Koop een kop koffie voor me"
+
