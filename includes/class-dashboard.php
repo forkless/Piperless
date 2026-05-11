@@ -72,7 +72,7 @@ class Dashboard {
 	public function render(): void {
 		$file_stats   = $this->get_file_stats();
 		$without      = $this->get_posts_without_audio();
-		$disk_free    = $this->get_disk_free();
+		$disk         = $this->get_disk_usage();
 		$total_files  = ( $file_stats['mp3']['count'] ?? 0 )
 			+ ( $file_stats['wav']['count'] ?? 0 )
 			+ ( $file_stats['opus']['count'] ?? 0 );
@@ -127,15 +127,30 @@ class Dashboard {
 
 				<div class="piperless-dash-info-item piperless-dash-info-storage">
 					<span class="piperless-dash-info-icon">&#9000;</span>
-					<span class="piperless-dash-info-text">
-						<?php
-						printf(
-							/* translators: %s: human-readable free disk space */
-							esc_html__( 'Server storage available: %s', 'piperless' ),
-							esc_html( $disk_free )
-						);
-						?>
-					</span>
+					<div class="piperless-dash-info-body">
+						<span class="piperless-dash-info-text">
+							<?php
+							printf(
+								/* translators: 1: free space, 2: total space */
+								esc_html__( 'Server storage: %1$s free of %2$s', 'piperless' ),
+								esc_html( $this->human_size( $disk['free'] ) ),
+								esc_html( $this->human_size( $disk['total'] ) )
+							);
+							?>
+						</span>
+						<div class="piperless-dash-bar">
+							<div class="piperless-dash-bar-fill" style="width:<?php echo esc_attr( (string) round( $disk['pct'] ) ); ?>%;"></div>
+						</div>
+						<span class="piperless-dash-bar-label">
+							<?php
+							printf(
+								/* translators: %s: percentage used */
+								esc_html__( '%s%% used', 'piperless' ),
+								esc_html( (string) round( $disk['pct'] ) )
+							);
+							?>
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -224,11 +239,11 @@ class Dashboard {
 	}
 
 	/**
-	 * Get human-readable free disk space on the uploads directory volume.
+	 * Get disk usage stats for the uploads directory volume.
 	 *
-	 * @return string e.g. "12.3 GB"
+	 * @return array{total:float,free:float,used:float,pct:float}
 	 */
-	private function get_disk_free(): string {
+	private function get_disk_usage(): array {
 		$dir = $this->cache->dir();
 
 		// Walk up until we find a directory that exists.
@@ -236,19 +251,30 @@ class Dashboard {
 			$dir = dirname( $dir );
 		}
 
-		$free = @disk_free_space( $dir );
+		$total = @disk_total_space( $dir );
+		$free  = @disk_free_space( $dir );
 
-		if ( false === $free || null === $free ) {
-			return __( 'Unavailable', 'piperless' );
+		$fallback = [ 'total' => 0.0, 'free' => 0.0, 'used' => 0.0, 'pct' => 0.0 ];
+
+		if ( false === $total || null === $total || false === $free || null === $free || $total <= 0.0 ) {
+			return $fallback;
 		}
 
-		return $this->human_size( $free );
+		$used = $total - $free;
+		$pct  = ( $used / $total ) * 100.0;
+
+		return [
+			'total' => (float) $total,
+			'free'  => (float) $free,
+			'used'  => (float) $used,
+			'pct'   => (float) $pct,
+		];
 	}
 
 	/**
 	 * Format bytes as a human-readable string.
 	 *
-	 * @param int $bytes Raw byte count.
+	 * @param float $bytes Raw byte count.
 	 * @return string e.g. "24.5 MB"
 	 */
 	private function human_size( float $bytes ): string {
