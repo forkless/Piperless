@@ -62,7 +62,7 @@ Piperless shells out to the Piper TTS engine and ffmpeg — both system binaries
 2. **Authorization layer:** Every admin action checks capabilities. Every post-specific action checks ownership. Public endpoints (audio proxy) use rate limiting instead.
 3. **Shell boundary:** `escapeshellarg()` wraps every argument passed to `exec()`, `proc_open()`, and `proc_close()`. No string concatenation into shell commands anywhere.
 4. **Output layer:** All HTML output goes through WordPress escaping functions. REST responses use `sanitize_text_field()`. Player attributes use `esc_attr()` and `esc_url()`.
-5. **Failure safety:** Every execution path has a fallback. Failed MP3 conversion stores WAV. Failed ffprobe reads the WAV header. Failed temp writes clean up. Mutexes release in all branches.
+5. **Failure safety:** Every execution path has a fallback. Failed MP3 or Opus conversion stores WAV. Failed ffprobe reads the WAV header. Failed temp writes clean up. Mutexes release in all branches.
 
 
 ## Audit Methodology

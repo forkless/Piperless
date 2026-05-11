@@ -7,3 +7,4 @@ build/
 Thumbs.db
 .deepseek/
 AGENTS.md
+.gitignore
