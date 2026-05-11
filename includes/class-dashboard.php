@@ -103,7 +103,6 @@ class Dashboard {
 
 			<div class="piperless-dash-info">
 				<div class="piperless-dash-info-item piperless-dash-info-posts">
-					<span class="piperless-dash-info-icon">&#9998;</span>
 					<span class="piperless-dash-info-text">
 						<?php
 						printf(
@@ -126,7 +125,6 @@ class Dashboard {
 				</div>
 
 				<div class="piperless-dash-info-item piperless-dash-info-storage">
-					<span class="piperless-dash-info-icon">&#9000;</span>
 					<div class="piperless-dash-info-body">
 						<span class="piperless-dash-info-text">
 							<?php

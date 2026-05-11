@@ -75,13 +75,6 @@
 	border-radius: 6px;
 }
 
-.piperless-dash-info-icon {
-	font-size: 18px;
-	flex-shrink: 0;
-	width: 24px;
-	text-align: center;
-}
-
 .piperless-dash-info-text {
 	flex: 1;
 	color: #1d2327;
