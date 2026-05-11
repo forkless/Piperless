@@ -1,4 +1,4 @@
-# Security Audit — Piperless v1.1.0
+# Security Audit — Piperless v1.1.2
 
 **Audit date:** 2026-05-10  
 **Scope:** All 8 PHP classes (`includes/*.php`), plus `uninstall.php`  
